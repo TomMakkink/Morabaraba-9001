@@ -20,3 +20,14 @@ J:\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.Ass
 J:\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.AssemblyInfo.cs
 J:\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.dll
 J:\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.pdb
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\bin\Debug\netcoreapp2.0\moraba.deps.json
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\bin\Debug\netcoreapp2.0\moraba.runtimeconfig.json
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\bin\Debug\netcoreapp2.0\moraba.runtimeconfig.dev.json
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\bin\Debug\netcoreapp2.0\moraba.dll
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\bin\Debug\netcoreapp2.0\moraba.pdb
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.csprojResolveAssemblyReference.cache
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.csproj.CoreCompileInputs.cache
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.AssemblyInfoInputs.cache
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.AssemblyInfo.cs
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.dll
+C:\Users\Luke\Desktop\Morabaraba-9001\Morabaraba3\moraba\obj\Debug\netcoreapp2.0\moraba.pdb

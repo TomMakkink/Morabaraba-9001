@@ -4,7 +4,7 @@ using System.Text;
 
 namespace moraba
 {
-    class Cow : ICow
+    public class Cow : ICow
     {
         public bool isShootable(IEnumerable<Node> nodeBoard)
         {
