@@ -1,0 +1,48 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "moraba", "moraba\moraba.csproj", "{47545A02-BAE7-49B8-B11A-5648A12E2CC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "moraba.Test", "moraba.Test\moraba.Test.csproj", "{1B248A08-B011-4034-A0F6-72ADA6717BF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Debug|x64.ActiveCfg = Debug|x64
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Debug|x64.Build.0 = Debug|x64
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Debug|x86.ActiveCfg = Debug|x86
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Debug|x86.Build.0 = Debug|x86
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Release|x64.ActiveCfg = Release|x64
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Release|x64.Build.0 = Release|x64
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Release|x86.ActiveCfg = Release|x86
+		{47545A02-BAE7-49B8-B11A-5648A12E2CC2}.Release|x86.Build.0 = Release|x86
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Debug|x64.ActiveCfg = Debug|x64
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Debug|x64.Build.0 = Debug|x64
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Debug|x86.ActiveCfg = Debug|x86
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Debug|x86.Build.0 = Debug|x86
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Release|x64.ActiveCfg = Release|x64
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Release|x64.Build.0 = Release|x64
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Release|x86.ActiveCfg = Release|x86
+		{1B248A08-B011-4034-A0F6-72ADA6717BF3}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
