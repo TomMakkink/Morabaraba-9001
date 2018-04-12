@@ -6,7 +6,7 @@ namespace moraba
 {
     interface IPlayer
     {
-        bool canShoot();
+        bool canShoot(IEnumerable<Node> b);
 
         
     }

@@ -6,7 +6,7 @@ namespace moraba
 {
     interface ICow
     {
-        bool isShootable(IEnumerable<INode> nodeBoard);
+        bool isShootable(IEnumerable<Node> nodeBoard);
 
         
     }

@@ -1,0 +1,8 @@
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\bin\Debug\netstandard2.0\moraba.Test.deps.json
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\bin\Debug\netstandard2.0\moraba.Test.dll
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\bin\Debug\netstandard2.0\moraba.Test.pdb
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\obj\Debug\netstandard2.0\moraba.Test.csproj.CoreCompileInputs.cache
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\obj\Debug\netstandard2.0\moraba.Test.AssemblyInfoInputs.cache
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\obj\Debug\netstandard2.0\moraba.Test.AssemblyInfo.cs
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\obj\Debug\netstandard2.0\moraba.Test.dll
+J:\Desktop\Morabaraba-9001\Morabaraba3\moraba.Test\obj\Debug\netstandard2.0\moraba.Test.pdb

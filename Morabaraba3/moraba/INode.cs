@@ -6,7 +6,7 @@ namespace moraba
 {
     interface INode
     {
-        void addCow(ICow cow);
+        void addCow(Cow cow);
 
         void removeCow();
 
