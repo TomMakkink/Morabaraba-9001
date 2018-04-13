@@ -11,7 +11,14 @@ namespace moraba
         void removeCow();
 
         List<string> getNeighbours();
+        
+        string Position { get; }
 
+        bool occupied { set; }
+
+        List<string> neighbours { get; }
+
+        Cow Cow { get; }
 
     }
 }

@@ -8,7 +8,8 @@ namespace moraba
     {
         public string Name { get; set; }
 
-        public List<Cow> CowsLeft = new List<Cow> { };
+        public List<Cow> CowsAlive = new List<Cow> { };
+        public List<Cow> CowsForPlacing = new List<Cow> { };
         public List<List<string>> millList = new List<List<string>> { };
 
         public Team Team { get; set; }
@@ -20,18 +21,31 @@ namespace moraba
         {
             Name = name;
             Team = team;
-            makeCows(team);
+            BreedCows(team);
         }
 
-        private void makeCows(Team team)
+        private void BreedCows(Team team)
         {
             for (int i = 0; i < 13; i++)
-                CowsLeft.Add(new Cow(team));
+            {
+                CowsAlive.Add(new Cow(team));
+                CowsForPlaceing.Add(new Cow(team));
+            }
         }    
         
-        public int numCowsLeft ()
+        public int numCowsAlive ()
         {
-            return CowsLeft.Count;
+            return CowsAlive.Count;
+        }
+
+        public int numCowsToPlace()
+        {
+            return CowsForPlacing.Count;
+        }
+        public void placedCow()
+        {
+            if (CowsForPlacing.Count>0)
+                CowsForPlacing.RemoveAt(0);
         }
 
         public void addMill (List<string> newMill)
