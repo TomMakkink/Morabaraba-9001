@@ -5825,25 +5825,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Luke\\.nuget\\packages\\": {},
+    "C:\\Users\\g15d0548\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
+      "projectUniqueName": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
       "projectName": "moraba.Test",
-      "projectPath": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
-      "packagesPath": "C:\\Users\\Luke\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
+      "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
+      "packagesPath": "C:\\Users\\g15d0548\\.nuget\\packages\\",
+      "outputPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Luke\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\g15d0548\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
@@ -5857,8 +5860,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
-              "projectPath": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
+            "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
+              "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
             }
           }
         }

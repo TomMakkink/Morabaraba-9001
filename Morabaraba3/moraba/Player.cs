@@ -27,7 +27,10 @@ namespace moraba
                 CowsLeft.Add(new Cow(team));
         }    
         
-
+        public int numCowsLeft ()
+        {
+            return CowsLeft.Count;
+        }
        
 
         public bool canShoot(IEnumerable<Node> b)
