@@ -10,7 +10,7 @@ namespace moraba
 
         void removeCow();
 
-        void getNeighbours();
+        List<string> getNeighbours();
 
 
     }

@@ -9,30 +9,31 @@ namespace moraba
         public string position;
         public bool occupied;
         public List<string> neighbours;
-        public Cow cow;
+        public Cow Cow;
 
       
-
         public Node(string pos, List<string> friends)
         {
             position = pos;
             occupied = false;
             neighbours = friends;
-            cow = null;
+            Cow = null;
         }
         public void addCow(Cow cow)
         {
-            throw new NotImplementedException();
+            Cow = cow;
+            occupied = true;
         }
 
-        public void getNeighbours()
+        public List<string> getNeighbours()
         {
-            throw new NotImplementedException();
+            return neighbours;
         }
 
         public void removeCow()
         {
-            throw new NotImplementedException();
+            Cow = null;
+            occupied = false;
         }
     }
 }

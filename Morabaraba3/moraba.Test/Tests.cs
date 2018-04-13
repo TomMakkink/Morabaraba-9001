@@ -12,7 +12,7 @@ namespace moraba.Test
         [Test]
         public void AboardHas24Nodes()
         {
-            Board b = new Board();
+            Board b = new Board(); 
             int numOfNodes = b.getMainNodeList().Count();
             Assert.That(numOfNodes == 24);
         }
