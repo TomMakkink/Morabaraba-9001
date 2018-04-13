@@ -4,12 +4,28 @@ using System.Text;
 
 namespace moraba
 {
-    class Player : IPlayer
+    public class Player : IPlayer
     {
-     
+        public string Name { get; set; }
+
+
+        public Team Team { get; set; }
+
+        // default constructor
+
+        // constructor
+        public Player(string name, Team team)
+        {
+            Name = name;
+            Team = team;
+        }
+
+       
+
         public bool canShoot(IEnumerable<Node> b)
         {
             throw new NotImplementedException();
         }
+
     }
 }

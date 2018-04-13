@@ -7,6 +7,7 @@ namespace moraba
     class Program
     {
         Board board = new Board();
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");

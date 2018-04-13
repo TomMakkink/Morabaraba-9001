@@ -7,6 +7,7 @@ namespace moraba
       public class Board : IBoard, IMove
     {
         private List<Node> mainNodeList = new List<Node> { };
+
         public void Flying(string startNode, string endNode)
         {
             throw new NotImplementedException();
