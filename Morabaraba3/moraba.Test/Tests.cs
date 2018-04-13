@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace moraba.Test
 {
     [TestFixture]
-    public class Class1
+    public class Tests
     {
         static object[] inMill =
         {
