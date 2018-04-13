@@ -4,7 +4,7 @@ using System.Text;
 
 namespace moraba
 {
-      public class Board : IBoard, IMove
+      public class Board : IBoard, IMove, inputValidation
     {
         private List<Node> mainNodeList = new List<Node> { };
 
@@ -54,12 +54,41 @@ namespace moraba
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
         public void Placing(string placeNode)
         {
             
+=======
+        public void Placing(string placeNode, Player player)
+        {
+            int index = mainNodeList.FindIndex(x => x.Position == placeNode);
+            mainNodeList[index].addCow(player.CowsForPlacing[0]);
+            player.placedCow();
         }
 
-        public bool validateMove(string str)
+        public string getStartNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[0];
+        }
+
+        public string getEndNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[1];
+        }
+
+        public bool checkNodeExists(string str)
+        {
+            foreach (Node n in mainNodeList)
+            {
+                if (n.Position == str) return true;
+            }
+            return false;
+>>>>>>> Test
+        }
+
+        public bool isNeightbour(string str)
         {
             throw new NotImplementedException();
         }

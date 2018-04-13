@@ -6,33 +6,38 @@ namespace moraba
 {
     public class Node : INode
     {
-        public string position;
-        public bool occupied;
-        public List<string> neighbours;
-        public Cow cow;
+        public string Position { get; set; }
 
-      
+        public bool occupied { get;  set; }
+
+        public List<string> neighbours { get; set; }
+
+        public Cow Cow { get; set; }
 
         public Node(string pos, List<string> friends)
         {
-            position = pos;
+            Position = pos;
             occupied = false;
             neighbours = friends;
-            cow = null;
-        }
-        public void addCow(Cow cow)
-        {
-            throw new NotImplementedException();
+            Cow = null;
         }
 
-        public void getNeighbours()
+  
+        public void addCow(Cow cow)
         {
-            throw new NotImplementedException();
+            Cow = cow;
+            occupied = true;
+        }
+
+        public List<string> getNeighbours()
+        {
+            return neighbours;
         }
 
         public void removeCow()
         {
-            throw new NotImplementedException();
+            Cow = null;
+            occupied = false;
         }
     }
 }

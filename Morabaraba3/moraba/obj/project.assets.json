@@ -670,15 +670,20 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
       "projectName": "moraba",
       "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
       "packagesPath": "C:\\Users\\g15m0521\\.nuget\\packages\\",
       "outputPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\obj\\",
+=======
+      "projectUniqueName": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
+      "projectName": "moraba",
+      "projectPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
+      "packagesPath": "C:\\Users\\g15m0521\\.nuget\\packages\\",
+      "outputPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\obj\\",
+>>>>>>> Test
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
