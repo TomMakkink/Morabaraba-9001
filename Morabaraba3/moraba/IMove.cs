@@ -12,6 +12,10 @@ namespace moraba
 
         bool validatePlacing(string str);
 
-        bool validateMoving(string startNode,string endNode);
+        bool validateMoving(string startNode, string endNode);
+
+        string getStartNode();
+
+        string getEndNode();
     }
 }

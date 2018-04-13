@@ -57,12 +57,29 @@ namespace moraba
         public void Placing(string placeNode, Player player)
         {
             int index = mainNodeList.FindIndex(x => x.Position == placeNode);
-            mainNodeList[index].addCow(placeNode, player);
+            mainNodeList[index].addCow(player.CowsForPlacing[0]);
+            player.placedCow();
         }
-
-        public bool validateMove(string str)
+        bool validatePlacing(string str)
         {
             throw new NotImplementedException();
+        }
+
+        bool validateMoving(string startNode, string endNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        string getStartNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[0];
+        }
+
+        string getEndNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[1];
         }
     }
 }
