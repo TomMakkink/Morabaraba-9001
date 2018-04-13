@@ -8,6 +8,8 @@ namespace moraba
     {
         bool isShootable(IEnumerable<Node> nodeBoard);
 
-        
+        string Position { get; }
+
+        Team Team { get; }
     }
 }

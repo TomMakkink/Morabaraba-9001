@@ -8,7 +8,7 @@ namespace moraba
     {
         public string Name { get; set; }
 
-
+        public List<Cow> CowsLeft = new List<Cow> { };
         public Team Team { get; set; }
 
         // default constructor
@@ -18,7 +18,15 @@ namespace moraba
         {
             Name = name;
             Team = team;
+            makeCows(team);
         }
+
+        private void makeCows(Team team)
+        {
+            for (int i = 0; i < 13; i++)
+                CowsLeft.Add(new Cow(team));
+        }    
+        
 
        
 
