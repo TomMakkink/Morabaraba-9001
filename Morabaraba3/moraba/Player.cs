@@ -40,12 +40,13 @@ namespace moraba
         }
 
         /// <summary>
+        /// This method will check to see if there is a cow for the player to shoot at or if they just need to move on.
         /// Need the mainNodeList (board), you need the millList of the enemy)
         /// </summary>
         /// <param name="b"></param>
         /// <param name=""></param>
         /// <returns></returns>
-        public bool canShoot(IEnumerable<Node> board, List<List<string>> enemyMills )
+        public bool canShoot(List<Node> board, List<List<string>> enemyMills )
         {
             List<Cow> enemyCows = findEnemyCowsOnField(board);
             bool shoot = true;
