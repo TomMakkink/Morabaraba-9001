@@ -9,6 +9,8 @@ namespace moraba
         public string Name { get; set; }
 
         public List<Cow> CowsLeft = new List<Cow> { };
+        public List<List<string>> millList = new List<List<string>> { };
+
         public Team Team { get; set; }
 
         // default constructor
@@ -31,11 +33,56 @@ namespace moraba
         {
             return CowsLeft.Count;
         }
-       
 
-        public bool canShoot(IEnumerable<Node> b)
+        public void addMill (List<string> newMill)
         {
-            throw new NotImplementedException();
+            millList.Add(newMill);
+        }
+
+        /// <summary>
+        /// Need the mainNodeList (board), you need the millList of the enemy)
+        /// </summary>
+        /// <param name="b"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public bool canShoot(IEnumerable<Node> board, List<List<string>> enemyMills )
+        {
+            List<Cow> enemyCows = findEnemyCowsOnField(board);
+            bool shoot = true;
+            
+            if (enemyMills.Count > 0 && enemyCows.Count > 0)
+            {
+                
+                foreach (Cow x in enemyCows)
+                {
+                    foreach (List<string> y in enemyMills)
+                    {
+                        if (y.Contains(x.Position))
+                        {
+                            shoot = false;
+                            break;
+
+                        }
+                        else
+                            shoot = true;
+                }
+                }
+            }
+
+            return shoot;
+        }
+
+        private List<Cow> findEnemyCowsOnField(IEnumerable<Node> board)
+        {
+            List<Cow> temp = new List<Cow> { };
+            foreach(Node x in board)
+            {
+                if (x.Cow != null)
+                    if (x.Cow.Team != Team)
+                        temp.Add(x.Cow);
+            }
+
+            return temp;
         }
 
     }
