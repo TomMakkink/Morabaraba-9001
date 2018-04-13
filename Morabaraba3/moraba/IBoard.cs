@@ -4,9 +4,9 @@ using System.Text;
 
 namespace moraba
 {
-    interface IBoard
+     interface IBoard
     {
-        IEnumerable<INode> mainNode(string Position);
-
+        List<Node> getMainNodeList ();
+       
     }
 }
