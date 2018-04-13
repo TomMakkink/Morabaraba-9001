@@ -6,17 +6,27 @@ namespace moraba
 {
     class Program
     {
-        Board board = new Board();
-
+        public static Board Board = new Board();
+        
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            makePlayer();
+
+
+
+
 
         }
 
-        private List<List<string>> getMillOptions(int index)
+        static void makePlayer ()
         {
-            string caseSwitch = board.getMainNodeList()[index].position;
+            
+        }
+
+        static List<List<string>> getMillOptions(int index)
+        {
+            string caseSwitch = Board.getMainNodeList()[index].Position;
 
             switch (caseSwitch)
             {
@@ -72,6 +82,14 @@ namespace moraba
 
             }
             return new List<List<string>> { };
+        }
+
+        public bool canFormMill()
+        {
+            // to form a bool need to have the list of mill options and then we will take those options and see if any or some/all of them can be formed into a bool if they can be
+            // than we will add those mills to the mill list of the player
+
+            return false;
         }
     }
 }

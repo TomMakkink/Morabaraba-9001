@@ -29,7 +29,7 @@ namespace moraba
             for (int i = 0; i < 13; i++)
             {
                 CowsAlive.Add(new Cow(team));
-                CowsForPlaceing.Add(new Cow(team));
+                CowsForPlacing.Add(new Cow(team));
             }
         }    
         
