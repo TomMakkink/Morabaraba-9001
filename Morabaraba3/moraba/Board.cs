@@ -54,7 +54,7 @@ namespace moraba
             throw new NotImplementedException();
         }
 
-        public void Placeing(string placeNode)
+        public void Placing(string placeNode)
         {
             throw new NotImplementedException();
         }
