@@ -2,7 +2,11 @@ language: csharp
 solution: Morabaraba3.sln
 dotnet: 2.1.4
 script:
+<<<<<<< HEAD:Morabaraba3/.travis.yml
  - dotnet test moraba.Test
+=======
+  -dotnet test Morabaraba3/moraba.Test
+>>>>>>> master:.travis.yml
 matrix:
   include:
     - dotnet: 2.0.0

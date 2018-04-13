@@ -54,6 +54,11 @@ namespace moraba
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
+        public void Placing(string placeNode)
+        {
+            
+=======
         public void Placing(string placeNode, Player player)
         {
             int index = mainNodeList.FindIndex(x => x.Position == placeNode);
@@ -80,6 +85,7 @@ namespace moraba
                 if (n.Position == str) return true;
             }
             return false;
+>>>>>>> Test
         }
 
         public bool isNeightbour(string str)
