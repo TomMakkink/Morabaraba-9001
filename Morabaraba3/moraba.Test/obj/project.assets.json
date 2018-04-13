@@ -5825,33 +5825,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\g15m0521\\.nuget\\packages\\": {},
+    "C:\\Users\\g15d0548\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
+      "projectUniqueName": "J:\\Desktop\\C#\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
       "projectName": "moraba.Test",
-      "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
-      "packagesPath": "C:\\Users\\g15m0521\\.nuget\\packages\\",
-      "outputPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
-=======
-      "projectUniqueName": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
-      "projectName": "moraba.Test",
-      "projectPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
-      "packagesPath": "C:\\Users\\g15m0521\\.nuget\\packages\\",
-      "outputPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
->>>>>>> Test
+      "projectPath": "J:\\Desktop\\C#\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
+      "packagesPath": "C:\\Users\\g15d0548\\.nuget\\packages\\",
+      "outputPath": "J:\\Desktop\\C#\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\g15m0521\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\g15d0548\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
@@ -5865,13 +5857,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-<<<<<<< HEAD
-            "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
-              "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
-=======
-            "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
-              "projectPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
->>>>>>> Test
+            "J:\\Desktop\\C#\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
+              "projectPath": "J:\\Desktop\\C#\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
             }
           }
         }

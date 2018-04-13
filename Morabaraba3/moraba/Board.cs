@@ -6,7 +6,7 @@ namespace moraba
 {
       public class Board : IBoard, IMove, inputValidation
     {
-        private List<Node> mainNodeList = new List<Node> { };
+        public List<Node> mainNodeList = new List<Node> { };
 
         public void Flying(string startNode, string endNode)
         {
@@ -49,21 +49,29 @@ namespace moraba
             return mainNodeList;
         }
 
-        public void Moving(string startNode, string endNode)
+        public void Moving(string startNode, string endNode,Player player)
         {
-            throw new NotImplementedException();
+            if (player.numCowsToPlace() > 0)
+            {
+                string start = getStartNode(startNode);
+                string end = getEndNode(endNode);
+            }
+           
+            
         }
 
-<<<<<<< HEAD
-        public void Placing(string placeNode)
-        {
-            
-=======
         public void Placing(string placeNode, Player player)
         {
-            int index = mainNodeList.FindIndex(x => x.Position == placeNode);
-            mainNodeList[index].addCow(player.CowsForPlacing[0]);
-            player.placedCow();
+            Node temp = checkNodeExists(placeNode);
+            if (temp != null)
+            {
+                if (!checkNodeIsOccupied(temp))
+                {
+                    int index = mainNodeList.FindIndex(x => x.Position == placeNode);
+                    mainNodeList[index].addCow(player.CowsForPlacing[0]);
+                    player.placedCow();
+                }
+            }
         }
 
         public string getStartNode(string input)
@@ -78,19 +86,24 @@ namespace moraba
             return input.Split(' ')[1];
         }
 
-        public bool checkNodeExists(string str)
+        public Node checkNodeExists(string str)
         {
             foreach (Node n in mainNodeList)
             {
-                if (n.Position == str) return true;
+                if (n.Position == str) return n;
             }
-            return false;
->>>>>>> Test
+            return null;
         }
 
-        public bool isNeightbour(string str)
+        public bool isNeighbour(Node startNode, Node endNode)
         {
-            throw new NotImplementedException();
+            return startNode.neighbours.Contains(endNode.Position);
+        }
+
+        public bool checkNodeIsOccupied(Node node)
+        {
+            if (node == null) return false;
+            return node.occupied;
         }
     }
 }

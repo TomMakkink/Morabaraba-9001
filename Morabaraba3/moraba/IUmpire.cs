@@ -6,8 +6,8 @@ namespace moraba
 {
     interface IUmpire
     {
-        IPlayer Win();
+        Player Win();
         bool isDraw();
-        void play();
+        void play(Player player1, Player player2);
     }
 }

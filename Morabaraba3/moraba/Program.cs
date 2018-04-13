@@ -7,21 +7,27 @@ namespace moraba
     class Program
     {
         public static Board Board = new Board();
-        
+        public static Umpire Umpire = new Umpire();
+        public static Player player1;
+        public static Player player2;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
             makePlayer();
+            PlayGame();
 
 
+            }
 
-
-
+        static void PlayGame()
+        {
+            Umpire.play(player1, player2);
         }
-
         static void makePlayer ()
         {
-            
+            player1 = new Player("hi", Team.DarkCow);
+            player2 = new Player("P2", Team.LightCow);
         }
 
         static List<List<string>> getMillOptions(int index)

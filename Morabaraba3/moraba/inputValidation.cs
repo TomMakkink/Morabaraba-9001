@@ -6,8 +6,10 @@ namespace moraba
 {
     interface inputValidation
     {
-        bool checkNodeExists(string str);
+        Node checkNodeExists(string str);
 
-        bool isNeightbour(string str);
+        bool checkNodeIsOccupied(Node node);
+
+        bool isNeighbour(Node startNode, Node endNode);
     }
 }

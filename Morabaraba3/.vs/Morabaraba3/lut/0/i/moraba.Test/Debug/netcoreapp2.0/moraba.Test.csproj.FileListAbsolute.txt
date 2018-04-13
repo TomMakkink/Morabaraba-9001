@@ -1,0 +1,15 @@
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\NUnit3.TestAdapter.dll
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\NUnit3.TestAdapter.pdb
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\nunit.engine.netstandard.dll
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\Mono.Cecil.dll
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\moraba.Test.deps.json
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\moraba.Test.runtimeconfig.json
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\moraba.Test.runtimeconfig.dev.json
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\moraba.Test.dll
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\b\moraba.Test\Debug\netcoreapp2.0\moraba.Test.pdb
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\i\moraba.Test\Debug\netcoreapp2.0\moraba.Test.csprojResolveAssemblyReference.cache
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\i\moraba.Test\Debug\netcoreapp2.0\moraba.Test.csproj.CoreCompileInputs.cache
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\i\moraba.Test\Debug\netcoreapp2.0\moraba.Test.AssemblyInfoInputs.cache
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\i\moraba.Test\Debug\netcoreapp2.0\moraba.Test.AssemblyInfo.cs
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\i\moraba.Test\Debug\netcoreapp2.0\moraba.Test.dll
+\\ict.ru.ac.za\DFS\UGHomes\g15D0548\Desktop\C#\Morabaraba-9001\Morabaraba3\.vs\Morabaraba3\lut\0\i\moraba.Test\Debug\netcoreapp2.0\moraba.Test.pdb

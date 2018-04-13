@@ -4,19 +4,36 @@ using System.Text;
 
 namespace moraba
 {
-    class Umpire : IUmpire
+  public  class Umpire : IUmpire
     {
+        public int turns;
+        public Player currentPlayer;
+        public Player enemy;
+
+        public Umpire()
+        {
+            turns = 1;
+        }
         public bool isDraw()
         {
             throw new NotImplementedException();
         }
 
-        public void play()
+        public void play(Player player1, Player player2)
         {
-            throw new NotImplementedException();
+            if (turns % 2 == 1)
+            {
+                currentPlayer = player1;
+                enemy = player2;
+            }
+            else
+            {
+                currentPlayer = player2;
+                enemy = player1;
+            }
         }
 
-        public IPlayer Win()
+        public Player Win()
         {
             throw new NotImplementedException();
         }
