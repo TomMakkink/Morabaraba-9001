@@ -56,7 +56,7 @@ namespace moraba
 
         public void Placing(string placeNode)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool validateMove(string str)
