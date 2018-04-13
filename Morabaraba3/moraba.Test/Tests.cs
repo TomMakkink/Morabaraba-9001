@@ -8,7 +8,7 @@ namespace moraba.Test
     [TestFixture]
     public class Class1
     {
-        int turns = 1;
+        
         [Test]
         public void AboardHas24Nodes()
         {
