@@ -54,9 +54,10 @@ namespace moraba
             throw new NotImplementedException();
         }
 
-        public void Placeing(string placeNode)
+        public void Placing(string placeNode, Player player)
         {
-            throw new NotImplementedException();
+            int index = mainNodeList.FindIndex(x => x.Position == placeNode);
+            mainNodeList[index].addCow(placeNode, player);
         }
 
         public bool validateMove(string str)

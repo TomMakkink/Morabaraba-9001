@@ -23,10 +23,11 @@ namespace moraba
         }
 
   
-        public void addCow(Cow cow)
+        public void addCow(string pos, Player player)
         {
-            Cow = cow;
+            Cow = new Cow(pos, player.Team);
             occupied = true;
+            Position = pos;
         }
 
         public List<string> getNeighbours()

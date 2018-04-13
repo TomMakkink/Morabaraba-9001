@@ -6,10 +6,12 @@ namespace moraba
 {
     interface IMove
     {
-        void Placeing(string placeNode);
+        void Placing(string placeNode);
         void Moving(string startNode, string endNode);
         void Flying(string startNode, string endNode);
 
-        bool validateMove(string str);
+        bool validatePlacing(string str);
+
+        bool validateMoving(string startNode,string endNode);
     }
 }
