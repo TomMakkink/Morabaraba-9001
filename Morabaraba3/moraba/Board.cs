@@ -54,9 +54,10 @@ namespace moraba
             throw new NotImplementedException();
         }
 
-        public void Placeing(string placeNode)
+        public void Placing(string placeNode)
         {
-            throw new NotImplementedException();
+            int index = mainNodeList.FindIndex(x => x.position == placeNode);
+            //mainNodeList[index].addCow();
         }
 
         public bool validateMove(string str)

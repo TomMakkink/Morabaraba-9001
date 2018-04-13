@@ -664,7 +664,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\g15d0548\\.nuget\\packages\\": {},
+    "C:\\Users\\g15m0521\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
@@ -674,18 +674,18 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
+      "projectUniqueName": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
       "projectName": "moraba",
-      "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
-      "packagesPath": "C:\\Users\\g15d0548\\.nuget\\packages\\",
-      "outputPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15d0548\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\obj\\",
+      "projectPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
+      "packagesPath": "C:\\Users\\g15m0521\\.nuget\\packages\\",
+      "outputPath": "\\\\ict.ru.ac.za\\DFS\\UGHomes\\g15m0521\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\g15d0548\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\g15m0521\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
