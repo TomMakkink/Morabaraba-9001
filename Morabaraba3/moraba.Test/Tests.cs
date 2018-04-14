@@ -28,7 +28,7 @@ namespace moraba.Test
         // the player with the dark cow goes first
         [Test]
         public void PlayerWithTheDarkCowsGoFirst()
-        {   
+        {
             Player player1 = new Player("p1", Team.DarkCow);
             Player player2 = new Player("P2", Team.LightCow);
             Umpire imp = new Umpire(new Board());
@@ -57,14 +57,14 @@ namespace moraba.Test
         [Test]
         public void max12CowsPerPLayerCanBePlaced()
         {
-            Player player = new Player("P1",Team.DarkCow);
+            Player player = new Player("P1", Team.DarkCow);
             player.makeCowsToPlace(player.Team);
             Assert.That(player.numCowsToPlace() == 12);
             Board b = new Board();
             b.Placing(b.mainNodeList[2].Position, player);
             Assert.That(player.numCowsToPlace() == 11);
             // this shows that there can only be 12 cows placed per player.
-            
+
         }
 
         // Cows cannot be moved during placement
@@ -104,56 +104,65 @@ namespace moraba.Test
         public void cowsCanOnlyMoveToAConnectedSpace(int place, string movingFrom, bool expected)
         {
             Board b = new Board();
-            Player player = new Player("hello",Team.DarkCow);
+            Player player = new Player("hello", Team.DarkCow);
             b.mainNodeList[place].addCow(player.CowsAlive[0]);
             Assert.That(b.Moving(movingFrom, player) == expected); // this is to show that the cow was moved out of the node
         }
 
 
-        // cow can only move to an empty space
-
-  //      static object[] cowsMoveInEmptySpace =
-  //{
-  //          new object[] {}
-  //      };
-  //      [Test]
-  //      [TestCaseSource(nameof(cowCanOnlyMoveToEmptySpace))]
-  //      public void cowCanOnlyMoveToEmptySpace(int FirstNode, int SecondNode, bool PLaceCowInSecNode, bool expected)
-  //      {
-  //          Board b = new Board();
-  //          Player player = new Player("te",Team.DarkCow);
-  //          if (PLaceCowInSecNode)
-  //          {
-  //              b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
-  //              b.mainNodeList[SecondNode].addCow(player.CowsAlive[1]);
-  //              b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player); 
-  //              Assert.That((b.mainNodeList[FirstNode].Cow.Position != b.mainNodeList[SecondNode].Cow.Position)==expected);
-  //          }
-  //          else
-  //          {
-  //              b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
-  //              b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player);
-  //              Assert.That(b.mainNodeList[FirstNode].occupied == !expected);
-  //              Assert.That(b.mainNodeList[SecondNode].occupied == !expected);
-  //          }
-  //      }
-        // moving does not increas or decrease the number of cows on the field
-
-        [Test]
-
-        public void MovingDoesNotIncrOrDecrNumOfCowOnTheField()
+        //cow can only move to an empty space
+        static object[] cowsMoveToEmptySpace =
         {
-
-        }
-
-
+            new object[] {0, 1, "a0 b1", true},
+            new object[] {1, 0, "a3 a6", true},
+            new object[] {2, 0, "a6 b5", true},
+            new object[] {0, 3, "b1 a0", false},
+            new object[] {4, 1, "b3 a3", false},
+            new object[] {2, 2, "g5 a6", false},
+            new object[] {6, 0, "c2 d2", true},
+            new object[] {10, 11, "c3 c3", false},
+            new object[] {8, 5, "c4 b5", false},
+            new object[] {9, 0, "d0 g0", true},
+            new object[] {10, 20, "d1 f1",true}
+        };
         [Test]
-        public void MillsFormWhen3CowsAreInARowAndOnTheSameTeam(int[] nodeIndex,bool expected)
+        [TestCaseSource(nameof(cowsMoveToEmptySpace))]
+        public void cowCanOnlyMoveToEmptySpace(int firstCow, int secondCow, string move, bool expected)
         {
             Board b = new Board();
-
-
+            Player player = new Player("te", Team.DarkCow);
+            b.mainNodeList[firstCow].addCow(player.CowsAlive[0]);
+            b.mainNodeList[secondCow].addCow(player.CowsAlive[1]);
+            Assert.That(b.Moving(move, player) == expected); // this is to show that the cow was moved out of the node
         }
+
+        // moving does not increase or decrease the number of cows on the field
+        static object[] moveCows =
+        {
+            new object[] { new int[] { 0, 1, 2, 3, 4, 5 }, "b5 c4", 6},
+            new object[] {new int[] { 0, 1, 2, 3, 4, 5}, "a0 d0", 6},
+            new object[] { new int[] { 0, 1, 2, 3, 4, 5 }, "b1 d1", 6},
+            new object[] { new int[] { 0, 1, 2, 3, 4, 5 }, "b1 c2", 6},
+            new object[] { new int[] { 0, 1, 2, 3, 4, 5 }, "b5 d5", 6},
+            new object[] { new int[] { 10, 11, 12, 13, 14, 15 }, "e2 f1", 6},
+            new object[] { new int[] { 18, 19, 20, 21, 22, 23 }, "f3 e3", 6},
+             new object[] { new int[] { 18, 19, 20, 21, 22, 23 }, "f5 d5", 6},
+        };
+        [Test]
+        [TestCaseSource(nameof(moveCows))]
+        public void MovingDoesNotIncrOrDecrNumOfCowOnTheField(int[] cows, string move, int total)
+        {
+            Board b = new Board();
+            Player player = new Player("te", Team.DarkCow);
+            b.mainNodeList[cows[0]].addCow(player.CowsAlive[0]);
+            b.mainNodeList[cows[1]].addCow(player.CowsAlive[1]);
+            b.mainNodeList[cows[2]].addCow(player.CowsAlive[2]);
+            b.mainNodeList[cows[3]].addCow(player.CowsAlive[3]);
+            b.mainNodeList[cows[4]].addCow(player.CowsAlive[4]);
+            b.mainNodeList[cows[5]].addCow(player.CowsAlive[5]);
+            Assert.That(b.Moving(move, player) == true && b.numOfCowsOntheField() == total); // this is to show that the cow was moved out of the node
+        }
+
 
         //[Test]
         //[TestCaseSource(nameof(inMill))]

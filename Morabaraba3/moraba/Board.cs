@@ -315,9 +315,10 @@ namespace moraba
         public void moveCow(Node startNode, Node endNode, Player player)
         {
             int startIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
-            int endIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
+            int endIndex = mainNodeList.FindIndex(x => x.Position == endNode.Position);
 
             mainNodeList[endIndex].addCow(endNode.Cow);
+            mainNodeList[endIndex].Cow.Position = mainNodeList[endIndex].Position;
             mainNodeList[startIndex].removeCow();
         }
 
