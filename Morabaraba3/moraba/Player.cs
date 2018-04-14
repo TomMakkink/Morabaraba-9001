@@ -26,7 +26,7 @@ namespace moraba
 
         private void BreedCows(Team team)
         {
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 12; i++)
             {
                 CowsAlive.Add(new Cow(team));
                 CowsForPlacing.Add(new Cow(team));

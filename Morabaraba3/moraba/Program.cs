@@ -18,7 +18,12 @@ namespace moraba
             PlayGame();
 
 
-            }
+
+           
+            Console.Read();
+
+
+        }
 
         static void PlayGame()
         {

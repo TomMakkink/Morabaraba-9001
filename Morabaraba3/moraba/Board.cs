@@ -83,7 +83,8 @@ namespace moraba
         public string getEndNode(string input)
         {
             input.ToLower();
-            return input.Split(' ')[1];
+            
+            return input.Split(' ')[0];
         }
 
         public Node checkNodeExists(string str)
