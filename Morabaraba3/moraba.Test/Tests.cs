@@ -229,26 +229,26 @@ namespace moraba.Test
             new object[] {0,6,11,false},
             new object[] {4,7,8,false},
             new object[] {23,22,19,false },
-           
+
             };
-      
+
 
         [Test]
         [TestCaseSource(nameof(MillsWithTwoTeamsAndNotInStraightLine))]
-        public void CowsCanNotFormMillWhenNotInLineAndNotOnTheSameTeam( int num1, int num2, int num3, bool expect)
+        public void CowsCanNotFormMillWhenNotInLineAndNotOnTheSameTeam(int num1, int num2, int num3, bool expect)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
             Player p2 = new Player("Rebel Scum 1", Team.LightCow);
-            
-                b.mainNodeList[num1].addCow(p.CowsAlive[0]);
-                b.mainNodeList[num2].addCow(p.CowsAlive[1]);
-                b.mainNodeList[num3].addCow(p.CowsAlive[2]);
-                Umpire pulpotine = new Umpire(b);
-                pulpotine.play(p, p2);
-                Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
-            
-           
+
+            b.mainNodeList[num1].addCow(p.CowsAlive[0]);
+            b.mainNodeList[num2].addCow(p.CowsAlive[1]);
+            b.mainNodeList[num3].addCow(p.CowsAlive[2]);
+            Umpire pulpotine = new Umpire(b);
+            pulpotine.play(p, p2);
+            Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
+
+
         }
 
         static object[] CowsOfDiffTeamsInRowsOf3 = {
@@ -260,7 +260,7 @@ namespace moraba.Test
         };
         [Test]
         [TestCaseSource(nameof(CowsOfDiffTeamsInRowsOf3))]
-        public void CheckMillsWithCowsOfDiffTeamsInThem (int num1,int num2, int num3,bool expect)
+        public void CheckMillsWithCowsOfDiffTeamsInThem(int num1, int num2, int num3, bool expect)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
@@ -273,6 +273,11 @@ namespace moraba.Test
             Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
         }
 
+        [Test]
+        public void ShootOccursWhenMillOccurs()
+        {
+
+        }
 
     }
 }

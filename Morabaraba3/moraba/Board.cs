@@ -9,7 +9,7 @@ namespace moraba
       public class Board : IBoard, IMove, inputValidation
     {
         public List<Node> mainNodeList = new List<Node> { };
-
+        public Node LastEditedNode;
         public bool Flying(string position, Player player)
         {
             if (validateFlying(position, player))

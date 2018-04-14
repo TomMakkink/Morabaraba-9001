@@ -162,7 +162,7 @@ namespace moraba
         {
             if (millFormed(placedNode))
             {
-                // can shoot
+                
             }
             else
             {
