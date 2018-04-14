@@ -77,16 +77,22 @@ namespace moraba
 
         public void play(Player player1, Player player2)
         {
-            if (turns % 2 == 1)
+            bool isWin = true;
+            while (isWin)
             {
-                currentPlayer = player1;
-                enemy = player2;
+                if (turns % 2 == 1)
+                {
+                    currentPlayer = player1;
+                    enemy = player2;
+                }
+                else
+                {
+                    currentPlayer = player2;
+                    enemy = player1;
+                }
+                isWin = false;
             }
-            else
-            {
-                currentPlayer = player2;
-                enemy = player1;
-            }
+    
         }
 
         public bool millFormed(Node JustAtlered)
