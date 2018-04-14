@@ -135,7 +135,7 @@ namespace moraba.Test
             {
                 b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
                 b.mainNodeList[SecondNode].addCow(player.CowsAlive[1]);
-                b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player);
+                b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player); 
                 Assert.That((b.mainNodeList[FirstNode].Cow.Position != b.mainNodeList[SecondNode].Cow.Position)==expected);
             }
             else
