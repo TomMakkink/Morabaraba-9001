@@ -320,6 +320,7 @@ namespace moraba
             mainNodeList[endIndex].addCow(startNode.Cow);
             mainNodeList[endIndex].Cow.Position = mainNodeList[endIndex].Position;
             mainNodeList[startIndex].removeCow();
+            LastEditedNode = mainNodeList[endIndex];
         }
 
         public bool Placing(string placeNode, Player player)
@@ -331,6 +332,7 @@ namespace moraba
                 {
                     int index = mainNodeList.FindIndex(x => x.Position == placeNode);
                     mainNodeList[index].addCow(player.CowsForPlacing[0]);
+                    LastEditedNode = mainNodeList[index];
                     player.placedCow();
                     return true;
                 }

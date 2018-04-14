@@ -31,9 +31,7 @@ namespace moraba
         private void BreedCows(Team team)
         {
             for (int i = 0; i < 12; i++)
-                CowsAlive.Add(new Cow(team));
-
-            
+                CowsAlive.Add(new Cow(team));    
         }    
         
         public int numCowsAlive ()
@@ -61,7 +59,21 @@ namespace moraba
                     break;
                 }
             }
+            GetRidOfMill(pos);
         }
+
+        private void GetRidOfMill(string pos)
+        {
+            foreach (List<string> x in millList)
+            {
+                if (x.Contains(pos))
+                {
+                    millList.Remove(x);
+                    return;
+                }
+            }
+        }
+
         public void addMill (List<string> newMill)
         {
             millList.Add(newMill);

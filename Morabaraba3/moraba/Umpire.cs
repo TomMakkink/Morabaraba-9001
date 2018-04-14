@@ -120,6 +120,7 @@ namespace moraba
             }
             return mill;
         }
+
         public bool AllEnemyCowInMill()
         {
             bool shootable = true; 
@@ -162,12 +163,76 @@ namespace moraba
         {
             if (millFormed(placedNode))
             {
-                
+                shoot(askToShoot()); // this is the start of the shoot method the method takes in a string nodeName
+                                     // askToShoot will ask the user(s) which node they would like to shoot and only leave that method when
+                                     // a correct node is choosen
+            }
+          
+        }
+
+        public string askToShoot()
+        {
+            Console.WriteLine("Please enter the node that you would like to shoot");
+            string CowToShoot = Console.ReadLine(); // reads the user input
+            CowToShoot.ToLower(); // changes it all to lower case :)
+            if (board.checkNodeExists(CowToShoot) && CowToShoot.Length == 2) // this will check that the node exists
+            {
+                return CowToShoot; 
             }
             else
             {
-                //no mill formed
+                Console.WriteLine("A valid node only as a charecter length of 2 and also starts with a letter between a-g and a number between 1-6");
+                while (!(board.checkNodeExists(CowToShoot) && CowToShoot.Length == 2)) // while loop will continue till correct node given
+                                                                                       // may have to test.
+                {
+                    Console.WriteLine("Please enter the node that you would like to shoot");
+                    CowToShoot = Console.ReadLine();
+                    CowToShoot.ToLower();
+                }
             }
+            return CowToShoot;
+        }
+
+        public void shoot(string NodeChosen)
+        {
+            Node choosenNodeToShoot = board.getNodeFromString(NodeChosen);
+            if(nodeChecks(choosenNodeToShoot)) // this will make sure that the node can be shoot at all
+            {
+                enemy.killCow(choosenNodeToShoot.Cow.Position); // removes the cow from the enemy cow list, and removes the mill that the cow was in.
+                int index = board.mainNodeList.FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
+                board.mainNodeList[index].removeCow(); // removes the cow at that node in the mainNodeList
+                
+                 
+            }
+        }
+
+        public bool NodeInMill(Node node)
+        {
+            bool isNotInMill = false; // this method will check to see if the node choosen is in an enemy mill.
+            foreach (List<string> x in enemy.millList)
+            {
+                if (x.Contains(node.Position))
+                    isNotInMill = false;
+                else
+                    return true;
+            }
+            return isNotInMill;
+        }
+
+        public bool nodeChecks (Node node)
+        {
+            if (node.occupied) // make sure that the node is not empty
+                if (node.Cow.Team == enemy.Team) // this will make sure that the node is not currentplayers own node
+                    if (NodeInMill(node)) // this will check if the node is in a mill
+                        return true;
+                    else
+                    {
+                        if (AllEnemyCowInMill()) // this will make it so that if all enemy nodes are in a mill than the mill can be shoot at
+                            return true;
+                    }
+            return false;
+
+
         }
 
         public Player Win()
