@@ -85,67 +85,61 @@ namespace moraba.Test
                 Assert.That(player1.numCowsToPlace() == cowsToPlace - i);
                 b.Placing(b.mainNodeList[i].Position, player1);
             }
-            Assert.That(b.mainNodeList[5].occupied == true && b.mainNodeList[5].Position == "b5"); // this to show that node has a cow and what the node is
-            Assert.That(b.mainNodeList[8].occupied == false && b.mainNodeList[8].Position == "c4");//this line is to show that there is no cow in node c4 and we know that c4 is linked to b5 so cows can move between them
-            b.Moving(b.mainNodeList[5].Position, b.mainNodeList[8].Position, player1); //
-            Assert.That(b.mainNodeList[8].occupied == false); // to show that the Move method never moved the cow to the node c4
+            Assert.That(b.Moving("b5 c4", player1) == false);
 
         }
 
         static object[] movingCowsConnectedSpace =
       {
-            new object[] {1,2,true},
-            new object[] {0,3, false},
-            new object[] {1,4,true },
-            new object[] {4,5,true },
-            new object[] {22,23, true },
-            new object[] {14,2,true},
-            new object[] {21,9, true },
-            new object[] {23,8,false},
-            new object[] {15,4,false }
+            new object[] {0, "a0 b1",true},
+            new object[] {5, "b5 c3", false},
+            new object[] {5,"b5 c4",true },
+            new object[] {9,"d0 a0",true },
+            new object[] {23,"g3 g6", true },
+            new object[] {14,"d6 a6",true},
+            new object[] {21,"g0 d0", true },
+            new object[] {23,"g6 a0",false},
+            new object[] {23,"g6 a3",false }
         };
         //Cow can only move to a connected space
         [Test]
         [TestCaseSource(nameof(movingCowsConnectedSpace))]
-        public void cowsCanOnlyMoveToAConnectedSpace(int movingFrom, int movingTo, bool expected)
+        public void cowsCanOnlyMoveToAConnectedSpace(int place, string movingFrom, bool expected)
         {
             Board b = new Board();
             Player player = new Player("hello",Team.DarkCow);
-            b.mainNodeList[movingFrom].addCow(player.CowsAlive[0]);
-            b.Moving(b.mainNodeList[movingFrom].Position, b.mainNodeList[movingTo].Position, player);
-            Assert.That(b.mainNodeList[movingFrom].occupied == !expected); // this is to show that the cow was moved out of the node
-            Assert.That(b.mainNodeList[movingTo].occupied == expected); // this shows that the cow was moved 
-            Assert.That((b.mainNodeList[movingFrom].neighbours.Contains(b.mainNodeList[movingTo].Position)) == expected); // this shows if the cows are connected together and through this we can see the corelation
+            b.mainNodeList[place].addCow(player.CowsAlive[0]);
+            Assert.That(b.Moving(movingFrom, player) == expected); // this is to show that the cow was moved out of the node
         }
 
 
         // cow can only move to an empty space
 
-        static object[] cowsMoveInEmptySpace =
-  {
-            new object[] {}
-        };
-        [Test]
-        [TestCaseSource(nameof(cowCanOnlyMoveToEmptySpace))]
-        public void cowCanOnlyMoveToEmptySpace(int FirstNode, int SecondNode, bool PLaceCowInSecNode, bool expected)
-        {
-            Board b = new Board();
-            Player player = new Player("te",Team.DarkCow);
-            if (PLaceCowInSecNode)
-            {
-                b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
-                b.mainNodeList[SecondNode].addCow(player.CowsAlive[1]);
-                b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player); 
-                Assert.That((b.mainNodeList[FirstNode].Cow.Position != b.mainNodeList[SecondNode].Cow.Position)==expected);
-            }
-            else
-            {
-                b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
-                b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player);
-                Assert.That(b.mainNodeList[FirstNode].occupied == !expected);
-                Assert.That(b.mainNodeList[SecondNode].occupied == !expected);
-            }
-        }
+  //      static object[] cowsMoveInEmptySpace =
+  //{
+  //          new object[] {}
+  //      };
+  //      [Test]
+  //      [TestCaseSource(nameof(cowCanOnlyMoveToEmptySpace))]
+  //      public void cowCanOnlyMoveToEmptySpace(int FirstNode, int SecondNode, bool PLaceCowInSecNode, bool expected)
+  //      {
+  //          Board b = new Board();
+  //          Player player = new Player("te",Team.DarkCow);
+  //          if (PLaceCowInSecNode)
+  //          {
+  //              b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
+  //              b.mainNodeList[SecondNode].addCow(player.CowsAlive[1]);
+  //              b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player); 
+  //              Assert.That((b.mainNodeList[FirstNode].Cow.Position != b.mainNodeList[SecondNode].Cow.Position)==expected);
+  //          }
+  //          else
+  //          {
+  //              b.mainNodeList[FirstNode].addCow(player.CowsAlive[0]);
+  //              b.Moving(b.mainNodeList[FirstNode].Position, b.mainNodeList[SecondNode].Position, player);
+  //              Assert.That(b.mainNodeList[FirstNode].occupied == !expected);
+  //              Assert.That(b.mainNodeList[SecondNode].occupied == !expected);
+  //          }
+  //      }
         // moving does not increas or decrease the number of cows on the field
 
         [Test]

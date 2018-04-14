@@ -74,7 +74,7 @@ namespace moraba
                     Node tempEnd = getNodeFromString(end);
                     if (validateMove(tempStart, tempEnd, player))
                     {
-                        //moveCow(tempStart, tempEnd);
+                        //moveCow(tempStart, tempEnd, player);
                     }
                 }
             }

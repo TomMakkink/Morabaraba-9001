@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Collections.Generic;
-using System.Windows;
+
 
 namespace moraba
 {
@@ -17,16 +17,6 @@ namespace moraba
             Console.WriteLine("Hello World!");
             makePlayer();
             PlayGame();
-            
-            string a = "";
-            string ab = "a0 b0";
-            string ac = "a0 b";
-            string ad = "a0  b0";
-
-            string[] a1 = a.Split(' ');
-            string[] a2 = ab.Split(' ');
-            string[] a3 = ac.Split(' ');
-            string[] a4 = ad.Split(' ');
 
 
             List<string> temp = new List<string> { };
