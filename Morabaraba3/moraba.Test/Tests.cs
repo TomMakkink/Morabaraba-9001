@@ -195,6 +195,35 @@ namespace moraba.Test
 
         }
 
+        static object[] millCheck =
+        {
+            new object[] {0,1,2,true},
+            new object[] {9,10,11, true},
+            new object[] {10,11,12, false },
+            new object[] {0,3,6,true},
+            new object[] {23,20,17, true},
+            new object[] {17,6,3, false},
+            new object[] {3,10,18, true},
+            new object[] {8,12,17, true},
+            new object[] {9,10,3, false}
+        };
+
+        [Test]
+        [TestCaseSource(nameof(millCheck))]
+        public void testMillFormedByThreeCowsInALine(int num1, int num2, int num3, bool expect)
+        {
+            Board b = new Board();
+            Player p = new Player("Darth Grazer II", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+
+            b.mainNodeList[num1].addCow(p.CowsAlive[0]);
+            b.mainNodeList[num2].addCow(p.CowsAlive[1]);
+            b.mainNodeList[num3].addCow(p.CowsAlive[2]);
+            Umpire pulpotine = new Umpire(b);
+            pulpotine.play(p, p2);
+            Assert.That(pulpotine.millFormed(b.mainNodeList[num2])==expect);
+
+        }
  
         //[Test]
         //[TestCaseSource(nameof(inMill))]

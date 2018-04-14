@@ -18,9 +18,9 @@ namespace moraba
             makePlayer();
             PlayGame();
             Board.printBoard();
-            Console.Read();
+            //Console.Read();
 
-
+           
         }
 
         static void PlayGame()

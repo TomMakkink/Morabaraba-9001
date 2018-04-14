@@ -664,7 +664,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\g15d0548\\.nuget\\packages\\": {},
+    "C:\\Users\\TEMP\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
@@ -674,7 +674,7 @@
       "projectUniqueName": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
       "projectName": "moraba",
       "projectPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj",
-      "packagesPath": "C:\\Users\\g15d0548\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\TEMP\\.nuget\\packages\\",
       "outputPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
@@ -682,7 +682,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\g15d0548\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TEMP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
