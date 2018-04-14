@@ -274,9 +274,17 @@ namespace moraba.Test
         }
 
         [Test]
-        public void ShootOccursWhenMillOccurs()
+        public void ShootOccursWhenMillOccurs(int[] enemyCows , int[] currentPlayerCows,string chosenCow, bool expected)
         {
-
+            Board b = new Board();
+            Player p = new Player("Darth Grazer II", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+            b.mainNodeList[enemyCows[0]].addCow(p.CowsAlive[0]);
+            b.mainNodeList[enemyCows[1]].addCow(p2.CowsAlive[1]);
+            b.mainNodeList[enemyCows[3]].addCow(p.CowsAlive[2]);
+            b.mainNodeList[num1].addCow(p.CowsAlive[0]);
+            b.mainNodeList[num2].addCow(p2.CowsAlive[1]);
+            b.mainNodeList[num3].addCow(p.CowsAlive[2]);
         }
 
     }

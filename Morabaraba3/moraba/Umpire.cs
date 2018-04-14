@@ -10,6 +10,7 @@ namespace moraba
         public Player currentPlayer;
         public Player enemy;
         public Board board;
+        public bool justGotMill = false;
         public Umpire(Board b)
         {
             turns = 1;
@@ -99,6 +100,7 @@ namespace moraba
         public bool millFormed(Node JustChanged)
         {
             bool mill = false;
+            int m = 0;
             if (!(board.numOfCowsOntheField(currentPlayer.Team) >= 3))
                 return mill;
 
@@ -112,13 +114,40 @@ namespace moraba
                 {
                     if (N1.Cow.Team == currentPlayer.Team && N2.Cow.Team == N1.Cow.Team && N3.Cow.Team == currentPlayer.Team)
                     {
-                        currentPlayer.addMill(x);
+                       if(checkToSeeIfMIllCanShoot(x) && m ==0) // this should make it so that if it is a partial mill that was formed then the player will not shoot
+                        {
+                            justGotMill = true;
+                            m++;
+                        }
+                            currentPlayer.addMill(x);
                         mill = true;
+                        
                     }
                     
                 }
             }
             return mill;
+        }
+
+        private bool checkToSeeIfMIllCanShoot(List<string> newMIll)
+        {
+            if (currentPlayer.millList.Count > 0)
+            {
+                bool isNotPratialMill = false;
+                foreach (List<string> x in currentPlayer.millList) // run through all mills the current player has to see if any of the new mills cows are part of other mills
+                {
+                    if (x.Contains(newMIll[0]) || x.Contains(newMIll[1]) || x.Contains(newMIll[2]))
+                    {
+                        isNotPratialMill = false;
+                        return isNotPratialMill;
+                    }
+                    else
+                        isNotPratialMill = true;
+                }
+                return isNotPratialMill;
+            }
+            return true;
+            
         }
 
         public bool AllEnemyCowInMill()
@@ -163,9 +192,13 @@ namespace moraba
         {
             if (millFormed(placedNode))
             {
-                shoot(askToShoot()); // this is the start of the shoot method the method takes in a string nodeName
-                                     // askToShoot will ask the user(s) which node they would like to shoot and only leave that method when
-                                     // a correct node is choosen
+                if (justGotMill)
+                {
+                    shoot(askToShoot()); // this is the start of the shoot method the method takes in a string nodeName
+                                         // askToShoot will ask the user(s) which node they would like to shoot and only leave that method when
+                                         // a correct node is choosen
+                }
+
             }
           
         }
@@ -196,13 +229,12 @@ namespace moraba
         public void shoot(string NodeChosen)
         {
             Node choosenNodeToShoot = board.getNodeFromString(NodeChosen);
-            if(nodeChecks(choosenNodeToShoot)) // this will make sure that the node can be shoot at all
+            if(nodeChecks(choosenNodeToShoot) && justGotMill) // this will make sure that the node can be shoot at all
             {
                 enemy.killCow(choosenNodeToShoot.Cow.Position); // removes the cow from the enemy cow list, and removes the mill that the cow was in.
                 int index = board.mainNodeList.FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
                 board.mainNodeList[index].removeCow(); // removes the cow at that node in the mainNodeList
-                
-                 
+                justGotMill = false;  
             }
         }
 
