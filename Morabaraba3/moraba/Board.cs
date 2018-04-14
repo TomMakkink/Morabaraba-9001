@@ -13,7 +13,16 @@ namespace moraba
             throw new NotImplementedException();
         }
 
-       
+       public int numOfCowsOntheField()
+        {
+            int total = 0;
+            foreach(Node x in mainNodeList)
+            {
+                if (x.occupied)
+                    total++;
+            }
+            return total;
+        }
 
         public Board()
         {
