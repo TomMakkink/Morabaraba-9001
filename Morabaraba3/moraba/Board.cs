@@ -25,7 +25,27 @@ namespace moraba
             return false;
         }
 
-    public bool validateFlying(string position, Player player)
+        public int numOfCowsOntheField()
+        {
+            int total = 0;
+            foreach (Node x in mainNodeList)
+            {
+                if (x.occupied)
+                    total++;
+            }
+            return total;
+        }
+        public int numOfCowsOntheField(Team team)
+        {
+            int total = 0;
+            foreach (Node x in mainNodeList)
+            {
+                if (x.occupied && (x.Cow.Team == team))
+                    total++;
+            }
+            return total;
+        }
+        public bool validateFlying(string position, Player player)
         {
             if (position.Length == 5 && position.Contains(" ") && player.CowsAlive.Count == 3)
             {
@@ -47,16 +67,7 @@ namespace moraba
             return false;
         }
 
-       public int numOfCowsOntheField()
-        {
-            int total = 0;
-            foreach(Node x in mainNodeList)
-            {
-                if (x.occupied)
-                    total++;
-            }
-            return total;
-        }
+   
 
         public Board()
         {
