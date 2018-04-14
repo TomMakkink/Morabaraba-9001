@@ -28,10 +28,10 @@ namespace moraba.Test
         // the player with the dark cow goes first
         [Test]
         public void PlayerWithTheDarkCowsGoFirst()
-        {
+        {   
             Player player1 = new Player("p1", Team.DarkCow);
             Player player2 = new Player("P2", Team.LightCow);
-            Umpire imp = new Umpire();
+            Umpire imp = new Umpire(new Board());
             imp.play(player1, player2);
             Assert.That(imp.currentPlayer.Team == Team.DarkCow && imp.turns == 1);
         }

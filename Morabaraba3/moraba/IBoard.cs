@@ -7,7 +7,7 @@ namespace moraba
      interface IBoard
     {
         List<Node> getMainNodeList ();
-
+        void printBoard();
         Node getNodeFromString(string node);
        
     }

@@ -25,6 +25,179 @@ namespace moraba
             return false;
         }
 
+
+
+        public void printBoard()
+        {
+            Console.WriteLine("    a   b cde  f   g :-)");
+            for (int i = 0; i < mainNodeList.Count; i++)
+            {
+                switch (i)
+                {
+                    case 0://first row
+                        if (mainNodeList[i].occupied)
+                        {
+                            Console.Write(String.Format("1   {0}------", mainNodeList[i].Cow.Team));
+                        }
+                        else
+                        {
+                            Console.Write("1   ‡------");
+                        }
+                        break;
+                    case 1://first row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}------", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡------");
+                        break;
+                    case 2:// first row
+                        if (mainNodeList[i].occupied)
+                            Console.WriteLine(String.Format("{0}", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡");
+                        Console.WriteLine(@"    | \    |    / |");
+                        break;
+                    case 3:// second row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("2   |  {0}---", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("2   |  ‡---");
+                        break;
+                    case 4:// 2nd row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}---", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡---");
+                        break;
+                    case 5:// 2nd row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}  |", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡  |");
+                        Console.WriteLine(@"    |  |\  |  /|  |");
+                        break;
+                    case 6:// 3rd row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("3   |  |   {0}-", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("3   |  | ‡-");
+                        break;
+                    case 7:// 3rd row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}-", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡-");
+                        break;
+                    case 8:// 3rd row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0} |  |", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡ |  |");
+                        Console.WriteLine(@"    |  | |   | |  |");
+                        break;
+                    case 9:// 4th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("4   {0}--", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("4   ‡--");
+                        break;
+                    case 10:// 4ht row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}-", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡-");
+                        break;
+                    case 11://4th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}   ", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡   ");
+                        break;
+                    case 12://4th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}-", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡-");
+                        break;
+                    case 13://4th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}--", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡--");
+                        break;
+                    case 14://4th row
+                        if (mainNodeList[i].occupied)
+                            Console.WriteLine(String.Format("{0}", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡");
+                        Console.WriteLine(@"    |  | |   | |  |");
+                        break;
+                    case 15:// 5th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("3   |  |   {0}-", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("5   |  | ‡-");
+                        break;
+                    case 16:// 5th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}-", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡-");
+                        break;
+                    case 17:// 5th row
+                        if (mainNodeList[i].occupied)
+                            Console.WriteLine(String.Format("{0} |  |", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡ |  |");
+                        Console.WriteLine(@"    |  |/  |  \|  | ");
+                        break;
+                    case 18://6th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("6   |  {0}---", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("6   |  ‡---");
+                        break;
+                    case 19://6th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}---", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡---");
+                        break;
+                    case 20://6th row
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}  |", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡  |");
+                        Console.WriteLine(@"    | /    |    \ |");
+                        break;
+                    case 21:
+                        if (mainNodeList[i].occupied)
+                        {
+                            Console.Write(String.Format("7   {0}------", mainNodeList[i].Cow.Team));
+                        }
+                        else
+                        {
+                            Console.Write("7   ‡------");
+                        }
+                        break;
+                    case 22:
+                        if (mainNodeList[i].occupied)
+                            Console.Write(String.Format("{0}------", mainNodeList[i].Cow.Team));
+                        else
+                            Console.Write("‡------");
+                        break;
+                    case 23:
+                        if (mainNodeList[i].occupied)
+                            Console.WriteLine(String.Format("{0}", mainNodeList[i].Cow.Team));
+                        else
+                            Console.WriteLine("‡");
+                        break;
+                }
+            }
+        }
+
+
+
         public int numOfCowsOntheField()
         {
             int total = 0;

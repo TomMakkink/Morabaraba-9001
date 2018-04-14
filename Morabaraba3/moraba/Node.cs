@@ -14,7 +14,7 @@ namespace moraba
 
         public Cow Cow { get; set; }
 
-        public Node(string pos, List<string> friends)
+        public Node(string pos, List<string> friends)// friends are the neighbouring nodes
         {
             Position = pos;
             occupied = false;

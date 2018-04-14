@@ -17,7 +17,7 @@ namespace moraba
             Console.WriteLine("Hello World!");
             makePlayer();
             PlayGame();
-
+            Board.printBoard();
             Console.Read();
 
 
