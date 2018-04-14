@@ -5825,25 +5825,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TEMP\\.nuget\\packages\\": {},
+    "C:\\Users\\Luke\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
+      "projectUniqueName": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
       "projectName": "moraba.Test",
-      "projectPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
-      "packagesPath": "C:\\Users\\TEMP\\.nuget\\packages\\",
-      "outputPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
+      "projectPath": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\moraba.Test.csproj",
+      "packagesPath": "C:\\Users\\Luke\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\TEMP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Luke\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
@@ -5857,8 +5857,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
-              "projectPath": "J:\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
+            "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj": {
+              "projectPath": "C:\\Users\\Luke\\Desktop\\Morabaraba-9001\\Morabaraba3\\moraba\\moraba.csproj"
             }
           }
         }
