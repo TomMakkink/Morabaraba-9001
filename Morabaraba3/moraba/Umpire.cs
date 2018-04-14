@@ -84,6 +84,7 @@ namespace moraba
                 {
                     currentPlayer = player1;
                     enemy = player2;
+
                 }
                 else
                 {
@@ -115,7 +116,55 @@ namespace moraba
             }
             return mill;
         }
+        public bool AllEnemyCowInMill()
+        {
+            bool shootable = true; 
+            bool breakable = false; // this will allow us to break from the nested loop and return a true once a shootable cow has been found
+            List<Cow> NumEnemyCowsOnfield = minusCows(enemy.CowsAlive, enemy.CowsForPlacing);
+            foreach(List<string> x in enemy.millList)
+            {
+                foreach(Cow y in NumEnemyCowsOnfield)
+                {
+                    if (x.Contains(y.Position))
+                    {
+                        shootable = false;
+                    }
+                    else
+                    {
+                        shootable = true;
+                        breakable = true;
+                    }
+                    if (breakable)
+                        break;
+                }
+                if (breakable)
+                    break;
+            }
+            return shootable;
+        }
 
+        private List<Cow> minusCows (List<Cow> livingcows, List<Cow> CowsStillPLacable)
+        {
+            if (CowsStillPLacable.Count == 0)
+                return livingcows;
+            foreach(Cow x in CowsStillPLacable)
+            {
+                livingcows.Remove(x);
+            }
+            return livingcows;
+        }
+
+        public void mill(Node placedNode)
+        {
+            if (millFormed(placedNode))
+            {
+                // can shoot
+            }
+            else
+            {
+                //no mill formed
+            }
+        }
 
         public Player Win()
         {

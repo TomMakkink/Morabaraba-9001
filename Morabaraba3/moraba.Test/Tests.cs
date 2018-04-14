@@ -147,6 +147,14 @@ namespace moraba.Test
         }
 
 
+        [Test]
+        public void MillsFormWhen3CowsAreInARowAndOnTheSameTeam(int[] nodeIndex,bool expected)
+        {
+            Board b = new Board();
+
+
+        }
+
         //[Test]
         //[TestCaseSource(nameof(inMill))]
         //public void testcanShootMethodTrue (List<Node> tryMill ,bool expected)

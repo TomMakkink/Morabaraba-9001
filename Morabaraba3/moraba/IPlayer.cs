@@ -8,7 +8,7 @@ namespace moraba
     interface IPlayer
     {
         
-        bool canShoot(List<Node> board, List<List<string>> enemyMIlls);
+        
         string Name { get; }
         Team Team { get; }
         

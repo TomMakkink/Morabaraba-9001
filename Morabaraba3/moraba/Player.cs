@@ -63,32 +63,7 @@ namespace moraba
         /// <param name="b"></param>
         /// <param name=""></param>
         /// <returns></returns>
-        public bool canShoot(List<Node> board, List<List<string>> enemyMills )
-        {
-            List<Cow> enemyCows = findEnemyCowsOnField(board);
-            bool shoot = true;
-            
-            if (enemyMills.Count > 0 && enemyCows.Count > 0)
-            {
-                
-                foreach (Cow x in enemyCows)
-                {
-                    foreach (List<string> y in enemyMills)
-                    {
-                        if (y.Contains(x.Position))
-                        {
-                            shoot = false;
-                            break;
-
-                        }
-                        else
-                            shoot = true;
-                }
-                }
-            }
-
-            return shoot;
-        }
+       
 
         private List<Cow> findEnemyCowsOnField(IEnumerable<Node> board)
         {
