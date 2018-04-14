@@ -74,7 +74,7 @@ namespace moraba
                     Node tempEnd = getNodeFromString(end);
                     if (validateMove(tempStart, tempEnd, player))
                     {
-                        //moveCow(tempStart, tempEnd, player);
+                        moveCow(tempStart, tempEnd, player);
                     }
                 }
             }
@@ -94,6 +94,14 @@ namespace moraba
                 }
             }
             return false;
+        }
+        void moveCow(Node startNode, Node endNode, Player player)
+        {
+            int startIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
+            int endIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
+
+            mainNodeList[endIndex].addCow(endNode.Cow);
+            mainNodeList[startIndex].removeCow();
         }
 
         public bool Placing(string placeNode, Player player)
