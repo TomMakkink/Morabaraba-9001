@@ -10,9 +10,41 @@ namespace moraba
     {
         public List<Node> mainNodeList = new List<Node> { };
 
-        public bool Flying(string startNode, string endNode)
+        public bool Flying(string position, Player player)
         {
-            throw new NotImplementedException();
+            if (validateFlying(position, player))
+            {
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+
+                Node startNode = getNodeFromString(start);
+                Node endNode = getNodeFromString(end);
+                moveCow(startNode, endNode, player);
+                return true;
+            }
+            return false;
+        }
+
+    public bool validateFlying(string position, Player player)
+        {
+            if (position.Length == 5 && position.Contains(" ") && player.CowsAlive.Count == 3)
+            {
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+                if (checkNodeExists(start) && checkNodeExists(end))
+                {
+                    Node startNode = getNodeFromString(start);
+                    Node endNode = getNodeFromString(end);
+                    if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
+                    {
+                        if (startNode.Cow.Team == player.Team)
+                        {
+                                return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
        public int numOfCowsOntheField()
@@ -64,7 +96,7 @@ namespace moraba
         public bool Moving(string position,Player player)
         {
             // Input validation 
-            if (position.Length == 5 && player.numCowsToPlace() == 0)
+            if (position.Length == 5 && position.Contains(" ") && player.numCowsToPlace() == 0)
             {
                 string start = getStartNode(position);
                 string end = getEndNode(position);
@@ -75,6 +107,7 @@ namespace moraba
                     if (validateMove(tempStart, tempEnd, player))
                     {
                         moveCow(tempStart, tempEnd, player);
+                        return true;
                     }
                 }
             }
@@ -95,7 +128,7 @@ namespace moraba
             }
             return false;
         }
-        void moveCow(Node startNode, Node endNode, Player player)
+        public void moveCow(Node startNode, Node endNode, Player player)
         {
             int startIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
             int endIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);

@@ -13,5 +13,7 @@ namespace moraba
         bool isNeighbour(Node startNode, Node endNode);
 
         bool validateMove(Node startNode, Node endNode, Player player);
+
+        bool validateFlying(string position, Player player);
     }
 }

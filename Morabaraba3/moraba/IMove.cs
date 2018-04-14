@@ -9,8 +9,9 @@ namespace moraba
         bool Placing(string placeNode, Player player);
         bool Moving(string position, Player player);
 
-        void moveCow(string startNode, string endNode, Player player);
-        bool Flying(string startNode, string endNode);
+        void moveCow(Node startNode, Node endNode, Player player);
+
+        bool Flying(string startNode, Player player);
 
 
         string getStartNode(string input);

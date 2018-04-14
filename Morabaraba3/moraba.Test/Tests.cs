@@ -12,9 +12,6 @@ namespace moraba.Test
         {
             new object[] {}
         };
-
-
-
         // When the game starts, the board is empty
         [Test]
         public void AboardHas24EmptyNodes()
@@ -95,7 +92,7 @@ namespace moraba.Test
             new object[] {5, "b5 c3", false},
             new object[] {5,"b5 c4",true },
             new object[] {9,"d0 a0",true },
-            new object[] {23,"g3 g6", true },
+            new object[] {22,"g3 g6", true },
             new object[] {14,"d6 a6",true},
             new object[] {21,"g0 d0", true },
             new object[] {23,"g6 a0",false},
