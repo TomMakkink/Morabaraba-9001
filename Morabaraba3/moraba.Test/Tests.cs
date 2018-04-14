@@ -46,6 +46,7 @@ namespace moraba.Test
             Board b = new Board();
             List<Node> temp = b.getMainNodeList();
             Player player1 = new Player("p1", Team.DarkCow);
+            player1.makeCowsToPlace(player1.Team);
             Cow cow = new Cow(Team.LightCow);
             b.mainNodeList[2].addCow(cow); // added cows to nodes to show they are occupied
             b.Placing(b.mainNodeList[2].Position, player1); // tried to add a cow to an occupied node
@@ -60,6 +61,7 @@ namespace moraba.Test
         public void max12CowsPerPLayerCanBePlaced()
         {
             Player player = new Player("P1",Team.DarkCow);
+            player.makeCowsToPlace(player.Team);
             Assert.That(player.numCowsToPlace() == 12);
             Board b = new Board();
             b.Placing(b.mainNodeList[2].Position, player);
@@ -76,6 +78,7 @@ namespace moraba.Test
             Board b = new Board();
             List<Node> temp = b.getMainNodeList();
             Player player1 = new Player("p1", Team.DarkCow); // new player has yet to place
+            player1.makeCowsToPlace(player1.Team);
             Assert.That(player1.numCowsToPlace() == 12); // show that its new player
             int cowsToPlace = 12;
             for (int i = 0; i < 6; i++) // to place alot of cows but not all so that placing is still going
@@ -91,6 +94,38 @@ namespace moraba.Test
             Assert.That(b.mainNodeList[8].occupied == false); // to show that the Move method never moved the cow to the node c4
 
         }
+
+        static object[] movingCowsConnectedSpace =
+      {
+            new object[] {1,2,true},
+            new object[] {0,3, false},
+            new object[] {1,4,true },
+            new object[] {4,5,true },
+            new object[] {22,23, true },
+            new object[] {14,2,true},
+            new object[] {21,9, true },
+            new object[] {23,8,false},
+            new object[] {15,4,false }
+        };
+        //Cow can only move to a connected space
+        [Test]
+        [TestCaseSource(nameof(movingCowsConnectedSpace))]
+        public void cowsCanOnlyMoveToAConnectedSpace(int movingFrom, int movingTo, bool expected)
+        {
+            Board b = new Board();
+            Player player = new Player("hello",Team.DarkCow);
+            b.mainNodeList[movingFrom].addCow(new Cow(Team.DarkCow));
+            b.Moving(b.mainNodeList[movingFrom].Position, b.mainNodeList[movingTo].Position, player);
+            Assert.That(b.mainNodeList[movingTo].occupied == expected);
+        }
+
+
+        // cow can only move to an empty space
+        //[Test]
+        //public
+        // moving does not increas or decrease the number of cows on the field
+
+
 
         //[Test]
         //[TestCaseSource(nameof(inMill))]

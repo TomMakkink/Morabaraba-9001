@@ -17,7 +17,8 @@ namespace moraba
             makePlayer();
             PlayGame();
 
-
+            List<string> temp = new List<string> { };
+            Console.WriteLine(temp.Count);
 
            
             Console.Read();

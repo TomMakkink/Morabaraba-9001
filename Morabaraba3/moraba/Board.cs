@@ -13,6 +13,7 @@ namespace moraba
             throw new NotImplementedException();
         }
 
+       
 
         public Board()
         {
@@ -51,10 +52,11 @@ namespace moraba
 
         public void Moving(string startNode, string endNode,Player player)
         {
-            if (player.numCowsToPlace() > 0)
+            if (player.numCowsToPlace() == 0)
             {
                 string start = getStartNode(startNode);
                 string end = getEndNode(endNode);
+
             }
            
             
