@@ -96,13 +96,13 @@ namespace moraba
     
         }
 
-        public bool millFormed(Node JustAtlered)
+        public bool millFormed(Node JustChanged)
         {
             bool mill = false;
             if (!(board.numOfCowsOntheField(currentPlayer.Team) >= 3))
                 return mill;
 
-            List<List<string>> temp = getMillOptions(board.mainNodeList.IndexOf(JustAtlered));
+            List<List<string>> temp = getMillOptions(board.mainNodeList.IndexOf(JustChanged));
             foreach (List<string> x in temp)
             {
                 Node N1 = board.getNodeFromString(x[0]);
@@ -110,8 +110,12 @@ namespace moraba
                 Node N3 = board.getNodeFromString(x[2]);
                 if (N1.occupied && N2.occupied && N3.occupied)
                 {
-                    currentPlayer.addMill(x);
-                    mill = true;
+                    if (N1.Cow.Team == currentPlayer.Team && N2.Cow.Team == N1.Cow.Team && N3.Cow.Team == currentPlayer.Team)
+                    {
+                        currentPlayer.addMill(x);
+                        mill = true;
+                    }
+                    
                 }
             }
             return mill;

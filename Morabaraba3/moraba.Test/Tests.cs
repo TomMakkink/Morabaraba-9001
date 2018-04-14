@@ -184,7 +184,7 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
-            while(AmountOfAliveCows!=0)
+            while (AmountOfAliveCows != 0)
             {
                 player.killCow("a0");
                 AmountOfAliveCows--;
@@ -221,10 +221,47 @@ namespace moraba.Test
             b.mainNodeList[num3].addCow(p.CowsAlive[2]);
             Umpire pulpotine = new Umpire(b);
             pulpotine.play(p, p2);
-            Assert.That(pulpotine.millFormed(b.mainNodeList[num2])==expect);
+            Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
 
         }
- 
+        static object[] MillsWithTwoTeamsAndNotInStraightLine = {
+            new object[] {false,0,1,2,true },
+            new object[] { false,0,6,11,false},
+            new object[] { false,4,7,8,false},
+            new object[] {true,0,1,2,false },
+            new object[] {true,0,4,21,false},
+            new object[] {true,0,6,11,false},
+            new object[] {false,23,22,19,false },
+            new object[] {true,23,22,19,false},
+            new object[] { true,23,22,21,false}
+            };
+
+        [Test]
+        [TestCaseSource(nameof(MillsWithTwoTeamsAndNotInStraightLine))]
+        public void CowsCanNotFormMillWhenNotInLineAndNotOnTheSameTeam(bool HaveTwoCowTeams, int num1, int num2, int num3, bool expect)
+        {
+            Board b = new Board();
+            Player p = new Player("Darth Grazer II", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+            if (!HaveTwoCowTeams) // this if stastement makes it so that you can set it to have a second players cows on the board as well
+            {
+                b.mainNodeList[num1].addCow(p.CowsAlive[0]);
+                b.mainNodeList[num2].addCow(p.CowsAlive[1]);
+                b.mainNodeList[num3].addCow(p.CowsAlive[2]);
+                Umpire pulpotine = new Umpire(b);
+                pulpotine.play(p, p2);
+                Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
+            }
+            else
+            {
+                b.mainNodeList[num1].addCow(p.CowsAlive[0]);
+                b.mainNodeList[num2].addCow(p2.CowsAlive[1]);
+                b.mainNodeList[num3].addCow(p.CowsAlive[2]);
+                Umpire pulpotine = new Umpire(b);
+                pulpotine.play(p, p2);
+                Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
+            }
+        }
         //[Test]
         //[TestCaseSource(nameof(inMill))]
         //public void testcanShootMethodTrue (List<Node> tryMill ,bool expected)
