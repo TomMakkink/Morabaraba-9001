@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
+
 
 namespace moraba
 {
@@ -8,7 +10,7 @@ namespace moraba
     {
         public List<Node> mainNodeList = new List<Node> { };
 
-        public void Flying(string startNode, string endNode)
+        public bool Flying(string startNode, string endNode)
         {
             throw new NotImplementedException();
         }
@@ -59,30 +61,55 @@ namespace moraba
             return mainNodeList;
         }
 
-        public void Moving(string startNode, string endNode,Player player)
+        public bool Moving(string position,Player player)
         {
-            if (player.numCowsToPlace() == 0)
+            // Input validation 
+            if (position.Length == 5 && player.numCowsToPlace() == 0)
             {
-                string start = getStartNode(startNode);
-                string end = getEndNode(endNode);
-
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+                if (checkNodeExists(start) && checkNodeExists(end))
+                {
+                    Node tempStart = getNodeFromString(start);
+                    Node tempEnd = getNodeFromString(end);
+                    if (validateMove(tempStart, tempEnd, player))
+                    {
+                        //moveCow(tempStart, tempEnd);
+                    }
+                }
             }
-           
-            
+            return false; 
         }
 
-        public void Placing(string placeNode, Player player)
+        public bool validateMove(Node startNode, Node endNode, Player player)
         {
-            Node temp = checkNodeExists(placeNode);
-            if (temp != null)
+            if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
             {
+                if (startNode.Cow.Team == player.Team)
+                {
+                    if (isNeighbour(startNode, endNode))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool Placing(string placeNode, Player player)
+        {
+            if (checkNodeExists(placeNode))
+            {
+                Node temp = getNodeFromString(placeNode);
                 if (!checkNodeIsOccupied(temp))
                 {
                     int index = mainNodeList.FindIndex(x => x.Position == placeNode);
                     mainNodeList[index].addCow(player.CowsForPlacing[0]);
                     player.placedCow();
+                    return true;
                 }
             }
+            return false;
         }
 
         public string getStartNode(string input)
@@ -94,17 +121,16 @@ namespace moraba
         public string getEndNode(string input)
         {
             input.ToLower();
-            
-            return input.Split(' ')[0];
+            return input.Split(' ')[1];
         }
 
-        public Node checkNodeExists(string str)
+        public bool checkNodeExists(string str)
         {
             foreach (Node n in mainNodeList)
             {
-                if (n.Position == str) return n;
+                if (n.Position == str) return true;
             }
-            return null;
+            return false;
         }
 
         public bool isNeighbour(Node startNode, Node endNode)
@@ -116,6 +142,15 @@ namespace moraba
         {
             if (node == null) return false;
             return node.occupied;
+        }
+
+        public Node getNodeFromString(string str)
+        {
+            foreach (Node n in mainNodeList)
+            {
+                if (n.Position == str) return n;
+            }
+            return null;
         }
     }
 }

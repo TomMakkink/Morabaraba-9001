@@ -7,6 +7,8 @@ namespace moraba
      interface IBoard
     {
         List<Node> getMainNodeList ();
+
+        Node getNodeFromString(string node);
        
     }
 }

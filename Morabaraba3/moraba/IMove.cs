@@ -6,9 +6,12 @@ namespace moraba
 {
     interface IMove
     {
-        void Placing(string placeNode, Player player);
-        void Moving(string startNode, string endNode, Player player);
-        void Flying(string startNode, string endNode);
+        bool Placing(string placeNode, Player player);
+        bool Moving(string position, Player player);
+
+        //void moveCow();
+        bool Flying(string startNode, string endNode);
+
 
         string getStartNode(string input);
 
