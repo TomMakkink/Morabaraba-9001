@@ -163,7 +163,39 @@ namespace moraba.Test
             Assert.That(b.Moving(move, player) == true && b.numOfCowsOntheField() == total); // this is to show that the cow was moved out of the node
         }
 
+        static object[] FlyingcowsMoveToEmptySpace =
+    {
+            new object[] {9,0, 1, "a0 g6", true},
+            new object[] {9,1, 0, "a3 g6", true},
+            new object[] {9,2, 0, "a6 f5", true},
+            new object[] {7,0, 3, "a0 g0", false},
+            new object[] {6,4, 1, "b3 e3", false},
+            new object[] {9,8, 2, "c4 a6", false},
+            new object[] {9,6, 0, "c2 d2", true},
+            new object[] {5,4, 11, "b3 b3", false},
+            new object[] {7,2, 5, "a6 f5", false},
+            new object[] {9,9, 0, "d0 g3", true},
+            new object[] {9,10, 20, "d1 f1",true}
+        };
 
+        [Test]
+        [TestCaseSource(nameof(FlyingcowsMoveToEmptySpace))]
+        public void CowsMoveToAnyEmptySpaceWhenFlying(int AmountOfAliveCows, int firstCow, int secondCow, string move, bool expecte)
+        {
+            Board b = new Board();
+            Player player = new Player("te", Team.DarkCow);
+            while(AmountOfAliveCows!=0)
+            {
+                player.killCow("a0");
+                AmountOfAliveCows--;
+            }
+            b.mainNodeList[firstCow].addCow(player.CowsAlive[0]);
+            b.mainNodeList[secondCow].addCow(player.CowsAlive[1]);
+            Assert.That(b.Flying(move, player) == expecte); // this is to show that the cow was moved out of the node
+
+        }
+
+ 
         //[Test]
         //[TestCaseSource(nameof(inMill))]
         //public void testcanShootMethodTrue (List<Node> tryMill ,bool expected)

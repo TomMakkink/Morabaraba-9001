@@ -51,6 +51,17 @@ namespace moraba
                 CowsForPlacing.RemoveAt(0);
         }
 
+        public void killCow(string pos)
+        {
+            foreach (Cow x in CowsAlive)
+            {
+                if (x.Position == pos)
+                {
+                    CowsAlive.Remove(x);
+                    break;
+                }
+            }
+        }
         public void addMill (List<string> newMill)
         {
             millList.Add(newMill);
