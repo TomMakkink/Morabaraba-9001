@@ -273,19 +273,44 @@ namespace moraba.Test
             Assert.That(pulpotine.millFormed(b.mainNodeList[num2]) == expect);
         }
 
+        static object[] CowsInMIllCanShoot = {
+
+            new object[] { new int[]{ 6,8,12}, new int[] {0,1,2 },"e4",false },
+            new object[] { new int[]{ 0,23,14}, new int[] {6,7,8 },"g6",false },
+            new object[] { new int[]{ 5,12,14}, new int[] { 18,19,20},"d4",false },
+            new object[] { new int[]{ 1,2,4}, new int[] {17,20,23 },"a3",false },
+            new object[] { new int[]{ 18,22,20}, new int[] {6,11,15 },"g3",false },
+            new object[] { new int[]{ 3,10,11}, new int[] {4,5,14 },"d1",true },
+            new object[] { new int[]{ 0,5,8}, new int[] { 21,4,2},"c3",true },
+            new object[] { new int[]{ 0,20,23}, new int[] { 6,9,11},"f1",true }
+        };
+
         [Test]
+        [TestCaseSource(nameof(CowsInMIllCanShoot))]
         public void ShootOccursWhenMillOccurs(int[] enemyCows , int[] currentPlayerCows,string chosenCow, bool expected)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
             Player p2 = new Player("Rebel Scum 1", Team.LightCow);
-            b.mainNodeList[enemyCows[0]].addCow(p.CowsAlive[0]);
+            b.mainNodeList[enemyCows[0]].addCow(p2.CowsAlive[0]);
             b.mainNodeList[enemyCows[1]].addCow(p2.CowsAlive[1]);
-            b.mainNodeList[enemyCows[3]].addCow(p.CowsAlive[2]);
-            b.mainNodeList[num1].addCow(p.CowsAlive[0]);
-            b.mainNodeList[num2].addCow(p2.CowsAlive[1]);
-            b.mainNodeList[num3].addCow(p.CowsAlive[2]);
+            b.mainNodeList[enemyCows[2]].addCow(p2.CowsAlive[2]);
+            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]);
+            b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
+            b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
+            Umpire U = new Umpire(b);
+            U.play(p, p2);
+            U.millFormed(b.mainNodeList[currentPlayerCows[1]]);
+            U.shoot(b.mainNodeList[enemyCows[2]].Position);
+            Assert.That(U.board.mainNodeList[enemyCows[2]].occupied == expected);
+            U.turns+=2;
+            U.play(p, p2);
+            U.millFormed(b.mainNodeList[currentPlayerCows[1]]);
+            U.shoot(b.mainNodeList[enemyCows[1]].Position);
+            Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
+            
         }
+
 
     }
 }
