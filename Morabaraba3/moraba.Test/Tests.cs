@@ -113,27 +113,43 @@ namespace moraba.Test
             Assert.That(b.Moving("a0 d0", player1) == false);
         }
 
-        static object[] movingCowsConnectedSpace =
-      {
-            new object[] {0, "a0 b1",true},
-            new object[] {5, "b5 c3", false},
-            new object[] {5,"b5 c4",true },
-            new object[] {9,"d0 a0",true },
-            new object[] {22,"g3 g6", true },
-            new object[] {14,"d6 a6",true},
-            new object[] {21,"g0 d0", true },
-            new object[] {23,"g6 a0",false},
-            new object[] {23,"g6 a3",false }
-        };
         //Cow can only move to a connected space
         [Test]
-        [TestCaseSource(nameof(movingCowsConnectedSpace))]
-        public void cowsCanOnlyMoveToAConnectedSpace(int place, string movingFrom, bool expected)
+        //[TestCaseSource(nameof(movingCowsConnectedSpace))]
+        public void cowsCanOnlyMoveToAConnectedSpace()
         {
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
-            b.mainNodeList[place].addCow(player.CowsAlive[0]);
-            Assert.That(b.Moving(movingFrom, player) == expected); // this is to show that the cow was moved out of the node
+            
+            for (int i = 0; i < b.mainNodeList.Count; i++)
+            {
+                List<string> neigthbours = new List<string> { };
+                List<string> notNeigthbours = new List<string> { };
+                Board c = new Board();
+                c.mainNodeList[i].addCow(player.CowsAlive[0]);
+                foreach (string s in c.mainNodeList[i].neighbours)
+                {
+                    neigthbours.Add(s);
+                }
+                foreach (Node n in c.mainNodeList)
+                {
+                    if (!neigthbours.Contains(n.Position) && n.Position != c.mainNodeList[i].Position)
+                        notNeigthbours.Add(n.Position);
+                }
+                foreach (string s in neigthbours)
+                {
+                    string input = String.Format("{0} {1}", c.mainNodeList[i].Position, s);
+                    Assert.That(c.Moving(input, player) == true);
+                    string moveBack = String.Format("{1} {0}", c.mainNodeList[i].Position, s);
+                    c.Moving(moveBack, player);
+                }
+                foreach (string s in notNeigthbours)
+                {
+                    string input = String.Format("{0} {1}", c.mainNodeList[i], s);
+                    Assert.That(c.Moving(input, player) == false);
+                }
+
+            }
         }
 
 
