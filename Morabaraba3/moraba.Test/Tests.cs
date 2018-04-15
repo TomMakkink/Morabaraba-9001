@@ -88,7 +88,6 @@ namespace moraba.Test
             b.Placing(b.mainNodeList[2].Position, player);
             Assert.That(player.numCowsToPlace() == 11);
             // this shows that there can only be 12 cows placed per player.
-
         }
 
         // Cows cannot be moved during placement
@@ -107,7 +106,11 @@ namespace moraba.Test
                 b.Placing(b.mainNodeList[i].Position, player1);
             }
             Assert.That(b.Moving("b5 c4", player1) == false);
-
+            Assert.That(b.Moving("b5 d5", player1) == false);
+            Assert.That(b.Moving("b3 c3", player1) == false);
+            Assert.That(b.Moving("b1 c2", player1) == false);
+            Assert.That(b.Moving("b1 d1", player1) == false);
+            Assert.That(b.Moving("a0 d0", player1) == false);
         }
 
         static object[] movingCowsConnectedSpace =
