@@ -292,21 +292,22 @@ namespace moraba.Test
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
             Player p2 = new Player("Rebel Scum 1", Team.LightCow);
-            b.mainNodeList[enemyCows[0]].addCow(p2.CowsAlive[0]);
+            b.mainNodeList[enemyCows[0]].addCow(p2.CowsAlive[0]); // this will put three of the P2 cows on the board for us to shoot
             b.mainNodeList[enemyCows[1]].addCow(p2.CowsAlive[1]);
             b.mainNodeList[enemyCows[2]].addCow(p2.CowsAlive[2]);
-            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]);
+            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]); // this will place 3 p cows on the board for us to form a mill and shoot
             b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
             b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
             Umpire U = new Umpire(b);
             U.play(p, p2);
-            U.millFormed(b.mainNodeList[currentPlayerCows[1]]);
-            U.shoot(b.mainNodeList[enemyCows[2]].Position);
-            Assert.That(U.board.mainNodeList[enemyCows[2]].occupied == expected);
-            U.turns+=2;
-            U.play(p, p2);
-            U.millFormed(b.mainNodeList[currentPlayerCows[1]]);
-            U.shoot(b.mainNodeList[enemyCows[1]].Position);
+            U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // this will make the mill be checked 
+            U.shoot(b.mainNodeList[enemyCows[2]].Position); // this will shoot the cow given as a parameter
+            Assert.That(U.board.mainNodeList[enemyCows[2]].occupied == expected); // this will check that the node shoot at is empty and show that the cow choosen was 
+                                                                                  // removed
+            U.turns+=2; // skips 2 player p next turn
+            U.play(p, p2); 
+            U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // again calls to see if a mill will be formed even if it is the same mill
+            U.shoot(b.mainNodeList[enemyCows[1]].Position); // this will check that a mill will not fire after it has already fired
             Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
             
         }
