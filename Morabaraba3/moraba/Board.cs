@@ -374,9 +374,10 @@ namespace moraba
 
         public Node getNodeFromString(string str)
         {
-            foreach (Node n in mainNodeList)
+            List< Node > mainList= getMainNodeList();
+            foreach (Node n in mainList)
             {
-                if (n.Position == str) return n;
+                if (n.Position.Equals(str)) return n;
             }
             return null;
         }

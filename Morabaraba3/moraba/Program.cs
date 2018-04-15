@@ -19,49 +19,23 @@ namespace moraba
             PlayGame();
             Board.printBoard();
 
+            int[] enemyCows = new int[] { 0, 1, 2 };
+            int[] currentPlayerCows = new int[] { 21, 22, 23 };
+            string targetCow = "c4";
+            bool expected = false;
 
-            
-            int p1AliveCowIndex = 0;
-            int p2AliveCowIndex = 0;
-            int shotfiredIndex = 0;
-            int expectedIndex = 0;
-            int[] moves = new int[] { 1, 3, 0, 4, 23, 5, 2 };
-            int[] shotsAtNodesTaken = new int[] { 23, 4 };
-            bool[] expected = new bool[] { true, true };
-
-            for (int i = 0; i < moves.Length; i++)
-            {
-                //Umpire.play(player1, player2);
-                if ((i+1) % 2 == 1)// players 1s turn
-                {
-                    Umpire.play(player1, player2);
-                    Board.mainNodeList[moves[i]].addCow(player1.CowsAlive[p1AliveCowIndex]);
-                    p1AliveCowIndex++;
-                    bool test = Umpire.millFormed(Umpire.board.mainNodeList[moves[i]]);
-                    if (Umpire.millFormed(Umpire.board.mainNodeList[moves[i]]))
-                    {
-                        bool canShoot = Umpire.nodeChecks(Board.mainNodeList[shotsAtNodesTaken[shotfiredIndex]]);
-                        Console.WriteLine(canShoot == expected[expectedIndex]);
-                        shotfiredIndex++;
-                        expectedIndex++;
-                    }
-                }
-                else // player 2 turn
-                {
-                    Umpire.play(player2, player1);
-                    Board.mainNodeList[moves[i]].addCow(player2.CowsAlive[p2AliveCowIndex]);
-                    p2AliveCowIndex++;
-                    Umpire.millFormed(Umpire.board.mainNodeList[moves[i]]);
-                    if (Umpire.millFormed(Umpire.board.mainNodeList[moves[i]]))
-                    {
-                        bool canShoot = Umpire.nodeChecks(Board.mainNodeList[shotsAtNodesTaken[shotfiredIndex]]);
-                        Console.WriteLine(canShoot == expected[expectedIndex]);
-                        shotfiredIndex++;
-                        expectedIndex++;
-                    }
-                }
-                
-            }
+            Board.mainNodeList[enemyCows[0]].addCow(player2.CowsAlive[0]); // this will put three of the P2 cows on the board for us to shoot
+            Board.mainNodeList[enemyCows[1]].addCow(player2.CowsAlive[1]);
+            Board.mainNodeList[enemyCows[2]].addCow(player2.CowsAlive[2]);
+            Board.mainNodeList[currentPlayerCows[0]].addCow(player1.CowsAlive[0]); // this will place 3 p cows on the board for us to form a mill and shoot
+            Board.mainNodeList[currentPlayerCows[1]].addCow(player1.CowsAlive[1]);
+            Board.mainNodeList[currentPlayerCows[2]].addCow(player1.CowsAlive[2]);
+            Umpire U = new Umpire(Board);
+            U.play(player1, player2);
+            U.millFormed(Board.mainNodeList[currentPlayerCows[1]]); // this will make the mill be checked
+            Node n = Board.getNodeFromString(targetCow);
+            bool canShoot = U.nodeChecks(n);
+            Console.WriteLine(n.occupied == expected);
             Console.Read();
 
         }
