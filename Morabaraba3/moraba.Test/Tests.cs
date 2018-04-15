@@ -311,7 +311,95 @@ namespace moraba.Test
             Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
             
         }
+        #region jeffs test
+        // the test sources bellow are in the following format
+        // int[] all moves made during a game|| int[] all shats made during a game || the expected value of each shot 
+        // note that the number in the arrays refer to the node index in the mainNodeList used for the board
+        static object[] cowsInMillThatCantBeShot =
+        {
+            new object[] { new int[] { 1, 3, 0, 4, 23, 5, 2}, new int[] { 23, 4}, new bool[] { true, true } },
+            new object[] { new int[] { 0,3,1,4,2}, new int[] { 3}, new bool[] { true } },
+            new object[] { new int[] { 9,11,0,3,1,4,2,5}, new int[] {11, 0}, new bool[] {true, false}}
+        };
 
+        [Test]
+        [TestCaseSource(nameof(cowsInMillThatCantBeShot))]
+        public void CowInMillCannotBeshotIfNonMillCowsExists(int[] moves, int[] shotsAtNodesTaken, bool[] expected)
+        {
+            Board b = new Board();
+            Player p = new Player("Darth Grazer III", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 2", Team.LightCow);
+            Umpire palpetine = new Umpire(b);
+
+            palpetine.play(p, p2);
+
+            int p1AliveCowIndex = 0;
+            int p2AliveCowIndex = 0;
+            int shotfiredIndex = 0;
+            int expectedIndex = 0;
+
+            for (int i = 0; i < moves.Length; i++)
+            {
+                if ((i+1) % 2 == 1)// players 1s turn
+                {
+                    palpetine.play(p, p2);
+                    b.mainNodeList[moves[i]].addCow(p.CowsAlive[p1AliveCowIndex]);
+                    p1AliveCowIndex++;
+                    if (palpetine.millFormed(b.mainNodeList[moves[i]]))
+                    {
+                        bool canShoot = palpetine.nodeChecks(b.mainNodeList[shotsAtNodesTaken[shotfiredIndex]]);
+                        Assert.That(canShoot == expected[expectedIndex]);
+                        shotfiredIndex++;
+                        expectedIndex++;
+                    }
+                }
+                else // player 2 turn
+                {
+                    palpetine.play(p2, p);
+                    b.mainNodeList[moves[i]].addCow(p2.CowsAlive[p2AliveCowIndex]);
+                    p2AliveCowIndex++;
+                    if (palpetine.millFormed(b.mainNodeList[moves[i]]))
+                    {
+                        bool canShoot = palpetine.nodeChecks(b.mainNodeList[shotsAtNodesTaken[shotfiredIndex]]);
+                        Assert.That(canShoot == expected[expectedIndex]);
+                        shotfiredIndex++;
+                        expectedIndex++;
+                    }
+                }
+            }
+
+        }
+        #endregion
+
+        #region testing shooting empty spaces
+        //[Test]
+        //public void CantShootEmptyNode(int[] enemyCows, int[] currentPlayerCows, string chosenCow, bool expected)
+        //{
+        //    Board b = new Board();
+        //    Player p = new Player("Darth Grazer IV", Team.DarkCow);
+        //    Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+        //    b.mainNodeList[enemyCows[0]].addCow(p2.CowsAlive[0]); // this will put three of the P2 cows on the board for us to shoot
+        //    b.mainNodeList[enemyCows[1]].addCow(p2.CowsAlive[1]);
+        //    b.mainNodeList[enemyCows[2]].addCow(p2.CowsAlive[2]);
+        //    b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]); // this will place 3 p cows on the board for us to form a mill and shoot
+        //    b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
+        //    b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
+        //    Umpire U = new Umpire(b);
+        //    U.play(p, p2);
+        //    if(U.millFormed(b.mainNodeList[currentPlayerCows[1]])) // this will make the mill be checked 
+        //    {
+        //        U.shoot(b.mainNodeList[enemyCows[2]].Position); // this will shoot the cow given as a parameter
+        //    }
+
+        //    Assert.That(U.board.mainNodeList[enemyCows[2]].occupied == expected); // this will check that the node shoot at is empty and show that the cow choosen was 
+        //                                                                          // removed
+        //    U.turns += 2; // skips 2 player p next turn
+        //    U.play(p, p2);
+        //    U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // again calls to see if a mill will be formed even if it is the same mill
+        //    U.shoot(b.mainNodeList[enemyCows[1]].Position); // this will check that a mill will not fire after it has already fired
+        //    Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
+        //}
+        #endregion
 
     }
 }
