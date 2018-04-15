@@ -19,7 +19,9 @@ namespace moraba
             PlayGame();
             Board.printBoard();
 
-            Console.Read();
+
+
+        Console.Read();
         }
 
         static void PlayGame()

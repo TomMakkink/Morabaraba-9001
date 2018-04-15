@@ -39,23 +39,41 @@ namespace moraba.Test
 
         static object[] cowsToPlace =
         {
-            new object[] {new int [] {0, 1, 2, 3, 4, 5, 6 ,7 ,8 ,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23}, },
+            new object[] {new int [] {0, 1, 2, 3, 4, 5, 6 ,7 ,8 ,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23},
+                new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}},
+            new object[] {new int [] {},
+                new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"} },
         };
-        // Cows can only be placed on empty spaces
+        //Cows can only be placed on empty spaces
         [Test]
         [TestCaseSource(nameof(cowsToPlace))]
-        public void cowsCanOnlyBePlacedOnEmptySpaces()
+        public void cowsCanOnlyBePlacedOnEmptySpaces(int [] indexOfCowsToPlace, string [] cowsToPlace)
         {
             Board b = new Board();
-            List<Node> temp = b.getMainNodeList();
-            Player player1 = new Player("p1", Team.DarkCow);
-            player1.makeCowsToPlace(player1.Team);
-            Cow cow = new Cow(Team.LightCow);
-            b.mainNodeList[2].addCow(cow); // added cows to nodes to show they are occupied
-            b.Placing(b.mainNodeList[2].Position, player1); // tried to add a cow to an occupied node
-            b.Placing(b.mainNodeList[10].Position, player1); // tried to add a cow to an empty node
-            Assert.That(b.mainNodeList[2].Cow.Team == Team.LightCow); // this means that the new cow was not added to this node
-            Assert.That(b.mainNodeList[10].Cow.Team == Team.DarkCow); // this shows that the new cow was added to the empty node
+            Player p = new Player("Darth Grazer II", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+            // Place all the cows on the board for the first player
+            for (int i = 0; i < 12; i++)
+            {
+                b.mainNodeList[i].addCow(p.CowsAlive[i]);
+            }
+            // Place all the cows on the board for the second player
+            for (int i = 12, k = 0; i < 24; i++, k++)
+            {
+                b.mainNodeList[i].addCow(p2.CowsAlive[k]);
+            }
+            // Try place cows anywhere on the board 
+            for (int i = 0; i < 12; i++)
+            {
+                b.Placing(cowsToPlace[i], p2);
+                Assert.That(b.mainNodeList[i].Cow.Team == Team.DarkCow);
+            }
+            for (int i = 12; i < 24; i++)
+            {
+                b.Placing(cowsToPlace[i], p2);
+                Assert.That(b.mainNodeList[i].Cow.Team == Team.LightCow);
+            }
+
         }
 
 
