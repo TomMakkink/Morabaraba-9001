@@ -36,8 +36,14 @@ namespace moraba.Test
             Assert.That(imp.currentPlayer.Team == Team.DarkCow && imp.turns == 1);
         }
 
+
+        static object[] cowsToPlace =
+        {
+            new object[] {new int [] {0, 1, 2, 3, 4, 5, 6 ,7 ,8 ,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23}, },
+        };
         // Cows can only be placed on empty spaces
         [Test]
+        [TestCaseSource(nameof(cowsToPlace))]
         public void cowsCanOnlyBePlacedOnEmptySpaces()
         {
             Board b = new Board();
@@ -309,9 +315,54 @@ namespace moraba.Test
             U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // again calls to see if a mill will be formed even if it is the same mill
             U.shoot(b.mainNodeList[enemyCows[1]].Position); // this will check that a mill will not fire after it has already fired
             Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
-            
         }
 
+        static object[] CowsInMills = {
+            new object[] { new int[] {0,1,2}, "a0","a3","a6"},
+            new object[] { new int[] {0,9,21}, "a0","d0","g0"},
+            new object[] { new int[] {0,3,6}, "a0","b1","c2"},
+            new object[] { new int[] {1,4,7}, "a3","b3","c3"},
+            new object[] { new int[] {2,5,8}, "a6","b5","c4"},
+            new object[] { new int[] {2,14,23}, "a6","d6","g6"},
+            new object[] { new int[] {3,4,5}, "b1","b3","b5"},
+            new object[] { new int[] {3,10,18}, "b1","d1","f1"},
+            new object[] { new int[] {5,13,20}, "b5","d5","f5"},
+            new object[] { new int[] {6,7,8}, "c2","c3","c4"},
+            new object[] { new int[] {6,11,15}, "c2","d2","e2"},
+            new object[] { new int[] {8,12,17}, "c4","d4","e4"},
+            new object[] { new int[] {9,10,11}, "d0","d1","d2"},
+            new object[] { new int[] {12,13,14}, "d4","d5","d6"},
+            new object[] { new int[] {15,18,21}, "e2","f1","g0"},
+            new object[] { new int[] {15,16,17}, "e2","e3","e4"},
+            new object[] { new int[] {16,19,22}, "e3","f3","g3"},
+            new object[] { new int[] {17,20,23}, "e4","f5","g6"},
+            new object[] { new int[] {18,19,20}, "f1","f3","f5"},
+            new object[] { new int[] {21,22,23}, "g0","g3","g6"},
+        };
+
+        [Test]
+        [TestCaseSource(nameof(CowsInMills))]
+
+        public void cannotShootCowsInOwnMill(int [] currentPlayerCows, string cow1, string cow2, string cow3)
+        {
+            Board b = new Board();
+            Player p = new Player("Darth Grazer II", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+            //Place cows on the board to form a mill
+            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]); 
+            b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
+            b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
+            //Attempt to shoot those cows 
+            Umpire U = new Umpire(b);
+            U.play(p, p2);
+            U.millFormed(b.mainNodeList[1]); // this will make the mill be checked 
+            U.shoot(cow1);
+            U.shoot(cow2);
+            U.shoot(cow3);
+            Assert.That(U.board.mainNodeList[currentPlayerCows[0]].occupied = true);
+            Assert.That(U.board.mainNodeList[currentPlayerCows[1]].occupied = true);
+            Assert.That(U.board.mainNodeList[currentPlayerCows[2]].occupied = true);
+        }
 
     }
 }
