@@ -90,6 +90,8 @@ namespace moraba.Test
             // this shows that there can only be 12 cows placed per player.
         }
 
+
+
         // Cows cannot be moved during placement
         [Test]
         public void cowscantMoveDuringPlacingPhase()
@@ -113,42 +115,99 @@ namespace moraba.Test
             Assert.That(b.Moving("a0 d0", player1) == false);
         }
 
+        static object[] cowNeightbours =
+        {
+            new object[] {0, "a0", new string[] { "a3", "d0", "b1" } },
+            new object[] {1, "a3", new string[] { "a0", "b3", "a6" } },
+            new object[] {2, "a6", new string[] { "a3", "d6", "b5" } },
+            new object[] {3, "b1", new string[] { "a0", "c2", "d1", "b3" } },
+            new object[] {4, "b3", new string[] { "a3", "c3", "b1", "b5" } },
+            new object[] {5, "b5", new string[] { "a6", "c4", "b3", "d5" } },
+            new object[] {6, "c2", new string[] { "b1", "c3", "d2" } },
+            new object[] {7, "c3", new string[] { "c2", "c4", "b3" } },
+            new object[] {8, "c4", new string[] { "c3", "b5", "d4" } },
+            new object[] {9, "d0", new string[] { "d1", "a0", "g0" } },
+            new object[] {10, "d1", new string[] { "d0", "b1", "d2", "f1" } },
+            new object[] {11, "d2", new string[] { "d1", "c2", "e2" } },
+            new object[] {12, "d4", new string[] { "d5", "c4", "e4" } },
+            new object[] {13, "d5", new string[] { "d4", "d6", "b5", "f5" } },
+            new object[] {14, "d6", new string[] { "d5", "a6", "g6" } },
+            new object[] {15, "e2", new string[] { "f1", "e3", "d2" } },
+            new object[] {16, "e3", new string[] { "e2", "e4", "f3" } },
+            new object[] {17, "e4", new string[] { "e3", "f5", "d4" } },
+            new object[] {18, "f1", new string[] { "d1", "f3", "e2", "g0" } },
+            new object[] {19, "f3", new string[] { "f1", "e3", "g3", "f5"} },
+            new object[] {20, "f5", new string[] { "g6", "d5", "e4" } },
+            new object[] {21, "g0", new string[] { "g3", "f1", "d0" } },
+            new object[] {22, "g3", new string[] {"g0", "g6", "f3" } },
+            new object[] {23, "g6", new string[] { "g3", "f5", "d6" } },
+        };
+
+        static object[] cowNonNeightbours =
+       {
+            new object[] {0, "a0", new string[] { "a0", "a6", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {1, "a3", new string[] { "a3", "b1", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {2, "a6", new string[] { "a0", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {3, "b1", new string[] { "a3", "a6", "b1", "b5", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {4, "b3", new string[] { "a0", "a6", "b3", "c2", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {5, "b5", new string[] { "a0", "a3", "b1", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {6, "c2", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {7, "c3", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {8, "c4", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {9, "d0", new string[] { "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g3", "g6" } },
+            new object[] {10, "d1", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c3", "c4", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {11, "d2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {12, "d4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {13, "d5", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g3", "g6" } },
+            new object[] {14, "d6", new string[] { "a0", "a3", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } },
+            new object[] {15, "e2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e4", "f3", "f5", "g0", "g3", "g6" } },
+            new object[] {16, "e3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e3", "f1", "f5", "g0", "g3", "g6" } },
+            new object[] {17, "e4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e4", "f1", "f3", "g0", "g3", "g6" } },
+            new object[] {18, "f1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f5", "g3", "g6" } },
+            new object[] {19, "f3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e4", "f3", "g0", "g6" } },
+            new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f5", "g0", "g3"} },
+            new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g6" } },
+            new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f5", "g3"} },
+            new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g6" } },
+        };
+
+
         //Cow can only move to a connected space
         [Test]
-        //[TestCaseSource(nameof(movingCowsConnectedSpace))]
-        public void cowsCanOnlyMoveToAConnectedSpace()
+        [TestCaseSource(nameof(cowNeightbours))]
+        public void cowsCanMoveToAConnectedSpace(int index, string cowName, string [] neighbours)
         {
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
-            
-            for (int i = 0; i < b.mainNodeList.Count; i++)
-            {
-                List<string> neigthbours = new List<string> { };
-                List<string> notNeigthbours = new List<string> { };
-                Board c = new Board();
-                c.mainNodeList[i].addCow(player.CowsAlive[0]);
-                foreach (string s in c.mainNodeList[i].neighbours)
-                {
-                    neigthbours.Add(s);
-                }
-                foreach (Node n in c.mainNodeList)
-                {
-                    if (!neigthbours.Contains(n.Position) && n.Position != c.mainNodeList[i].Position)
-                        notNeigthbours.Add(n.Position);
-                }
-                foreach (string s in neigthbours)
-                {
-                    string input = String.Format("{0} {1}", c.mainNodeList[i].Position, s);
-                    Assert.That(c.Moving(input, player) == true);
-                    string moveBack = String.Format("{1} {0}", c.mainNodeList[i].Position, s);
-                    c.Moving(moveBack, player);
-                }
-                foreach (string s in notNeigthbours)
-                {
-                    string input = String.Format("{0} {1}", c.mainNodeList[i], s);
-                    Assert.That(c.Moving(input, player) == false);
-                }
+            b.mainNodeList[index].addCow(player.CowsAlive[0]);
 
+            foreach (string s in neighbours)
+            {
+                string input = String.Format("{0} {1}", b.mainNodeList[index].Position, s);
+                Assert.That(b.Moving(input, player) == true);
+                string moveBack = String.Format("{1} {0}", b.mainNodeList[index].Position, s);
+                b.Moving(moveBack, player);
+            }
+            //foreach (string s in notNeigthbours)
+            //{
+            //    string input = String.Format("{0} {1}", c.mainNodeList[i], s);
+            //    Assert.That(c.Moving(input, player) == false);
+            //}
+
+        }
+
+        //Cow can only move to a connected space
+        [Test]
+        [TestCaseSource(nameof(cowNonNeightbours))]
+        public void cowsCanOnlyMoveToAConnectedSpace(int index, string cowName, string[] notNeighbours)
+        {
+            Board b = new Board();
+            Player player = new Player("hello", Team.DarkCow);
+            b.mainNodeList[index].addCow(player.CowsAlive[0]);
+            foreach (string s in notNeighbours)
+            {
+                string input = String.Format("{0} {1}", b.mainNodeList[index], s);
+                Assert.That(b.Moving(input, player) == false);
             }
         }
 
@@ -174,9 +233,27 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
+            for (int i = 0; i < b.mainNodeList.Count; i++)
+            {
+                foreach (string s in b.mainNodeList[i].neighbours)
+                {
+                    string input = String.Format("{0} {1}", b.mainNodeList[i].Position, s);
+                   // Assert.That(b.Moving(input, player) == true);
+                    string moveBack = String.Format("{1} {0}", b.mainNodeList[i].Position, s);
+                    b.Moving(moveBack, player);
+                }
+                foreach (string s in b.mainNodeList[i].neighbours)
+                {
+                    Node n = b.getNodeFromString(s);
+                    int index = b.mainNodeList.FindIndex(x => x.Position == s);
+                    b.mainNodeList[index].addCow(n.Cow);
+                }
+                //foreach (string s in b.mainNodeList[i].neighbours)
+            }
+
             b.mainNodeList[firstCow].addCow(player.CowsAlive[0]);
             b.mainNodeList[secondCow].addCow(player.CowsAlive[1]);
-            Assert.That(b.Moving(move, player) == expected); // this is to show that the cow was moved out of the node
+           // Assert.That(b.Moving(move, player) == expected); // this is to show that the cow was moved out of the node
         }
 
         // moving does not increase or decrease the number of cows on the field
