@@ -180,7 +180,6 @@ namespace moraba.Test
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
             b.mainNodeList[index].addCow(player.CowsAlive[0]);
-
             foreach (string s in neighbours)
             {
                 string input = String.Format("{0} {1}", b.mainNodeList[index].Position, s);
@@ -188,12 +187,6 @@ namespace moraba.Test
                 string moveBack = String.Format("{1} {0}", b.mainNodeList[index].Position, s);
                 b.Moving(moveBack, player);
             }
-            //foreach (string s in notNeigthbours)
-            //{
-            //    string input = String.Format("{0} {1}", c.mainNodeList[i], s);
-            //    Assert.That(c.Moving(input, player) == false);
-            //}
-
         }
 
         //Cow can only move to a connected space
@@ -213,47 +206,28 @@ namespace moraba.Test
 
 
         //cow can only move to an empty space
-        static object[] cowsMoveToEmptySpace =
-        {
-            new object[] {0, 1, "a0 b1", true},
-            new object[] {1, 0, "a3 a6", true},
-            new object[] {2, 0, "a6 b5", true},
-            new object[] {0, 3, "b1 a0", false},
-            new object[] {4, 1, "b3 a3", false},
-            new object[] {2, 2, "g5 a6", false},
-            new object[] {6, 0, "c2 d2", true},
-            new object[] {10, 11, "c3 c3", false},
-            new object[] {8, 5, "c4 b5", false},
-            new object[] {9, 0, "d0 g0", true},
-            new object[] {10, 20, "d1 f1",true}
-        };
         [Test]
-        [TestCaseSource(nameof(cowsMoveToEmptySpace))]
-        public void cowCanOnlyMoveToEmptySpace(int firstCow, int secondCow, string move, bool expected)
+        [TestCaseSource(nameof(cowNeightbours))]
+        public void cowCanOnlyMoveToEmptySpace(int index, string cowName, string[] neighbours)
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
-            for (int i = 0; i < b.mainNodeList.Count; i++)
+            b.mainNodeList[index].addCow(player.CowsAlive[0]);
+            // Place cows in all neighbouring nodes
+            foreach (string s in neighbours)
             {
-                foreach (string s in b.mainNodeList[i].neighbours)
-                {
-                    string input = String.Format("{0} {1}", b.mainNodeList[i].Position, s);
-                   // Assert.That(b.Moving(input, player) == true);
-                    string moveBack = String.Format("{1} {0}", b.mainNodeList[i].Position, s);
-                    b.Moving(moveBack, player);
-                }
-                foreach (string s in b.mainNodeList[i].neighbours)
-                {
-                    Node n = b.getNodeFromString(s);
-                    int index = b.mainNodeList.FindIndex(x => x.Position == s);
-                    b.mainNodeList[index].addCow(n.Cow);
-                }
-                //foreach (string s in b.mainNodeList[i].neighbours)
+                Node n = b.getNodeFromString(s);
+                int i = b.mainNodeList.FindIndex(x => x.Position == s);
+                b.mainNodeList[i].addCow(n.Cow);
+            }
+            // Attempt to move into neighbouring nodes
+            foreach (string s in neighbours)
+            {
+                string input = String.Format("{0} {1}", b.mainNodeList[index].Position, s);
+                Assert.That(b.Moving(input, player) == false);
             }
 
-            b.mainNodeList[firstCow].addCow(player.CowsAlive[0]);
-            b.mainNodeList[secondCow].addCow(player.CowsAlive[1]);
-           // Assert.That(b.Moving(move, player) == expected); // this is to show that the cow was moved out of the node
+
         }
 
         // moving does not increase or decrease the number of cows on the field
