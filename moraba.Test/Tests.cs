@@ -91,6 +91,10 @@ namespace moraba.Test
             Board b = new Board();
             b.Placing(b.mainNodeList[2].Position, player);
             Assert.That(player.numCowsToPlace() == 11);
+            while (player.numCowsToPlace() != 1)
+                player.placedCow();
+            Assert.That((player.numCowsToPlace() == 1 && b.Placing("g3", player) == true));
+            Assert.That(player.numCowsToPlace() == 0 && b.Placing("g0", player) == false);
             // this shows that there can only be 12 cows placed per player.
         }
 

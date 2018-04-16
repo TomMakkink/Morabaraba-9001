@@ -325,7 +325,7 @@ namespace moraba
 
         public bool Placing(string placeNode, Player player)
         {
-            if (checkNodeExists(placeNode))
+            if (checkNodeExists(placeNode) && player.numCowsToPlace() > 0)
             {
                 Node temp = getNodeFromString(placeNode);
                 if (!checkNodeIsOccupied(temp))
