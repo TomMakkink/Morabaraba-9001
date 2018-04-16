@@ -4,7 +4,7 @@ using System.Text;
 
 namespace moraba
 {
-    public enum GameState {Placing, Moving, Flying };
+
 
     interface IUmpire
     {

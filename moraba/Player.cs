@@ -13,6 +13,7 @@ namespace moraba
         public List<List<string>> millList = new List<List<string>> { };
 
         public Team Team { get; set; }
+        public GameState State { get; set;}
 
         // default constructor
 
@@ -23,7 +24,19 @@ namespace moraba
             Team = team;
             BreedCows(team);
             makeCowsToPlace(team);
+
+            State = GameState.Placing;
         }
+
+        public void setState(GameState stat)
+        {
+            State = stat;
+        }
+        public GameState getState()
+        {
+            return State;
+        }
+
         private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
