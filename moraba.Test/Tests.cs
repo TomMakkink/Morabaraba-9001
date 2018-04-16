@@ -187,16 +187,16 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
-            b.mainNodeList[index].addCow(player.CowsAlive[0]);
+            b.Placing(cowName, player);
             while(player.numCowsToPlace() !=0)
             {
                 player.placedCow();
             }
             foreach (string s in neighbours)
             {
-                string input = String.Format("{0} {1}", b.mainNodeList[index].Position, s);
+                string input = String.Format("{0} {1}", cowName, s);
                 Assert.That(b.Moving(input, player) == true);
-                string moveBack = String.Format("{1} {0}", b.mainNodeList[index].Position, s);
+                string moveBack = String.Format("{1} {0}", cowName, s);
                 b.Moving(moveBack, player);
             }
         }
@@ -264,16 +264,17 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
+           
+            b.Placing(b.mainNodeList[cows[0]].Position, player);
+            b.Placing(b.mainNodeList[cows[1]].Position, player);
+            b.Placing(b.mainNodeList[cows[2]].Position, player);
+            b.Placing(b.mainNodeList[cows[3]].Position, player);
+            b.Placing(b.mainNodeList[cows[4]].Position, player);
+            b.Placing(b.mainNodeList[cows[5]].Position, player);
             while (player.numCowsToPlace() != 0)
             {
                 player.placedCow();
             }
-            b.mainNodeList[cows[0]].addCow(player.CowsAlive[0]);
-            b.mainNodeList[cows[1]].addCow(player.CowsAlive[1]);
-            b.mainNodeList[cows[2]].addCow(player.CowsAlive[2]);
-            b.mainNodeList[cows[3]].addCow(player.CowsAlive[3]);
-            b.mainNodeList[cows[4]].addCow(player.CowsAlive[4]);
-            b.mainNodeList[cows[5]].addCow(player.CowsAlive[5]);
             Assert.That(b.Moving(move, player) == true && b.numOfCowsOntheField() == total); // this is to show that the cow was moved out of the node
         }
 

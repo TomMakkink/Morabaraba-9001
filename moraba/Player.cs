@@ -64,6 +64,20 @@ namespace moraba
             GetRidOfMill(pos);
         }
 
+        public void GiveCowName(string x)
+        {
+            CowsAlive[0].Position = x;
+            Cow temp = CowsAlive[0];
+            CowsAlive.RemoveAt(0);
+            CowsAlive.Add(temp);
+        }
+
+        public void ChangeCowName(string oldName , string newName)
+        {
+            int index = CowsAlive.FindIndex(y => y.Position == oldName);
+            CowsAlive[index].Position = newName;
+        }
+
         private void GetRidOfMill(string pos)
         {
             foreach (List<string> x in millList)
