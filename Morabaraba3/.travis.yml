@@ -1,5 +1,5 @@
 language: csharp
-solution: Morabaraba3.sln
+solution: Morabaraba3\Morabaraba3.sln
 dotnet: 2.1.4
 script:
  - dotnet test moraba.Test
