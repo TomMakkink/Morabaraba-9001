@@ -2,7 +2,7 @@ language: csharp
 solution: Morabaraba3.sln
 dotnet: 2.1.4
 script:
- - dotnet test .\Morabaraba3\moraba.Test\moraba.Test.csproj
+ - dotnet test moraba.Test
 matrix:
   include:
     - dotnet: 2.0.0
