@@ -39,39 +39,43 @@ namespace moraba.Test
 
         static object[] cowsToPlace =
         {
-            new object[] {new int [] {0, 1, 2, 3, 4, 5, 6 ,7 ,8 ,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23},
-                new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}},
-            new object[] {new int [] {},
-                new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"} },
+            new object[] { true,
+                new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, false},
+            new object[] { false,
+                new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, true}
         };
         //Cows can only be placed on empty spaces
         [Test]
         [TestCaseSource(nameof(cowsToPlace))]
-        public void cowsCanOnlyBePlacedOnEmptySpaces(int [] indexOfCowsToPlace, string [] cowsToPlace)
+        public void cowsCanOnlyBePlacedOnEmptySpaces(bool indexOfCowsToPlace, string [] cowsToPlace, bool expected)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
             Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+            Player p3 = new Player("Darth Grazer II", Team.DarkCow);
+            Player p4 = new Player("Rebel Scum 1", Team.LightCow);
             // Place all the cows on the board for the first player
-            for (int i = 0; i < 12; i++)
+            if (indexOfCowsToPlace)
             {
-                b.mainNodeList[i].addCow(p.CowsAlive[i]);
-            }
-            // Place all the cows on the board for the second player
-            for (int i = 12, k = 0; i < 24; i++, k++)
-            {
-                b.mainNodeList[i].addCow(p2.CowsAlive[k]);
+                for (int i = 0; i < 12; i++)
+                {
+                    b.mainNodeList[i].addCow(p.CowsAlive[i]);
+                }
+                // Place all the cows on the board for the second player
+                for (int i = 12, k = 0; i < 24; i++, k++)
+                {
+                    b.mainNodeList[i].addCow(p2.CowsAlive[k]);
+                }
             }
             // Try place cows anywhere on the board 
             for (int i = 0; i < 12; i++)
             {
-                b.Placing(cowsToPlace[i], p2);
-                Assert.That(b.mainNodeList[i].Cow.Team == Team.DarkCow);
+                Assert.That(b.Placing(cowsToPlace[i], p3) == expected);
+                //Assert.That(b.mainNodeList[i].Cow.Team == Team.DarkCow);
             }
             for (int i = 12; i < 24; i++)
             {
-                b.Placing(cowsToPlace[i], p2);
-                Assert.That(b.mainNodeList[i].Cow.Team == Team.LightCow);
+                Assert.That(b.Placing(cowsToPlace[i], p4) == expected);
             }
 
         }
@@ -82,7 +86,7 @@ namespace moraba.Test
         public void max12CowsPerPLayerCanBePlaced()
         {
             Player player = new Player("P1", Team.DarkCow);
-            player.makeCowsToPlace(player.Team);
+            //player.makeCowsToPlace(player.Team);
             Assert.That(player.numCowsToPlace() == 12);
             Board b = new Board();
             b.Placing(b.mainNodeList[2].Position, player);
@@ -99,7 +103,7 @@ namespace moraba.Test
             Board b = new Board();
             List<Node> temp = b.getMainNodeList();
             Player player1 = new Player("p1", Team.DarkCow); // new player has yet to place
-            player1.makeCowsToPlace(player1.Team);
+         //   player1.makeCowsToPlace(player1.Team);
             Assert.That(player1.numCowsToPlace() == 12); // show that its new player
             int cowsToPlace = 12;
             for (int i = 0; i < 6; i++) // to place alot of cows but not all so that placing is still going
@@ -140,7 +144,7 @@ namespace moraba.Test
             new object[] {20, "f5", new string[] { "g6", "d5", "e4" } },
             new object[] {21, "g0", new string[] { "g3", "f1", "d0" } },
             new object[] {22, "g3", new string[] {"g0", "g6", "f3" } },
-            new object[] {23, "g6", new string[] { "g3", "f5", "d6" } },
+            new object[] {23, "g6", new string[] { "g3", "f5", "d6" } }
         };
 
         static object[] cowNonNeightbours =
@@ -168,7 +172,7 @@ namespace moraba.Test
             new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f5", "g0", "g3"} },
             new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g6" } },
             new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f5", "g3"} },
-            new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g6" } },
+            new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g6" } }
         };
 
 
@@ -180,6 +184,10 @@ namespace moraba.Test
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
             b.mainNodeList[index].addCow(player.CowsAlive[0]);
+            while(player.numCowsToPlace() !=0)
+            {
+                player.placedCow();
+            }
             foreach (string s in neighbours)
             {
                 string input = String.Format("{0} {1}", b.mainNodeList[index].Position, s);
@@ -197,6 +205,10 @@ namespace moraba.Test
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
             b.mainNodeList[index].addCow(player.CowsAlive[0]);
+            while (player.numCowsToPlace() != 0)
+            {
+                player.placedCow();
+            }
             foreach (string s in notNeighbours)
             {
                 string input = String.Format("{0} {1}", b.mainNodeList[index], s);
@@ -240,7 +252,7 @@ namespace moraba.Test
             new object[] { new int[] { 0, 1, 2, 3, 4, 5 }, "b5 d5", 6},
             new object[] { new int[] { 10, 11, 12, 13, 14, 15 }, "e2 f1", 6},
             new object[] { new int[] { 18, 19, 20, 21, 22, 23 }, "f3 e3", 6},
-             new object[] { new int[] { 18, 19, 20, 21, 22, 23 }, "f5 d5", 6},
+             new object[] { new int[] { 18, 19, 20, 21, 22, 23 }, "f5 d5", 6}
         };
         [Test]
         [TestCaseSource(nameof(moveCows))]
@@ -248,6 +260,10 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
+            while (player.numCowsToPlace() != 0)
+            {
+                player.placedCow();
+            }
             b.mainNodeList[cows[0]].addCow(player.CowsAlive[0]);
             b.mainNodeList[cows[1]].addCow(player.CowsAlive[1]);
             b.mainNodeList[cows[2]].addCow(player.CowsAlive[2]);
@@ -282,7 +298,7 @@ namespace moraba.Test
             new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "g0", "g3", "g6" } },
             new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g3", "g6" } },
             new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g6" } },
-            new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } },
+            new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } }
         };
 
         // Cows can move to any empty space if only three cows of that team remain
@@ -338,7 +354,7 @@ namespace moraba.Test
             new object[] {0,1,2,true },
             new object[] {0,6,11,false},
             new object[] {4,7,8,false},
-            new object[] {23,22,19,false },
+            new object[] {23,22,19,false }
 
             };
 
@@ -524,10 +540,11 @@ namespace moraba.Test
             new object [] { new int[] { 17, 20, 23 }, new int[] { 2, 5, 8 }, new string[] { "e4","f5","g6"}, true },
             new object [] { new int[] { 17, 20, 23 }, new int[] { 2,5,8}, new string[] { "a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","f1","f3","g0","g3"}, false},
             new object [] { new int[] { 2,5,8 }, new int[] { 17,20,23 }, new string[] { "a6","b5","c4"}, true },
-            new object [] { new int[] { 2,5,8 }, new int[] { 17,20,23 }, new string[] { "a0","a3","b1","b3","c2","c3","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, false},
+            new object [] { new int[] { 2,5,8 }, new int[] { 17,20,23 }, new string[] { "a0","a3","b1","b3","c2","c3","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, false}
             // diagonal mills checks
 
         };
+        #endregion
 
         static object[] CowsInMills = {
             new object[] { new int[] {0,1,2}, "a0","a3","a6"},
@@ -549,7 +566,7 @@ namespace moraba.Test
             new object[] { new int[] {16,19,22}, "e3","f3","g3"},
             new object[] { new int[] {17,20,23}, "e4","f5","g6"},
             new object[] { new int[] {18,19,20}, "f1","f3","f5"},
-            new object[] { new int[] {21,22,23}, "g0","g3","g6"},
+            new object[] { new int[] {21,22,23}, "g0","g3","g6"}
         };
 
         [Test]

@@ -22,8 +22,9 @@ namespace moraba
             Name = name;
             Team = team;
             BreedCows(team);
+            makeCowsToPlace(team);
         }
-        public void makeCowsToPlace(Team team)
+        private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
                 CowsForPlacing.Add(new Cow(team));
@@ -32,6 +33,7 @@ namespace moraba
         {
             for (int i = 0; i < 12; i++)
                 CowsAlive.Add(new Cow(team));    
+
         }    
         
         public int numCowsAlive ()
