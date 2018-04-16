@@ -203,6 +203,9 @@ namespace moraba
           
         }
 
+        ///<summary>
+        ///this ask the use to shoot until a valid input is aquired.
+        ///</summary>
         public string askToShoot()
         {
             Console.WriteLine("Please enter the node that you would like to shoot");
