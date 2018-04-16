@@ -1,0 +1,10 @@
+J:\Desktop\Morabaraba-9001\moraba\bin\Debug\netcoreapp2.0\moraba.deps.json
+J:\Desktop\Morabaraba-9001\moraba\bin\Debug\netcoreapp2.0\moraba.runtimeconfig.json
+J:\Desktop\Morabaraba-9001\moraba\bin\Debug\netcoreapp2.0\moraba.runtimeconfig.dev.json
+J:\Desktop\Morabaraba-9001\moraba\bin\Debug\netcoreapp2.0\moraba.dll
+J:\Desktop\Morabaraba-9001\moraba\bin\Debug\netcoreapp2.0\moraba.pdb
+J:\Desktop\Morabaraba-9001\moraba\obj\Debug\netcoreapp2.0\moraba.csproj.CoreCompileInputs.cache
+J:\Desktop\Morabaraba-9001\moraba\obj\Debug\netcoreapp2.0\moraba.AssemblyInfoInputs.cache
+J:\Desktop\Morabaraba-9001\moraba\obj\Debug\netcoreapp2.0\moraba.AssemblyInfo.cs
+J:\Desktop\Morabaraba-9001\moraba\obj\Debug\netcoreapp2.0\moraba.dll
+J:\Desktop\Morabaraba-9001\moraba\obj\Debug\netcoreapp2.0\moraba.pdb

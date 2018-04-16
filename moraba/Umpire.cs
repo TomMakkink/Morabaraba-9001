@@ -270,7 +270,8 @@ namespace moraba
 
         }
 
-        public Player Win()
+
+        public Player Win( Player enemy)
         {
             throw new NotImplementedException();
         }

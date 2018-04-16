@@ -549,6 +549,33 @@ namespace moraba.Test
             // diagonal mills checks
 
         };
+
+
+        [Test]
+        [TestCaseSource(nameof(testCasesForShootingEmptyNode))]
+        public void CantShootEmptyNode(int[] enemyCows, int[] currentPlayerCows, string[] targetCows, bool expected)
+        {
+            Board b = new Board();
+            Player p = new Player("Darth Grazer II", Team.DarkCow);
+            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
+            b.mainNodeList[enemyCows[0]].addCow(p2.CowsAlive[0]); // this will put three of the P2 cows on the board for us to shoot
+            b.mainNodeList[enemyCows[1]].addCow(p2.CowsAlive[1]);
+            b.mainNodeList[enemyCows[2]].addCow(p2.CowsAlive[2]);
+            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]); // this will place 3 p cows on the board for us to form a mill and shoot
+            b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
+            b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
+            Umpire U = new Umpire(b);
+            for (int i = 0; i < targetCows.Length; i++)
+            {
+                U.play(p, p2);
+                U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // this will make the mill be checked
+                Node n = b.getNodeFromString(targetCows[i]);// gets the target node
+                bool canShoot = U.nodeChecks(n);// checks if the node is empty || return fals if node is empty
+                Assert.That(canShoot == expected);
+            }
+
+        }
+
         #endregion
 
         static object[] CowsInMills = {
@@ -576,7 +603,6 @@ namespace moraba.Test
 
         [Test]
         [TestCaseSource(nameof(CowsInMills))]
-
         public void cannotShootCowsInOwnMill(int [] currentPlayerCows, string cow1, string cow2, string cow3)
         {
             Board b = new Board();
@@ -596,6 +622,15 @@ namespace moraba.Test
             Assert.That(U.board.mainNodeList[currentPlayerCows[0]].occupied = true);
             Assert.That(U.board.mainNodeList[currentPlayerCows[1]].occupied = true);
             Assert.That(U.board.mainNodeList[currentPlayerCows[2]].occupied = true);
+        }
+
+        public void ShotCowsAreRemovedFromBoard()
+        {
+            Board b = new Board();
+            Player p1 = new Player("Darth Grazer V", Team.DarkCow);
+            Player p2 = new Player("Player 2", Team.LightCow);
+
+
         }
 
     }

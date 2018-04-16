@@ -1,0 +1,16 @@
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\NUnit3.TestAdapter.dll
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\NUnit3.TestAdapter.pdb
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\nunit.engine.netstandard.dll
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\Mono.Cecil.dll
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.Test.deps.json
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.Test.runtimeconfig.json
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.Test.runtimeconfig.dev.json
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.Test.dll
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.Test.pdb
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.dll
+J:\Desktop\Morabaraba-9001\moraba.Test\bin\Debug\netcoreapp2.0\moraba.pdb
+J:\Desktop\Morabaraba-9001\moraba.Test\obj\Debug\netcoreapp2.0\moraba.Test.csproj.CoreCompileInputs.cache
+J:\Desktop\Morabaraba-9001\moraba.Test\obj\Debug\netcoreapp2.0\moraba.Test.AssemblyInfoInputs.cache
+J:\Desktop\Morabaraba-9001\moraba.Test\obj\Debug\netcoreapp2.0\moraba.Test.AssemblyInfo.cs
+J:\Desktop\Morabaraba-9001\moraba.Test\obj\Debug\netcoreapp2.0\moraba.Test.dll
+J:\Desktop\Morabaraba-9001\moraba.Test\obj\Debug\netcoreapp2.0\moraba.Test.pdb
