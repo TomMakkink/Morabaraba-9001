@@ -47,7 +47,7 @@ namespace moraba.Test
         //Cows can only be placed on empty spaces
         [Test]
         [TestCaseSource(nameof(cowsToPlace))]
-        public void cowsCanOnlyBePlacedOnEmptySpaces(bool indexOfCowsToPlace, string [] cowsToPlace, bool expected)
+        public void cowsCanOnlyBePlacedOnEmptySpaces(bool indexOfCowsToPlace, string[] cowsToPlace, bool expected)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
@@ -107,7 +107,7 @@ namespace moraba.Test
             Board b = new Board();
             List<Node> temp = b.getMainNodeList();
             Player player1 = new Player("p1", Team.DarkCow); // new player has yet to place
-         //   player1.makeCowsToPlace(player1.Team);
+                                                             //   player1.makeCowsToPlace(player1.Team);
             Assert.That(player1.numCowsToPlace() == 12); // show that its new player
             int cowsToPlace = 12;
             for (int i = 0; i < 6; i++) // to place alot of cows but not all so that placing is still going
@@ -183,17 +183,17 @@ namespace moraba.Test
         //Cow can only move to a connected space
         [Test]
         [TestCaseSource(nameof(cowNeightbours))]
-        public void cowsCanMoveToAConnectedSpace(int index, string cowName, string [] neighbours)
+        public void cowsCanMoveToAConnectedSpace(int index, string cowName, string[] neighbours)
         {
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
             b.Placing(cowName, player);
-            
-            while(player.numCowsToPlace() !=0)
+
+            while (player.numCowsToPlace() != 0)
             {
                 player.placedCow();
-              //  b.RemoveCow(index, player);
-               // b.Placing(cowName, player);
+                //  b.RemoveCow(index, player);
+                // b.Placing(cowName, player);
             }
             foreach (string s in neighbours)
             {
@@ -267,7 +267,7 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
-           
+
             b.Placing(b.mainNodeList[cows[0]].Position, player);
             b.Placing(b.mainNodeList[cows[1]].Position, player);
             b.Placing(b.mainNodeList[cows[2]].Position, player);
@@ -316,8 +316,8 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
-           // int AmountOfAliveCows = 12;
-            while (player.numCowsAlive() !=3)
+            // int AmountOfAliveCows = 12;
+            while (player.numCowsAlive() != 3)
             {
                 b.Placing(cowName, player);
                 b.RemoveCow(index, player);
@@ -440,7 +440,7 @@ namespace moraba.Test
 
         [Test]
         [TestCaseSource(nameof(CowsInMIllCanShoot))]
-        public void ShootOccursWhenMillOccurs(int[] enemyCows , int[] currentPlayerCows,string chosenCow, bool expected)
+        public void ShootOccursWhenMillOccurs(int[] enemyCows, int[] currentPlayerCows, string chosenCow, bool expected)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
@@ -457,8 +457,8 @@ namespace moraba.Test
             U.shoot(b.mainNodeList[enemyCows[2]].Position); // this will shoot the cow given as a parameter
             Assert.That(U.board.mainNodeList[enemyCows[2]].occupied == expected); // this will check that the node shoot at is empty and show that the cow choosen was 
                                                                                   // removed
-            U.turns+=2; // skips 2 player p next turn
-            U.play(p, p2); 
+            U.turns += 2; // skips 2 player p next turn
+            U.play(p, p2);
             U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // again calls to see if a mill will be formed even if it is the same mill
             U.shoot(b.mainNodeList[enemyCows[1]].Position); // this will check that a mill will not fire after it has already fired
             Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
@@ -492,7 +492,7 @@ namespace moraba.Test
 
             for (int i = 0; i < moves.Length; i++)
             {
-                if ((i+1) % 2 == 1)// players 1s turn
+                if ((i + 1) % 2 == 1)// players 1s turn
                 {
                     palpetine.play(p, p2);
                     b.mainNodeList[moves[i]].addCow(p.CowsAlive[p1AliveCowIndex]);
@@ -625,13 +625,13 @@ namespace moraba.Test
 
         [Test]
         [TestCaseSource(nameof(CowsInMills))]
-        public void cannotShootCowsInOwnMill(int [] currentPlayerCows, string cow1, string cow2, string cow3)
+        public void cannotShootCowsInOwnMill(int[] currentPlayerCows, string cow1, string cow2, string cow3)
         {
             Board b = new Board();
             Player p = new Player("Darth Grazer II", Team.DarkCow);
             Player p2 = new Player("Rebel Scum 1", Team.LightCow);
             //Place cows on the board to form a mill
-            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]); 
+            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]);
             b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
             b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
             //Attempt to shoot those cows 
@@ -646,12 +646,28 @@ namespace moraba.Test
             Assert.That(U.board.mainNodeList[currentPlayerCows[2]].occupied = true);
         }
 
-        public void ShotCowsAreRemovedFromBoard()
+        static object[] ShotCowsAreRemovedFromBoardObjects =
+        {
+            new object[] {new string[] {"a0","a3","a6" }, new string[] {"e4","f5" },"f5", 4 }
+        };
+        [Test]
+        [TestCaseSource(nameof(ShotCowsAreRemovedFromBoardObjects))]
+        public void ShotCowsAreRemovedFromBoard(string[] nodesInMill, string[] enemyCowsNotInMills, string EnemyToShoot, int expected)
         {
             Board b = new Board();
             Player p1 = new Player("Darth Grazer V", Team.DarkCow);
             Player p2 = new Player("Player 2", Team.LightCow);
-
+            b.Placing(nodesInMill[0], p1);
+            b.Placing(nodesInMill[1], p1);
+            b.Placing(nodesInMill[2], p1);
+            b.Placing(enemyCowsNotInMills[0], p2);
+            b.Placing(enemyCowsNotInMills[1], p2);
+            Assert.That(b.numOfCowsOntheField() == expected + 1); // this asserts the number of cows are on the board before the mill is formed
+            Umpire U = new Umpire(b);
+            U.play(p1, p2);
+            U.millFormed(b.mainNodeList.Find(x => x.Position == nodesInMill[1]));// this asserts the number of cows on the board goes down by one when a cow is shot.
+            U.shoot(EnemyToShoot);
+            Assert.That(b.numOfCowsOntheField() == expected);
 
         }
 

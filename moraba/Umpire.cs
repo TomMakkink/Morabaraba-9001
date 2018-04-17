@@ -97,6 +97,27 @@ namespace moraba
     
         }
 
+        public void askToFly()
+        {
+            Console.WriteLine(string.Format("Please may {0} choose the node they want to move from and the node they want to move to.", currentPlayer.Name));
+            Console.WriteLine(string.Format("Rememeber General {0} that you can fly to any empty node on the battle field (board).",currentPlayer.Name));
+            string x = Console.ReadLine();
+            board.Moving(x, currentPlayer);
+        }
+        public void askToPlace()
+        {
+            Console.WriteLine(string.Format("Please may {0} choose a node to place their cows on", currentPlayer.Name));
+            string x = Console.ReadLine();
+            board.Moving(x, currentPlayer);
+        }
+
+        public void askToMove()
+        {
+            Console.WriteLine(string.Format("Please may {0} choose the node they want to move from and the node they want to move to.", currentPlayer.Name));
+            string x = Console.ReadLine();
+            board.Moving(x, currentPlayer);
+        }
+
         public bool millFormed(Node JustChanged)
         {
             bool mill = false;
