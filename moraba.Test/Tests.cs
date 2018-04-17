@@ -465,13 +465,16 @@ namespace moraba.Test
         }
         #region jeffs test
         // the test sources bellow are in the following format
-        // int[] all moves made during a game|| int[] all shats made during a game || the expected value of each shot 
+        // int[] all moves made during a game|| int[] all shots made during a game || the expected value of each shot 
         // note that the number in the arrays refer to the node index in the mainNodeList used for the board
         static object[] cowsInMillThatCantBeShot =
         {
             new object[] { new int[] { 1, 3, 0, 4, 23, 5, 2}, new int[] { 23, 4}, new bool[] { true, true } },
             new object[] { new int[] { 0,3,1,4,2}, new int[] { 3}, new bool[] { true } },
-            new object[] { new int[] { 9,11,0,3,1,4,2,5}, new int[] {11, 0}, new bool[] {true, false}}
+            new object[] { new int[] { 9,11,0,3,1,4,2,5}, new int[] {11, 0}, new bool[] {true, false}},
+            new object[] { new int[] { 21,6,18,10,15,10,12,11}, new int[] {10,18,12}, new bool[] {true,false,true}},
+            new object[] { new int[] { 21,6,18,10,15,10,12,11,12,0,13,1,14}, new int[] {10,18,12,0}, new bool[] {true,false,true,true}},
+            new object[] { new int[] { 0,2,9,14,23,21,3,5,6}, new int[] {14}, new bool[] { true } }
         };
 
         [Test]
@@ -691,6 +694,7 @@ namespace moraba.Test
             Assert.That(b.numOfCowsOntheField() == expected);
 
         }
+
 
     }
 }
