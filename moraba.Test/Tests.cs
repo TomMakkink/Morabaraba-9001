@@ -655,7 +655,7 @@ namespace moraba.Test
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "e2", "b3" }, "b3", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "e2", "b3" }, "e2", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d1", "e3" }, "e3", 4 },
-            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d0", "e3" }, "d1", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d0", "e3" }, "d0", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d2", "d1" }, "d2", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d2", "d1" }, "d1", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d4", "d5" }, "d4", 4 },
@@ -668,7 +668,7 @@ namespace moraba.Test
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "g3", "g6" }, "g6", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c4", "c3" }, "c3", 4 },
             new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c4", "c3" }, "c4", 4 },
-            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c1", "c3" }, "c1", 4 }
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c2", "c3" }, "c2", 4 }
 
         };
         [Test]
