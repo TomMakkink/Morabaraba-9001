@@ -234,9 +234,9 @@ namespace moraba
             Node choosenNodeToShoot = board.getNodeFromString(NodeChosen);
             if(nodeChecks(choosenNodeToShoot) && justGotMill) // this will make sure that the node can be shoot at all
             {
-                enemy.killCow(choosenNodeToShoot.Cow.Position); // removes the cow from the enemy cow list, and removes the mill that the cow was in.
+               
                 int index = board.mainNodeList.FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
-                board.mainNodeList[index].removeCow(); // removes the cow at that node in the mainNodeList
+                board.RemoveCow(index, enemy); // removes the cow at that node in the mainNodeList
                 justGotMill = false;  
             }
         }

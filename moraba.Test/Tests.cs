@@ -316,15 +316,19 @@ namespace moraba.Test
         {
             Board b = new Board();
             Player player = new Player("te", Team.DarkCow);
-            int AmountOfAliveCows = 12;
-            while (AmountOfAliveCows > 3)
+           // int AmountOfAliveCows = 12;
+            while (player.numCowsAlive() !=3)
             {
-                player.killCow("a0");
-                AmountOfAliveCows--;
+                b.Placing(cowName, player);
+                b.RemoveCow(index, player);
             }
+            b.Placing(cowName, player);
             foreach (string s in possibleMoves)
             {
-
+                string input = string.Format("{0} {1}", cowName, s);
+                Assert.That(b.Flying(input, player) == true);
+                string moveBack = string.Format("{0} {1}", s, cowName);
+                b.Flying(moveBack, player);
             }
 
         }
@@ -389,7 +393,22 @@ namespace moraba.Test
             new object[] {0,1,2,false },
             new object[] {0,9,21,false},
             new object[] {0,3,6,false},
-            new object[] {23,22,19,false},
+            new object[] {3,4,5,false},
+            new object[] {1,4,7,false },
+            new object[] {2,5,8,false},
+            new object[] {6,7,8,false},
+            new object[] {9,10,11,false},
+            new object[] {3,10,18,false},
+            new object[] {6,11,15,false},
+            new object[] {15,18,21,false},
+            new object[] {8,12,17,false},
+            new object[] {12,13,14,false},
+            new object[] {15,16,17,false},
+            new object[] {17,20,23,false},
+            new object[] {5,13,20,false},
+            new object[] {2,14,23,false},
+            new object[] {18,19,20,false},
+            new object[] {16,19,22,false},
             new object[] {23,22,21,false}
         };
         [Test]
