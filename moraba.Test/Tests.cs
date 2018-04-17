@@ -648,7 +648,28 @@ namespace moraba.Test
 
         static object[] ShotCowsAreRemovedFromBoardObjects =
         {
-            new object[] {new string[] {"a0","a3","a6" }, new string[] {"e4","f5" },"f5", 4 }
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "e4", "f5" }, "f5", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "e4", "f5" }, "e4", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "b1", "b5" }, "b5", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "b1", "b5" }, "b1", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "e2", "b3" }, "b3", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "e2", "b3" }, "e2", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d1", "e3" }, "e3", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d0", "e3" }, "d1", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d2", "d1" }, "d2", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d2", "d1" }, "d1", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d4", "d5" }, "d4", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "d4", "d5" }, "d5", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "f1", "d6" }, "d6", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "f1", "d6" }, "f1", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "f3", "g0" }, "f3", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "f3", "g0" }, "g0", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "g3", "g6" }, "g3", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "g3", "g6" }, "g6", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c4", "c3" }, "c3", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c4", "c3" }, "c4", 4 },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "c1", "c3" }, "c1", 4 }
+
         };
         [Test]
         [TestCaseSource(nameof(ShotCowsAreRemovedFromBoardObjects))]
