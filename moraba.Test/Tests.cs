@@ -188,9 +188,12 @@ namespace moraba.Test
             Board b = new Board();
             Player player = new Player("hello", Team.DarkCow);
             b.Placing(cowName, player);
+            
             while(player.numCowsToPlace() !=0)
             {
                 player.placedCow();
+              //  b.RemoveCow(index, player);
+               // b.Placing(cowName, player);
             }
             foreach (string s in neighbours)
             {

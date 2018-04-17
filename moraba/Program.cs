@@ -18,8 +18,8 @@ namespace moraba
             makePlayer();
             PlayGame();
             Board.printBoard();
+           
 
-          
 
 
             Console.Read();

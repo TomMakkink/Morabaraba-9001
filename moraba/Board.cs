@@ -25,7 +25,11 @@ namespace moraba
             return false;
         }
 
-
+        public void RemoveCow(int index , Player player)
+        {
+            mainNodeList[index].removeCow(); // this will remove the cow from the board 
+            player.killCow(mainNodeList[index].Position); // this removes the cow from cowsAlive List 
+        }
 
         public void printBoard()
         {
