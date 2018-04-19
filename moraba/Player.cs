@@ -26,6 +26,12 @@ namespace moraba
             makeCowsToPlace(team);
         }
 #region IPLayer
+        public Board getBoard ()
+        {
+            return Board;
+        }
+
+
         private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
@@ -176,17 +182,6 @@ namespace moraba
             return false;
         }
 
-        public string getStartNode(string input)
-        {
-            input.ToLower();
-            return input.Split(' ')[0];
-        }
-
-        public string getEndNode(string input)
-        {
-            input.ToLower();
-            return input.Split(' ')[1];
-        }
         #endregion
     }
 }

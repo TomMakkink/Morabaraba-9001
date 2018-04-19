@@ -120,6 +120,107 @@ namespace moraba
            
         }
 
+        #region
+        public bool validatePlacing (string input)
+        {
+            Node inputNode = getNodeFromString(input);
+            if (checkNodeExists(input) && checkNodeIsOccupied(inputNode) == false)
+                return true;
+            return false;
+        }
+
+
+        public bool validateMove(string position, Player player)
+        {
+            if (position.Length == 5 && position.Contains(" ") && player.numCowsToPlace() == 0)
+            {
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+                if (checkNodeExists(start) && checkNodeExists(end))
+                {
+                    Node startNode = getNodeFromString(start);
+                    Node endNode = getNodeFromString(end);
+                    if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
+                    { 
+                        if (startNode.Cow.Team == player.Team)
+                        {
+                            if (isNeighbour(startNode, endNode))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public string getStartNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[0];
+        }
+
+        public string getEndNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[1];
+        }
+
+        public bool checkNodeExists(string str)
+        {
+            foreach (Node n in currentPlayer.getBoard().getMainNodeList())
+            {
+                if (n.Position == str) return true;
+            }
+            return false;
+        }
+
+        public bool isNeighbour(Node startNode, Node endNode)
+        {
+            return startNode.neighbours.Contains(endNode.Position);
+        }
+
+        public bool checkNodeIsOccupied(Node node)
+        {
+            if (node == null) return false;
+            return node.occupied;
+        }
+        
+        public Node getNodeFromString(string str)
+        {
+            foreach (Node n in currentPlayer.getBoard().getMainNodeList())
+            {
+                if (n.Position.Equals(str)) return n;
+            }
+            return null;
+        }
+
+        public bool validateFlying(string position, Player player)
+        {
+            if (position.Length == 5 && position.Contains(" ") && currentPlayer.getCowsAlive().Count == 3)
+            {
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+                if (checkNodeExists(start) && checkNodeExists(end))
+                {
+                    Node startNode = getNodeFromString(start);
+                    Node endNode = getNodeFromString(end);
+                    if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
+                    {
+                        if (startNode.Cow.Team == player.Team)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+
         public bool millFormed(Node JustChanged)
         {
             bool mill = false;

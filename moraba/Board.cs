@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace moraba
 {
-      public class Board : IBoard, inputValidation
+      public class Board : IBoard
     {
         private List<Node> mainNodeList = new List<Node> { };
         private Node LastEditedNode;
@@ -219,29 +219,6 @@ namespace moraba
             return 1000;
             
         }
-        public bool validateFlying(string position, Player player)
-        {
-            if (position.Length == 5 && position.Contains(" ") && player.CowsAlive.Count == 3)
-            {
-                string start = getStartNode(position);
-                string end = getEndNode(position);
-                if (checkNodeExists(start) && checkNodeExists(end))
-                {
-                    Node startNode = getNodeFromString(start);
-                    Node endNode = getNodeFromString(end);
-                    if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
-                    {
-                        if (startNode.Cow.Team == player.Team)
-                        {
-                                return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-   
 
         public Board()
         {
@@ -278,56 +255,5 @@ namespace moraba
             return mainNodeList;
         }
 
-        
-
-        public bool validateMove(Node startNode, Node endNode, Player player)
-        {
-            if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
-            {
-                if (startNode.Cow.Team == player.Team)
-                {
-                    if (isNeighbour(startNode, endNode))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-       
-
-        
-
-       
-
-        public bool checkNodeExists(string str)
-        {
-            foreach (Node n in mainNodeList)
-            {
-                if (n.Position == str) return true;
-            }
-            return false;
-        }
-
-        public bool isNeighbour(Node startNode, Node endNode)
-        {
-            return startNode.neighbours.Contains(endNode.Position);
-        }
-
-        public bool checkNodeIsOccupied(Node node)
-        {
-            if (node == null) return false;
-            return node.occupied;
-        }
-
-        public Node getNodeFromString(string str)
-        {
-            List< Node > mainList= getMainNodeList();
-            foreach (Node n in mainList)
-            {
-                if (n.Position.Equals(str)) return n;
-            }
-            return null;
-        }
     }
 }
