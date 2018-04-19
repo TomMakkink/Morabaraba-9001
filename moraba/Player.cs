@@ -4,7 +4,7 @@ using System.Text;
 
 namespace moraba
 {
-    public class Player : IPlayer
+    public class Player : IPlayer, IMove
     {
         public string Name { get; private set; }
 
@@ -25,7 +25,7 @@ namespace moraba
             Board = board; 
             makeCowsToPlace(team);
         }
-
+#region IPLayer
         private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
@@ -108,7 +108,85 @@ namespace moraba
         {
             return Name;
         }
-      
+        #endregion
+        #region Moving
+        public bool Placing(string placeNode, Player player)
+        {
+            if (checkNodeExists(placeNode) && player.numCowsToPlace() > 0)
+            {
+                Node temp = getNodeFromString(placeNode);
+                if (!checkNodeIsOccupied(temp))
+                {
+                    int index = mainNodeList.FindIndex(x => x.Position == placeNode);
+                    mainNodeList[index].addCow(player.CowsForPlacing[0]);
+                    LastEditedNode = mainNodeList[index];
+                    player.GiveCowName(LastEditedNode.Position);
+                    player.placedCow();
+                    return true;
+                }
+            }
+            return false;
+        }
 
+        public bool Moving(string position, Player player)
+        {
+            // Input validation 
+            if (position.Length == 5 && position.Contains(" ") && player.numCowsToPlace() == 0)
+            {
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+                if (checkNodeExists(start) && checkNodeExists(end))
+                {
+                    Node tempStart = getNodeFromString(start);
+                    Node tempEnd = getNodeFromString(end);
+                    if (validateMove(tempStart, tempEnd, player))
+                    {
+                        moveCow(tempStart, tempEnd, player);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void moveCow(Node startNode, Node endNode, Player player)
+        {
+            int startIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
+            int endIndex = mainNodeList.FindIndex(x => x.Position == endNode.Position);
+
+            mainNodeList[endIndex].addCow(startNode.Cow);
+            mainNodeList[endIndex].Cow.Position = mainNodeList[endIndex].Position;
+            player.ChangeCowName(mainNodeList[startIndex].Position, mainNodeList[endIndex].Position);
+            mainNodeList[startIndex].removeCow();
+            LastEditedNode = mainNodeList[endIndex];
+        }
+
+        public bool Flying(string position, Player player)
+        {
+            if (validateFlying(position, player))
+            {
+                string start = getStartNode(position);
+                string end = getEndNode(position);
+
+                Node startNode = getNodeFromString(start);
+                Node endNode = getNodeFromString(end);
+                moveCow(startNode, endNode, player);
+                return true;
+            }
+            return false;
+        }
+
+        public string getStartNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[0];
+        }
+
+        public string getEndNode(string input)
+        {
+            input.ToLower();
+            return input.Split(' ')[1];
+        }
+        #endregion
     }
 }
