@@ -125,7 +125,7 @@ namespace moraba
             if (!(board.numOfCowsOntheField(currentPlayer.Team) >= 3))
                 return mill;
 
-            List<List<string>> temp = getMillOptions(board.mainNodeList.IndexOf(JustChanged));
+            List<List<string>> temp = getMillOptions(board.getmainNodeList().IndexOf(JustChanged));
             foreach (List<string> x in temp)
             {
                 Node N1 = board.getNodeFromString(x[0]);

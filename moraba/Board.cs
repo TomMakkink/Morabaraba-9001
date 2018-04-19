@@ -8,8 +8,8 @@ namespace moraba
 {
       public class Board : IBoard, IMove, inputValidation
     {
-        public List<Node> mainNodeList = new List<Node> { };
-        public Node LastEditedNode;
+        private List<Node> mainNodeList = new List<Node> { };
+        private Node LastEditedNode;
         public bool Flying(string position, Player player)
         {
             if (validateFlying(position, player))
@@ -23,6 +23,11 @@ namespace moraba
                 return true;
             }
             return false;
+        }
+
+        public Node getLastNode()
+        {
+            return LastEditedNode;
         }
 
         public void RemoveCow(int index , Player player)
@@ -214,13 +219,18 @@ namespace moraba
         }
         public int numOfCowsOntheField(Team team)
         {
-            int total = 0;
-            foreach (Node x in mainNodeList)
+            if (team == Team.DarkCow || team == Team.LightCow)
             {
-                if (x.occupied && (x.Cow.Team == team))
-                    total++;
+                int total = 0;
+                foreach (Node x in mainNodeList)
+                {
+                    if (x.occupied && (x.Cow.Team == team))
+                        total++;
+                }
+                return total;
             }
-            return total;
+            return 1000;
+            
         }
         public bool validateFlying(string position, Player player)
         {
