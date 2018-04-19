@@ -14,7 +14,7 @@ namespace moraba
         
         string Position { get; }
 
-        bool occupied { set; }
+        bool occupied { get; }
 
         List<string> neighbours { get; }
 

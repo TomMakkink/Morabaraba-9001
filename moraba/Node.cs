@@ -6,11 +6,11 @@ namespace moraba
 {
     public class Node : INode
     {
-        public string Position { get; set; }
+        public  string Position { get; private set; }
 
-        public bool occupied { get;  set; }
+        public bool occupied { get; private set; }
 
-        public List<string> neighbours { get; set; }
+        public List<string> neighbours { get; private set; }
 
         public Cow Cow { get; set; }
 
@@ -24,7 +24,7 @@ namespace moraba
 
   
         public void addCow(Cow cow)
-        {
+        { 
             Cow = cow;
             occupied = true;
         }
@@ -39,5 +39,17 @@ namespace moraba
             Cow = null;
             occupied = false;
         }
+
+        public string getPosition()
+        {
+            return Position;
+        }
+
+        public bool getOccupied ()
+        {
+            return occupied;
+        }
+
+     
     }
 }

@@ -11,31 +11,30 @@ namespace moraba
         public List<Cow> CowsAlive = new List<Cow> { };
         public List<Cow> CowsForPlacing = new List<Cow> { };
         public List<List<string>> millList = new List<List<string>> { };
+        private Board Board;
 
         public Team Team { get; set; }
 
         // default constructor
 
         // constructor
-        public Player(string name, Team team)
+        public Player(string name, Team team, Board board)
         {
             Name = name;
             Team = team;
-            BreedCows(team);
+            Board = board; 
             makeCowsToPlace(team);
         }
         private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
+            {
+                CowsAlive.Add(new Cow(team));
                 CowsForPlacing.Add(new Cow(team));
+            }
         }
-        private void BreedCows(Team team)
-        {
-            for (int i = 0; i < 12; i++)
-                CowsAlive.Add(new Cow(team));    
+          
 
-        }    
-        
         public int numCowsAlive ()
         {
             return CowsAlive.Count;
@@ -45,7 +44,7 @@ namespace moraba
         {
             return CowsForPlacing.Count;
         }
-        public void placedCow()
+        public void removePlacedCow()
         {
             if (CowsForPlacing.Count>0)
                 CowsForPlacing.RemoveAt(0);
@@ -85,7 +84,7 @@ namespace moraba
                 if (x.Contains(pos))
                 {
                     millList.Remove(x);
-                    return;
+                   
                 }
             }
         }
@@ -95,27 +94,8 @@ namespace moraba
             millList.Add(newMill);
         }
 
-        /// <summary>
-        /// This method will check to see if there is a cow for the player to shoot at or if they just need to move on.
-        /// Need the mainNodeList (board), you need the millList of the enemy)
-        /// </summary>
-        /// <param name="b"></param>
-        /// <param name=""></param>
-        /// <returns></returns>
-       
-
-        private List<Cow> findEnemyCowsOnField(IEnumerable<Node> board)
-        {
-            List<Cow> temp = new List<Cow> { };
-            foreach(Node x in board)
-            {
-                if (x.Cow != null)
-                    if (x.Cow.Team != Team)
-                        temp.Add(x.Cow);
-            }
-
-            return temp;
-        }
+        
+      
 
     }
 }

@@ -92,30 +92,32 @@ namespace moraba
                     currentPlayer = player2;
                     enemy = player1;
                 }
+
                 isWin = false;
             }
     
         }
 
-        public void askToFly()
+        public string askToFly()
         {
             Console.WriteLine(string.Format("Please may {0} choose the node they want to move from and the node they want to move to.", currentPlayer.Name));
             Console.WriteLine(string.Format("Rememeber General {0} that you can fly to any empty node on the battle field (board).",currentPlayer.Name));
-            string x = Console.ReadLine();
-            board.Moving(x, currentPlayer);
+            return Console.ReadLine();
+            
         }
-        public void askToPlace()
+        public string askToPlace()
         {
             Console.WriteLine(string.Format("Please may {0} choose a node to place their cows on", currentPlayer.Name));
-            string x = Console.ReadLine();
-            board.Moving(x, currentPlayer);
+
+            return Console.ReadLine();
+            
         }
 
-        public void askToMove()
+        public string askToMove()
         {
             Console.WriteLine(string.Format("Please may {0} choose the node they want to move from and the node they want to move to.", currentPlayer.Name));
-            string x = Console.ReadLine();
-            board.Moving(x, currentPlayer);
+            return Console.ReadLine();
+           
         }
 
         public bool millFormed(Node JustChanged)
@@ -125,7 +127,7 @@ namespace moraba
             if (!(board.numOfCowsOntheField(currentPlayer.Team) >= 3))
                 return mill;
 
-            List<List<string>> temp = getMillOptions(board.getmainNodeList().IndexOf(JustChanged));
+            List<List<string>> temp = getMillOptions(board.getMainNodeList().IndexOf(JustChanged));
             foreach (List<string> x in temp)
             {
                 Node N1 = board.getNodeFromString(x[0]);
@@ -198,7 +200,7 @@ namespace moraba
             return shootable;
         }
 
-        private List<Cow> minusCows (List<Cow> livingcows, List<Cow> CowsStillPLacable)
+        private List<Cow> minusCows (List<Cow> livingcows, List<Cow> CowsStillPLacable) // change to get enmey cows on board.
         {
             if (CowsStillPLacable.Count == 0)
                 return livingcows;
@@ -208,6 +210,7 @@ namespace moraba
             }
             return livingcows;
         }
+
 
         public void mill(Node placedNode)
         {

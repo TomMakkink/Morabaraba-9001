@@ -33,16 +33,16 @@ namespace moraba
         }
         static void makePlayer ()
         {
-            //Console.WriteLine("Good day to the new generals that are about to partak in this glorious battle. May we have your names.");
-            //Console.WriteLine();
-            //Console.WriteLine("General one your name please:   ");
-            //string name1 =Console.ReadLine();
-            //Console.WriteLine();
-            //Console.WriteLine("General two your name please:   ");
-            //string name2 = Console.ReadLine();
-            //player1 = new Player(name1, Team.DarkCow);
-            //player2 = new Player(name2, Team.LightCow);
-            //Console.WriteLine("We will now start the battle prepare thyne selves.");
+            Console.WriteLine("Good day to the new generals that are about to partak in this glorious battle. May we have your names.");
+            Console.WriteLine();
+            Console.WriteLine("General one your name please:   ");
+            string name1 = Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("General two your name please:   ");
+            string name2 = Console.ReadLine();
+            player1 = new Player(name1, Team.DarkCow);
+            player2 = new Player(name2, Team.LightCow);
+            Console.WriteLine("We will now start the battle prepare thyne selves.");
 
         }
 
