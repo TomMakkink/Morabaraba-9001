@@ -9,13 +9,10 @@ namespace moraba
       public class Board : IBoard, inputValidation
     {
         private List<Node> mainNodeList = new List<Node> { };
-        private Node LastEditedNode;
+       
        
 
-        public Node getLastNode()
-        {
-            return LastEditedNode;
-        }
+       
 
         public void RemoveCow(int index , Player player)
         {
@@ -192,7 +189,7 @@ namespace moraba
             }
         }
 
-
+       
 
         public int numOfCowsOntheField()
         {
