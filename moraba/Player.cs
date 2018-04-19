@@ -6,11 +6,11 @@ namespace moraba
 {
     public class Player : IPlayer
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public List<Cow> CowsAlive = new List<Cow> { };
-        public List<Cow> CowsForPlacing = new List<Cow> { };
-        public List<List<string>> millList = new List<List<string>> { };
+        private List<Cow> CowsAlive = new List<Cow> { };
+        private List<Cow> CowsForPlacing = new List<Cow> { };
+        private List<List<string>> millList = new List<List<string>> { };
         private Board Board;
 
         public Team Team { get; set; }
@@ -25,6 +25,7 @@ namespace moraba
             Board = board; 
             makeCowsToPlace(team);
         }
+
         private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
@@ -34,7 +35,6 @@ namespace moraba
             }
         }
           
-
         public int numCowsAlive ()
         {
             return CowsAlive.Count;
@@ -94,7 +94,20 @@ namespace moraba
             millList.Add(newMill);
         }
 
-        
+        public List<Cow> getCowsAlive ()
+        {
+            return CowsAlive;
+        }
+
+        public List<Cow> getPlacingCows()
+        {
+            return CowsForPlacing;
+        }
+
+        public string getName()
+        {
+            return Name;
+        }
       
 
     }
