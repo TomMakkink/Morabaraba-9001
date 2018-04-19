@@ -11,10 +11,11 @@ namespace moraba
         public Player enemy;
         public Board board;
         public bool justGotMill = false;
-        public Umpire(Board b)
+        public Umpire(Player player1, Player player2)
         {
             turns = 1;
-            board = b;
+            currentPlayer = player1;
+            enemy = player2;
         }
         private List<List<string>> getMillOptions(int index)
         {
@@ -76,22 +77,27 @@ namespace moraba
             return new List<List<string>> { };
         }
 
-        public void play(Player player1, Player player2)
+        public void play()
         {
             bool isWin = true;
             while (isWin)
             {
-                if (turns % 2 == 1)
+                if (turns != 1)
                 {
-                    currentPlayer = player1;
-                    enemy = player2;
+                    if (turns % 2 == 1)
+                    {
+                        currentPlayer = enemy;
+                        enemy = currentPlayer;
+
+                    }
+                    else
+                    {
+                        currentPlayer = enemy;
+                        enemy = currentPlayer;
+                    }
 
                 }
-                else
-                {
-                    currentPlayer = player2;
-                    enemy = player1;
-                }
+               
 
                 isWin = false;
             }
@@ -154,10 +160,10 @@ namespace moraba
 
         private bool checkToSeeIfMIllCanShoot(List<string> newMIll)
         {
-            if (currentPlayer.millList.Count > 0)
+            if (currentPlayer.getMillList().Count > 0)
             {
                 bool isNotPratialMill = false;
-                foreach (List<string> x in currentPlayer.millList) // run through all mills the current player has to see if any of the new mills cows are part of other mills
+                foreach (List<string> x in currentPlayer.getMillList()) // run through all mills the current player has to see if any of the new mills cows are part of other mills
                 {
                     if (x.Contains(newMIll[0]) || x.Contains(newMIll[1]) || x.Contains(newMIll[2]))
                     {
@@ -177,8 +183,8 @@ namespace moraba
         {
             bool shootable = true; 
             bool breakable = false; // this will allow us to break from the nested loop and return a true once a shootable cow has been found
-            List<Cow> NumEnemyCowsOnfield = minusCows(enemy.CowsAlive, enemy.CowsForPlacing);
-            foreach(List<string> x in enemy.millList)
+            List<Cow> NumEnemyCowsOnfield = minusCows(enemy.getCowsAlive(), enemy.getPlacingCows());
+            foreach(List<string> x in enemy.getMillList())
             {
                 foreach(Cow y in NumEnemyCowsOnfield)
                 {
@@ -259,7 +265,7 @@ namespace moraba
             if(nodeChecks(choosenNodeToShoot) && justGotMill) // this will make sure that the node can be shoot at all
             {
                
-                int index = board.mainNodeList.FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
+                int index = enemy.getBoard().getMainNodeList().FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
                 board.RemoveCow(index, enemy); // removes the cow at that node in the mainNodeList
                 justGotMill = false;  
             }
@@ -268,7 +274,7 @@ namespace moraba
         public bool NodeInMill(Node node)
         {
             bool isNotInMill = false; // this method will check to see if the node choosen is in an enemy mill.
-            foreach (List<string> x in enemy.millList)
+            foreach (List<string> x in enemy.getMillList())
             {
                 if (x.Contains(node.Position))
                     isNotInMill = false;

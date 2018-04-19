@@ -112,6 +112,11 @@ namespace moraba
         {
             return LastEditedNode;
         }
+
+        public List<List<string>> getMillList()
+        {
+            return millList;
+        }
         #endregion
 
 

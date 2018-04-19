@@ -10,6 +10,6 @@ namespace moraba
     {
         Player Win(Player Enemy);
         bool AllEnemyCowInMill();
-        void play(Player player1, Player player2);
+        void play();
     }
 }
