@@ -124,7 +124,7 @@ namespace moraba
         public bool validatePlacing (string input)
         {
             Node inputNode = currentPlayer.getBoard().getNodeFromString(input);
-            if (checkNodeExists(input) && checkNodeIsOccupied(inputNode) == false)
+            if (currentPlayer.getBoard().checkNodeExists(input) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
                 return true;
             return false;
         }
@@ -136,15 +136,15 @@ namespace moraba
             {
                 string start = getStartNode(position);
                 string end = getEndNode(position);
-                if (checkNodeExists(start) && checkNodeExists(end))
+                if (currentPlayer.getBoard().checkNodeExists(start) && currentPlayer.getBoard().checkNodeExists(end))
                 {
                     Node startNode = currentPlayer.getBoard().getNodeFromString(start);
                     Node endNode = currentPlayer.getBoard().getNodeFromString(end);
-                    if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
+                    if (currentPlayer.getBoard().checkNodeIsOccupied(startNode) == true && currentPlayer.getBoard().checkNodeIsOccupied(endNode) == false)
                     { 
                         if (startNode.Cow.Team == player.Team)
                         {
-                            if (isNeighbour(startNode, endNode))
+                            if (currentPlayer.getBoard().isNeighbour(startNode, endNode))
                             {
                                 return true;
                             }
@@ -166,28 +166,7 @@ namespace moraba
             input.ToLower();
             return input.Split(' ')[1];
         }
-
-        public bool checkNodeExists(string str)
-        {
-            foreach (Node n in currentPlayer.getBoard().getMainNodeList())
-            {
-                if (n.Position == str) return true;
-            }
-            return false;
-        }
-
-        public bool isNeighbour(Node startNode, Node endNode)
-        {
-            return startNode.neighbours.Contains(endNode.Position);
-        }
-
-        public bool checkNodeIsOccupied(Node node)
-        {
-            if (node == null) return false;
-            return node.occupied;
-        }
         
-
 
         public bool validateFlying(string position, Player player)
         {
@@ -195,11 +174,11 @@ namespace moraba
             {
                 string start = getStartNode(position);
                 string end = getEndNode(position);
-                if (checkNodeExists(start) && checkNodeExists(end))
+                if (currentPlayer.getBoard().checkNodeExists(start) && currentPlayer.getBoard().checkNodeExists(end))
                 {
                     Node startNode = currentPlayer.getBoard().getNodeFromString(start);
                     Node endNode = currentPlayer.getBoard().getNodeFromString(end);
-                    if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
+                    if (currentPlayer.getBoard().checkNodeIsOccupied(startNode) == true && currentPlayer.getBoard().checkNodeIsOccupied(endNode) == false)
                     {
                         if (startNode.Cow.Team == player.Team)
                         {

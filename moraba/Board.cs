@@ -195,7 +195,25 @@ namespace moraba
             }
         }
 
-       
+        public bool checkNodeExists(string str)
+        {
+            foreach (Node n in mainNodeList)
+            {
+                if (n.Position == str) return true;
+            }
+            return false;
+        }
+
+        public bool isNeighbour(Node startNode, Node endNode)
+        {
+            return startNode.neighbours.Contains(endNode.Position);
+        }
+
+        public bool checkNodeIsOccupied(Node node)
+        {
+            if (node == null) return false;
+            return node.occupied;
+        }
 
         public int numOfCowsOntheField()
         {
