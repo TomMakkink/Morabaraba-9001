@@ -9,13 +9,16 @@ namespace moraba
       public class Board : IBoard
     {
         private List<Node> mainNodeList = new List<Node> { };
-        private Node LastEditedNode;
-       
 
-        public Node getLastNode()
+        public Node getNodeFromString(string str)
         {
-            return LastEditedNode;
+            foreach (Node n in mainNodeList)
+            {
+                if (n.Position.Equals(str)) return n;
+            }
+            return null;
         }
+
 
         public void RemoveCow(int index , Player player)
         {
@@ -192,7 +195,7 @@ namespace moraba
             }
         }
 
-
+       
 
         public int numOfCowsOntheField()
         {

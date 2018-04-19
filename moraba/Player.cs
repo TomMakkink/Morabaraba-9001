@@ -11,26 +11,25 @@ namespace moraba
         private List<Cow> CowsAlive = new List<Cow> { };
         private List<Cow> CowsForPlacing = new List<Cow> { };
         private List<List<string>> millList = new List<List<string>> { };
-        private Board Board;
+        private Node LastEditedNode;
+        private Board BoardList;
 
         public Team Team { get; set; }
-
-        // default constructor
 
         // constructor
         public Player(string name, Team team, Board board)
         {
             Name = name;
             Team = team;
-            Board = board; 
+            BoardList = board;
             makeCowsToPlace(team);
         }
+
 #region IPLayer
         public Board getBoard ()
         {
-            return Board;
+            return BoardList;
         }
-
 
         private void makeCowsToPlace(Team team)
         {
@@ -40,8 +39,8 @@ namespace moraba
                 CowsForPlacing.Add(new Cow(team));
             }
         }
-          
-        public int numCowsAlive ()
+
+        public int numCowsAlive()
         {
             return CowsAlive.Count;
         }
@@ -52,7 +51,7 @@ namespace moraba
         }
         public void removePlacedCow()
         {
-            if (CowsForPlacing.Count>0)
+            if (CowsForPlacing.Count > 0)
                 CowsForPlacing.RemoveAt(0);
         }
 
@@ -77,7 +76,7 @@ namespace moraba
             CowsAlive.Add(temp);
         }
 
-        public void ChangeCowName(string oldName , string newName)
+        public void ChangeCowName(string oldName, string newName)
         {
             int index = CowsAlive.FindIndex(y => y.Position == oldName);
             CowsAlive[index].Position = newName;
@@ -90,17 +89,17 @@ namespace moraba
                 if (x.Contains(pos))
                 {
                     millList.Remove(x);
-                   
+
                 }
             }
         }
 
-        public void addMill (List<string> newMill)
+        public void addMill(List<string> newMill)
         {
             millList.Add(newMill);
         }
 
-        public List<Cow> getCowsAlive ()
+        public List<Cow> getCowsAlive()
         {
             return CowsAlive;
         }
@@ -114,74 +113,44 @@ namespace moraba
         {
             return Name;
         }
+
+        public Node getLastNode()
+        {
+            return LastEditedNode;
+        }
         #endregion
+
+
         #region Moving
-        public bool Placing(string placeNode, Player player)
+        public bool Placing(string placeNode)
         {
-            if (checkNodeExists(placeNode) && player.numCowsToPlace() > 0)
+
+            Node temp = BoardList.getNodeFromString(placeNode);
+            if (!BoardList.checkNodeIsOccupied(temp))
             {
-                Node temp = getNodeFromString(placeNode);
-                if (!checkNodeIsOccupied(temp))
-                {
-                    int index = mainNodeList.FindIndex(x => x.Position == placeNode);
-                    mainNodeList[index].addCow(player.CowsForPlacing[0]);
-                    LastEditedNode = mainNodeList[index];
-                    player.GiveCowName(LastEditedNode.Position);
-                    player.placedCow();
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool Moving(string position, Player player)
-        {
-            // Input validation 
-            if (position.Length == 5 && position.Contains(" ") && player.numCowsToPlace() == 0)
-            {
-                string start = getStartNode(position);
-                string end = getEndNode(position);
-                if (checkNodeExists(start) && checkNodeExists(end))
-                {
-                    Node tempStart = getNodeFromString(start);
-                    Node tempEnd = getNodeFromString(end);
-                    if (validateMove(tempStart, tempEnd, player))
-                    {
-                        moveCow(tempStart, tempEnd, player);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        public void moveCow(Node startNode, Node endNode, Player player)
-        {
-            int startIndex = mainNodeList.FindIndex(x => x.Position == startNode.Position);
-            int endIndex = mainNodeList.FindIndex(x => x.Position == endNode.Position);
-
-            mainNodeList[endIndex].addCow(startNode.Cow);
-            mainNodeList[endIndex].Cow.Position = mainNodeList[endIndex].Position;
-            player.ChangeCowName(mainNodeList[startIndex].Position, mainNodeList[endIndex].Position);
-            mainNodeList[startIndex].removeCow();
-            LastEditedNode = mainNodeList[endIndex];
-        }
-
-        public bool Flying(string position, Player player)
-        {
-            if (validateFlying(position, player))
-            {
-                string start = getStartNode(position);
-                string end = getEndNode(position);
-
-                Node startNode = getNodeFromString(start);
-                Node endNode = getNodeFromString(end);
-                moveCow(startNode, endNode, player);
+                int index = BoardList.getMainNodeList().FindIndex(x => x.Position == placeNode);
+                BoardList.getMainNodeList()[index].addCow(CowsForPlacing[0]);
+                LastEditedNode = BoardList.getMainNodeList()[index];
+                GiveCowName(LastEditedNode.Position);
+                removePlacedCow();
                 return true;
             }
             return false;
         }
 
+
+        public void moveCow(Node startNode, Node endNode)
+        {
+            int startIndex = BoardList.getMainNodeList().FindIndex(x => x.Position == startNode.Position);
+            int endIndex = BoardList.getMainNodeList().FindIndex(x => x.Position == endNode.Position);
+
+            BoardList.getMainNodeList()[endIndex].addCow(startNode.Cow);
+            BoardList.getMainNodeList()[endIndex].Cow.Position = BoardList.getMainNodeList()[endIndex].Position;
+            ChangeCowName(BoardList.getMainNodeList()[startIndex].Position, BoardList.getMainNodeList()[endIndex].Position);
+            BoardList.getMainNodeList()[startIndex].removeCow();
+            LastEditedNode = BoardList.getMainNodeList()[endIndex];
+        }
         #endregion
     }
+
 }

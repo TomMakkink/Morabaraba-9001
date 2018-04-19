@@ -123,7 +123,7 @@ namespace moraba
         #region
         public bool validatePlacing (string input)
         {
-            Node inputNode = getNodeFromString(input);
+            Node inputNode = currentPlayer.getBoard().getNodeFromString(input);
             if (checkNodeExists(input) && checkNodeIsOccupied(inputNode) == false)
                 return true;
             return false;
@@ -138,8 +138,8 @@ namespace moraba
                 string end = getEndNode(position);
                 if (checkNodeExists(start) && checkNodeExists(end))
                 {
-                    Node startNode = getNodeFromString(start);
-                    Node endNode = getNodeFromString(end);
+                    Node startNode = currentPlayer.getBoard().getNodeFromString(start);
+                    Node endNode = currentPlayer.getBoard().getNodeFromString(end);
                     if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
                     { 
                         if (startNode.Cow.Team == player.Team)
@@ -187,14 +187,7 @@ namespace moraba
             return node.occupied;
         }
         
-        public Node getNodeFromString(string str)
-        {
-            foreach (Node n in currentPlayer.getBoard().getMainNodeList())
-            {
-                if (n.Position.Equals(str)) return n;
-            }
-            return null;
-        }
+
 
         public bool validateFlying(string position, Player player)
         {
@@ -204,8 +197,8 @@ namespace moraba
                 string end = getEndNode(position);
                 if (checkNodeExists(start) && checkNodeExists(end))
                 {
-                    Node startNode = getNodeFromString(start);
-                    Node endNode = getNodeFromString(end);
+                    Node startNode = currentPlayer.getBoard().getNodeFromString(start);
+                    Node endNode = currentPlayer.getBoard().getNodeFromString(end);
                     if (checkNodeIsOccupied(startNode) == true && checkNodeIsOccupied(endNode) == false)
                     {
                         if (startNode.Cow.Team == player.Team)
