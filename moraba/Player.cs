@@ -24,7 +24,13 @@ namespace moraba
             BoardList = board;
             makeCowsToPlace(team);
         }
-        #region IPLayer
+
+#region IPLayer
+        public Board getBoard ()
+        {
+            return BoardList;
+        }
+
         private void makeCowsToPlace(Team team)
         {
             for (int i = 0; i < 12; i++)
@@ -149,9 +155,6 @@ namespace moraba
             BoardList.getMainNodeList()[startIndex].removeCow();
             LastEditedNode = BoardList.getMainNodeList()[endIndex];
         }
-
-       
-       
         #endregion
     }
 
