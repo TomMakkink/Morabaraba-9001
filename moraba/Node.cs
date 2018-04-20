@@ -12,7 +12,7 @@ namespace moraba
 
         public List<string> neighbours { get; private set; }
 
-        public Cow Cow { get; set; }
+        public ICow Cow { get; set; }
 
         public Node(string pos, List<string> friends)// friends are the neighbouring nodes
         {
@@ -23,7 +23,7 @@ namespace moraba
         }
 
   
-        public void addCow(Cow cow)
+        public void addCow(ICow cow)
         { 
             Cow = cow;
             occupied = true;

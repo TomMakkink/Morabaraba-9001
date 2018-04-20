@@ -12,10 +12,9 @@ namespace moraba
 
         static void Main(string[] args)
         {
-            Board Board = new Board();
-            Umpire Umpire = new Umpire(Board);
-            Player player1;
-            Player player2;
+            IBoard Board = new Board();
+            IPlayer player1;
+            IPlayer player2;
             Console.WriteLine("Good day to the new generals that are about to partak in this glorious battle. May we have your names.");
             Console.WriteLine();
             Console.WriteLine("General one your name please:   ");
@@ -26,11 +25,11 @@ namespace moraba
             player1 = new Player(name1, Team.DarkCow, Board);
             player2 = new Player(name2, Team.LightCow, Board);
             Console.WriteLine("We will now start the battle prepare thyne selves.");
-           
-            
+            Umpire Umpire = new Umpire(player1,player2);
+
             Board.printBoard();
 
-            Umpire.play(player1, player2);
+            Umpire.play();
 
 
 

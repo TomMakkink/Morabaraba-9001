@@ -6,16 +6,10 @@ namespace moraba
 {
     public class Cow : ICow
     {
-        public string Position { get; set; }
+        private string Position { get; set; }
 
         public Team Team { get; set; }
-
-        public bool isShootable(IEnumerable<Node> nodeBoard)
-        {
-            throw new NotImplementedException();
-        }
-       
-
+        
         public Cow(Team team)
         {
             Position = "a0";
@@ -27,5 +21,16 @@ namespace moraba
             Position = pos;
             Team = team;
         }
+
+        public string getPosition()
+        {
+            return Position;
+        }
+        
+        public void changePosition(string x)
+        {
+            Position = x;
+        }
+        
     }
 }

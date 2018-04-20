@@ -7,11 +7,11 @@ namespace moraba
     public class Umpire : IUmpire
     {
         public int turns;
-        public Player currentPlayer;
-        public Player enemy;
-        public Board board;
+        public IPlayer currentPlayer;
+        public IPlayer enemy;
+        public IBoard board;
         public bool justGotMill = false;
-        public Umpire(Player player1, Player player2)
+        public Umpire(IPlayer player1, IPlayer player2)
         {
             turns = 1;
             currentPlayer = player1;
@@ -76,7 +76,7 @@ namespace moraba
             }
             return new List<List<string>> { };
         }
-
+        #region askingToMove
         public void play()
         {
             bool isWin = true;
@@ -125,30 +125,31 @@ namespace moraba
             return Console.ReadLine();
            
         }
+        #endregion
 
         #region
         public bool validatePlacing (string input)
         {
-            Node inputNode = currentPlayer.getBoard().getNodeFromString(input);
+            INode inputNode = currentPlayer.getBoard().getNodeFromString(input);
             if (currentPlayer.getBoard().checkNodeExists(input) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
                 return true;
             return false;
         }
 
 
-        public bool validateMove(string position, Player player)
+        public bool validateMove(string position)
         {
-            if (position.Length == 5 && position.Contains(" ") && player.numCowsToPlace() == 0)
+            if (position.Length == 5 && position.Contains(" ") && currentPlayer.numCowsToPlace() == 0)
             {
                 string start = getStartNode(position);
                 string end = getEndNode(position);
                 if (currentPlayer.getBoard().checkNodeExists(start) && currentPlayer.getBoard().checkNodeExists(end))
                 {
-                    Node startNode = currentPlayer.getBoard().getNodeFromString(start);
-                    Node endNode = currentPlayer.getBoard().getNodeFromString(end);
+                    INode startNode = currentPlayer.getBoard().getNodeFromString(start);
+                    INode endNode = currentPlayer.getBoard().getNodeFromString(end);
                     if (currentPlayer.getBoard().checkNodeIsOccupied(startNode) == true && currentPlayer.getBoard().checkNodeIsOccupied(endNode) == false)
                     { 
-                        if (startNode.Cow.Team == player.Team)
+                        if (startNode.Cow.Team == currentPlayer.Team)
                         {
                             if (currentPlayer.getBoard().isNeighbour(startNode, endNode))
                             {
@@ -174,7 +175,7 @@ namespace moraba
         }
         
 
-        public bool validateFlying(string position, Player player)
+        public bool validateFlying(string position)
         {
             if (position.Length == 5 && position.Contains(" ") && currentPlayer.getCowsAlive().Count == 3)
             {
@@ -182,11 +183,11 @@ namespace moraba
                 string end = getEndNode(position);
                 if (currentPlayer.getBoard().checkNodeExists(start) && currentPlayer.getBoard().checkNodeExists(end))
                 {
-                    Node startNode = currentPlayer.getBoard().getNodeFromString(start);
-                    Node endNode = currentPlayer.getBoard().getNodeFromString(end);
+                    INode startNode = currentPlayer.getBoard().getNodeFromString(start);
+                    INode endNode = currentPlayer.getBoard().getNodeFromString(end);
                     if (currentPlayer.getBoard().checkNodeIsOccupied(startNode) == true && currentPlayer.getBoard().checkNodeIsOccupied(endNode) == false)
                     {
-                        if (startNode.Cow.Team == player.Team)
+                        if (startNode.Cow.Team == currentPlayer.Team)
                         {
                             return true;
                         }
@@ -199,7 +200,7 @@ namespace moraba
         #endregion
 
 
-        public bool millFormed(Node JustChanged)
+        public bool millFormed(INode JustChanged)
         {
             bool mill = false;
             int m = 0;
@@ -209,9 +210,9 @@ namespace moraba
             List<List<string>> temp = getMillOptions(board.getMainNodeList().IndexOf(JustChanged));
             foreach (List<string> x in temp)
             {
-                Node N1 = board.getNodeFromString(x[0]);
-                Node N2 = board.getNodeFromString(x[1]);
-                Node N3 = board.getNodeFromString(x[2]);
+                INode N1 = board.getNodeFromString(x[0]);
+                INode N2 = board.getNodeFromString(x[1]);
+                INode N3 = board.getNodeFromString(x[2]);
                 if (N1.occupied && N2.occupied && N3.occupied)
                 {
                     if (N1.Cow.Team == currentPlayer.Team && N2.Cow.Team == N1.Cow.Team && N3.Cow.Team == currentPlayer.Team)
@@ -256,12 +257,12 @@ namespace moraba
         {
             bool shootable = true; 
             bool breakable = false; // this will allow us to break from the nested loop and return a true once a shootable cow has been found
-            List<Cow> NumEnemyCowsOnfield = minusCows(enemy.getCowsAlive(), enemy.getPlacingCows());
+            List<ICow> NumEnemyCowsOnfield = minusCows(enemy.getCowsAlive(), enemy.getPlacingCows());
             foreach(List<string> x in enemy.getMillList())
             {
-                foreach(Cow y in NumEnemyCowsOnfield)
+                foreach(ICow y in NumEnemyCowsOnfield)
                 {
-                    if (x.Contains(y.Position))
+                    if (x.Contains(y.getPosition()))
                     {
                         shootable = false;
                     }
@@ -279,11 +280,11 @@ namespace moraba
             return shootable;
         }
 
-        private List<Cow> minusCows (List<Cow> livingcows, List<Cow> CowsStillPLacable) // change to get enmey cows on board.
+        private List<ICow> minusCows (List<ICow> livingcows, List<ICow> CowsStillPLacable) // change to get enmey cows on board.
         {
             if (CowsStillPLacable.Count == 0)
                 return livingcows;
-            foreach(Cow x in CowsStillPLacable)
+            foreach(ICow x in CowsStillPLacable)
             {
                 livingcows.Remove(x);
             }
@@ -291,7 +292,7 @@ namespace moraba
         }
 
 
-        public void mill(Node placedNode)
+        public void mill(INode placedNode)
         {
             if (millFormed(placedNode))
             {
@@ -334,7 +335,7 @@ namespace moraba
 
         public void shoot(string NodeChosen)
         {
-            Node choosenNodeToShoot = board.getNodeFromString(NodeChosen);
+            INode choosenNodeToShoot = board.getNodeFromString(NodeChosen);
             if(nodeChecks(choosenNodeToShoot) && justGotMill) // this will make sure that the node can be shoot at all
             {
                
@@ -344,7 +345,7 @@ namespace moraba
             }
         }
 
-        public bool NodeInMill(Node node)
+        public bool NodeInMill(INode node)
         {
             bool isNotInMill = false; // this method will check to see if the node choosen is in an enemy mill.
             foreach (List<string> x in enemy.getMillList())
@@ -357,7 +358,7 @@ namespace moraba
             return isNotInMill;
         }
 
-        public bool nodeChecks (Node node)
+        public bool nodeChecks (INode node)
         {
             if (node.occupied) // make sure that the node is not empty
                 if (node.Cow.Team == enemy.Team) // this will make sure that the node is not currentplayers own node
@@ -374,7 +375,7 @@ namespace moraba
         }
 
 
-        public Player Win( Player enemy)
+        public IPlayer Win( IPlayer enemy)
         {
             throw new NotImplementedException();
         }

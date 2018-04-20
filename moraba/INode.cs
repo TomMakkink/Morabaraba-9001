@@ -4,9 +4,9 @@ using System.Text;
 
 namespace moraba
 {
-    interface INode
+   public  interface INode
     {
-        void addCow(Cow cow);
+        void addCow(ICow cow);
 
         void removeCow();
 
@@ -18,7 +18,11 @@ namespace moraba
 
         List<string> neighbours { get; }
 
-        Cow Cow { get; }
+        ICow Cow { get; }
+
+        string getPosition();
+
+        bool getOccupied();
 
     }
 }

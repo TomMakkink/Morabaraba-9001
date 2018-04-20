@@ -4,12 +4,13 @@ using System.Text;
 
 namespace moraba
 {
-    interface ICow
+    public interface ICow
     {
-        bool isShootable(IEnumerable<Node> nodeBoard);
-
-        string Position { get; }
+        string getPosition();
 
         Team Team { get; }
+
+        void changePosition(string x);
+
     }
 }

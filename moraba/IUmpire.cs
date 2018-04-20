@@ -8,8 +8,24 @@ namespace moraba
 
     interface IUmpire
     {
-        Player Win(Player Enemy);
-        bool AllEnemyCowInMill();
+        
         void play();
+        string askToFly();
+        string askToPlace();
+        bool AllEnemyCowInMill();
+        string askToMove();
+        bool validatePlacing(string input);
+        bool validateMove(string position);
+        string getStartNode(string input);
+        string getEndNode(string input);
+        bool validateFlying(string position);
+        bool millFormed(INode JustChanged);
+        void mill(INode placedNode);
+        string askToShoot();
+        void shoot(string NodeChosen);
+        bool NodeInMill(INode node);
+        bool nodeChecks(INode node);
+
+        IPlayer Win(IPlayer enemy);
     }
 }

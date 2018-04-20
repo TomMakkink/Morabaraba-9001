@@ -8,11 +8,11 @@ namespace moraba
 {
       public class Board : IBoard
     {
-        private List<Node> mainNodeList = new List<Node> { };
+        private List<INode> mainNodeList = new List<INode> { };
 
-        public Node getNodeFromString(string str)
+        public INode getNodeFromString(string str)
         {
-            foreach (Node n in mainNodeList)
+            foreach (INode n in mainNodeList)
             {
                 if (n.Position.Equals(str)) return n;
             }
@@ -20,7 +20,7 @@ namespace moraba
         }
 
 
-        public void RemoveCow(int index , Player player)
+        public void RemoveCow(int index , IPlayer player)
         {
             mainNodeList[index].removeCow(); // this will remove the cow from the board 
             player.killCow(mainNodeList[index].Position); // this removes the cow from cowsAlive List 
@@ -197,19 +197,19 @@ namespace moraba
 
         public bool checkNodeExists(string str)
         {
-            foreach (Node n in mainNodeList)
+            foreach (INode n in mainNodeList)
             {
                 if (n.Position == str) return true;
             }
             return false;
         }
 
-        public bool isNeighbour(Node startNode, Node endNode)
+        public bool isNeighbour(INode startNode, INode endNode)
         {
             return startNode.neighbours.Contains(endNode.Position);
         }
 
-        public bool checkNodeIsOccupied(Node node)
+        public bool checkNodeIsOccupied(INode node)
         {
             if (node == null) return false;
             return node.occupied;
@@ -218,7 +218,7 @@ namespace moraba
         public int numOfCowsOntheField()
         {
             int total = 0;
-            foreach (Node x in mainNodeList)
+            foreach (INode x in mainNodeList)
             {
                 if (x.occupied)
                     total++;
@@ -230,7 +230,7 @@ namespace moraba
             if (team == Team.DarkCow || team == Team.LightCow)
             {
                 int total = 0;
-                foreach (Node x in mainNodeList)
+                foreach (INode x in mainNodeList)
                 {
                     if (x.occupied && (x.Cow.Team == team))
                         total++;
@@ -271,7 +271,7 @@ namespace moraba
         }
       
 
-        public List<Node> getMainNodeList ()
+        public List<INode> getMainNodeList ()
         {
             return mainNodeList;
         }

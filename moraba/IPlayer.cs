@@ -5,15 +5,12 @@ using System.Text;
 namespace moraba
 {
     public enum Team { DarkCow, LightCow };
-     interface IPlayer
+     public interface IPlayer
     {
         
         
         string Name { get; }
         Team Team { get; }
-
-
-
 
         int numCowsAlive();
 
@@ -33,15 +30,26 @@ namespace moraba
 
         void addMill(List<string> newMill);
 
+        List<List<string>> getMillList();
 
-        List<Cow> getCowsAlive();
+        List<ICow> getCowsAlive();
 
+        INode getLastNode();
 
-        List<Cow> getPlacingCows();
+        IBoard getBoard();
+
+        List<ICow> getPlacingCows();
 
 
         string getName();
-       
+
+        bool Placing(string placeNode);
+
+
+        void moveCow(INode startNode, INode endNode);
+
+
+
     }
 
 }
