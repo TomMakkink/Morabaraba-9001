@@ -8,12 +8,12 @@ namespace moraba
     {
         bool checkNodeExists(string str);
 
-        bool checkNodeIsOccupied(Node node);
+        bool checkNodeIsOccupied(INode node);
 
-        bool isNeighbour(Node startNode, Node endNode);
+        bool isNeighbour(INode startNode, INode endNode);
 
-        bool validateMove(Node startNode, Node endNode, Player player);
+        bool validateMove(INode startNode, INode endNode);
 
-        bool validateFlying(string position, Player player);
+        bool validateFlying(string position);
     }
 }
