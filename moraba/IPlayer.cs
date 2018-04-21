@@ -48,7 +48,9 @@ namespace moraba
 
         void moveCow(INode startNode, INode endNode);
 
+        void ShootCow(int index, IPlayer en);
 
+        void GetRidOfMill(string pos)
 
     }
 

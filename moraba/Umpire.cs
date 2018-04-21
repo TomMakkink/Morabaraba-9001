@@ -98,24 +98,85 @@ namespace moraba
             bool isWin = true;
             while (isWin)
             {
-                if (turns != 1)
+                if (turns <= 10)//placing stage
                 {
-                    if (turns % 2 == 1)
+                    if(turns != 1)
                     {
-                        currentPlayer = enemy;
-                        enemy = currentPlayer;
+                        if (turns % 2 == 1)
+                        {
+                            IPlayer temp = currentPlayer;
+                            currentPlayer = enemy;
+                            enemy = temp;
 
+                        }
+                        else
+                        {
+                            IPlayer temp = currentPlayer;
+                            currentPlayer = enemy;
+                            enemy = temp;
+                        }
+                    }
+                  
+                    if (currentPlayer.numCowsToPlace() != 0)
+                    {
+                        string playerPlace = askToPlace();
+                        while (!validatePlacing(playerPlace))
+                        {
+                            Console.WriteLine("that move wasnt the best maybe try again?");
+                            playerPlace = askToPlace();
+                        }
+                        currentPlayer.Placing(playerPlace);
+                        currentPlayer.getBoard().printBoard();
+                        mill(currentPlayer.getLastNode());
+                        currentPlayer.getBoard().printBoard();
                     }
                     else
                     {
-                        currentPlayer = enemy;
-                        enemy = currentPlayer;
+                        if (currentPlayer.numCowsAlive() != 3)
+                        {
+                            string playerPlace = askToMove();
+                            while (!validateMove(playerPlace))
+                            {
+                                Console.WriteLine("that move wasnt the best maybe try again?");
+                                playerPlace = askToMove();
+                            }
+                            string start = getStartNode(playerPlace);
+                            string end = getEndNode(playerPlace);
+                            INode startNode = currentPlayer.getBoard().getNodeFromString(start);
+                            INode endNode = currentPlayer.getBoard().getNodeFromString(end);
+                            currentPlayer.moveCow(startNode, endNode);
+                            currentPlayer.getBoard().printBoard();
+                            currentPlayer.GetRidOfMill(start);
+                            mill(currentPlayer.getLastNode());
+                            currentPlayer.getBoard().printBoard();
+                        }
+                        else
+                        {
+                            string playerPlace = askToFly();
+                            while (!validateFlying(playerPlace))
+                            {
+                                Console.WriteLine("that move wasnt the best maybe try again?");
+                                playerPlace = askToPlace();
+                            }
+                            string start = getStartNode(playerPlace);
+                            string end = getEndNode(playerPlace);
+                            INode startNode = currentPlayer.getBoard().getNodeFromString(start);
+                            INode endNode = currentPlayer.getBoard().getNodeFromString(end);
+                            currentPlayer.moveCow(startNode, endNode);
+                            currentPlayer.GetRidOfMill(start);
+                            currentPlayer.getBoard().printBoard();
+                            mill(currentPlayer.getBoard().getNodeFromString(playerPlace));
+                            currentPlayer.getBoard().printBoard();
+                        }
                     }
-
                 }
-               
+                else
+                {
+                    isWin = false;
+                }
 
-                isWin = false;
+              
+                turns++;
             }
     
         }
@@ -314,9 +375,14 @@ namespace moraba
             {
                 if (justGotMill)
                 {
-                    shoot(askToShoot()); // this is the start of the shoot method the method takes in a string nodeName
-                                         // askToShoot will ask the user(s) which node they would like to shoot and only leave that method when
-                                         // a correct node is choosen
+                    string cowToShoot = askToShoot();
+                    INode temp = currentPlayer.getBoard().getNodeFromString(cowToShoot);
+                    while (!(nodeChecks(temp)))
+                    {
+                        cowToShoot = askToShoot();
+                        temp = currentPlayer.getBoard().getNodeFromString(cowToShoot);
+                    }
+                    shoot(cowToShoot);
                 }
 
             }
@@ -333,13 +399,13 @@ namespace moraba
             CowToShoot.ToLower(); // changes it all to lower case :)
             if (currentPlayer.getBoard().checkNodeExists(CowToShoot) && CowToShoot.Length == 2) // this will check that the node exists
             {
-                return CowToShoot; 
+                    return CowToShoot;
             }
             else
             {
                 Console.WriteLine("A valid node only as a charecter length of 2 and also starts with a letter between a-g and a number between 1-6");
                 while (!(currentPlayer.getBoard().checkNodeExists(CowToShoot) && CowToShoot.Length == 2)) // while loop will continue till correct node given
-                                                                                       // may have to test.
+                                                                                       
                 {
                     Console.WriteLine("Please enter the node that you would like to shoot");
                     CowToShoot = Console.ReadLine();
@@ -356,7 +422,7 @@ namespace moraba
             {
                
                 int index = enemy.getBoard().getMainNodeList().FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
-                currentPlayer.getBoard().RemoveCow(index, enemy); // removes the cow at that node in the mainNodeList
+                currentPlayer.ShootCow(index, enemy); // removes the cow at that node in the mainNodeList
                 justGotMill = false;  
             }
         }
@@ -385,6 +451,8 @@ namespace moraba
                         if (AllEnemyCowInMill()) // this will make it so that if all enemy nodes are in a mill than the mill can be shoot at
                             return true;
                     }
+                
+            
             return false;
 
 

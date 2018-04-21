@@ -82,14 +82,14 @@ namespace moraba
             CowsAlive[index].changePosition(newName);
         }
 
-        private void GetRidOfMill(string pos)
+        public void GetRidOfMill(string pos)
         {
             foreach (List<string> x in millList)
             {
                 if (x.Contains(pos))
                 {
                     millList.Remove(x);
-
+                    break;
                 }
             }
         }
@@ -125,6 +125,10 @@ namespace moraba
         }
         #endregion
 
+        public void ShootCow (int index, IPlayer en)
+        {
+            BoardList.RemoveCow(index, en);
+        }
 
         #region Moving
         public bool Placing(string placeNode)
