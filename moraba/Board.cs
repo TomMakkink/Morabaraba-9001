@@ -276,5 +276,10 @@ namespace moraba
             return mainNodeList;
         }
 
+        bool IBoard.checkNodeIsOccupied(int index)
+        {
+            if (getMainNodeList()[index].occupied == false) return false;
+            return true;
+        }
     }
 }

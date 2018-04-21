@@ -213,6 +213,13 @@ namespace moraba
             return false;
         }
 
+        public bool validatePlacing (Node inputNode)
+        {
+            if (currentPlayer.getBoard().checkNodeExists(inputNode.getPosition()) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
+                return true;
+            return false;
+        }
+
 
         public bool validateMove(string position)
         {

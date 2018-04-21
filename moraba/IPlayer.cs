@@ -50,7 +50,7 @@ namespace moraba
 
         void ShootCow(int index, IPlayer en);
 
-        void GetRidOfMill(string pos)
+        void GetRidOfMill(string pos);
 
     }
 

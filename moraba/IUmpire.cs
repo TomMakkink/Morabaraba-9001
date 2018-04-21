@@ -15,6 +15,8 @@ namespace moraba
         bool AllEnemyCowInMill();
         string askToMove();
         bool validatePlacing(string input);
+
+        bool validatePlacing(Node input);
         bool validateMove(string position);
         string getStartNode(string input);
         string getEndNode(string input);

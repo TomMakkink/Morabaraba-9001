@@ -24,6 +24,7 @@ namespace moraba
 
         bool checkNodeIsOccupied(INode node);
 
+        bool checkNodeIsOccupied(int index);
 
     }
 }
