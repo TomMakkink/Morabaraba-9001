@@ -342,59 +342,58 @@ public class Class1
         #endregion
 
         #region Cows can move to any empty space if only three cows of that team remain
-        //    static object[] allPossiblePlaces =
-        //{
-        //                new object[] {0, "a0", new string[] { "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {1, "a3", new string[] { "a0", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {2, "a6", new string[] { "a0", "a3", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {3, "b1", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {4, "b3", new string[] { "a0", "a3", "a6", "b1", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {5, "b5", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {6, "c2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {7, "c3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {8, "c4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {9, "d0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {10, "d1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {11, "d2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {12, "d4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {13, "d5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {14, "d6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {15, "e2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {16, "e3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {17, "e4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {18, "f1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g3", "g6" } },
-        //                new object[] {19, "f3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f5", "g0", "g3", "g6" } },
-        //                new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "g0", "g3", "g6" } },
-        //                new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g3", "g6" } },
-        //                new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g6" } },
-        //                new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } }
-        //            };
+        static object[] allPossiblePlaces =
+        {
+                        new object[] {0, "a0", new string[] { "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {1, "a3", new string[] { "a0", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {2, "a6", new string[] { "a0", "a3", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {3, "b1", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {4, "b3", new string[] { "a0", "a3", "a6", "b1", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {5, "b5", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {6, "c2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {7, "c3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {8, "c4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {9, "d0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {10, "d1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {11, "d2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {12, "d4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {13, "d5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {14, "d6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {15, "e2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {16, "e3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {17, "e4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "f1", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {18, "f1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g3", "g6" } },
+                        new object[] {19, "f3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f5", "g0", "g3", "g6" } },
+                        new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "g0", "g3", "g6" } },
+                        new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g3", "g6" } },
+                        new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g6" } },
+                        new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } }
+        };
 
-        //    // 
-        //    [Test]
-        //    [TestCaseSource(nameof(allPossiblePlaces))]
-        //    public void CowsMoveToAnyEmptySpaceWhenFlying(int index, string cowName, string[] possibleMoves)
-        //    {
-        //        IBoard b = new Board();
-        //        IPlayer player = new Player("te", Team.DarkCow,b);
-        //        IPlayer player2 = Substitute.For<IPlayer>();
-        //        Umpire U = new Umpire(player, player2);
-        //        // int AmountOfAliveCows = 12;
-        //        while (player.numCowsAlive() != 3)
-        //        {
-        //            player.Placing(cowName);
-        //            b.RemoveCow(index,player);
-        //        }
-        //        while (player.numCowsToPlace() != 1)
-        //            player.removePlacedCow();
-        //        player.Placing(cowName);
-        //        foreach (string s in possibleMoves)
-        //        {
-        //            string input = string.Format("{0} {1}", cowName, s);
-        //            Assert.That(U.validateFlying(input) == true);
-        //        }
-
-        //    }
+        // 
+        [Test]
+        [TestCaseSource(nameof(allPossiblePlaces))]
+        public void CowsMoveToAnyEmptySpaceWhenFlying(int index, string cowName, string[] possibleMoves)
+        {
+            IBoard b = new Board();
+            IPlayer player = new Player("te", Team.DarkCow, b);
+            IPlayer player2 = Substitute.For<IPlayer>();
+            Umpire U = new Umpire(player, player2);
+            // int AmountOfAliveCows = 12;
+            while (player.numCowsAlive() != 3)
+            {
+                player.Placing(cowName);
+                b.RemoveCow(index, player);
+            }
+            while (player.numCowsToPlace() != 1)
+                player.removePlacedCow();
+            player.Placing(cowName);
+            foreach (string s in possibleMoves)
+            {
+                string input = string.Format("{0} {1}", cowName, s);
+                Assert.That(U.validateFlying(input) == true);
+            }
+        }
         #endregion
 
         //        static object[] millCheck =
@@ -758,6 +757,18 @@ public class Class1
         //            Assert.That(b.numOfCowsOntheField() == expected);
 
         //        }
+
+        [Test]
+        public void winOccursIfOpponentHasTwoOrFewerCows ()
+        {
+            IBoard b = Substitute.For<Board>();
+            List<INode> temp = b.getMainNodeList();
+            IPlayer player1 = Substitute.For<IPlayer>();
+            IPlayer player2 = Substitute.For<IPlayer>();     
+            Umpire U = new Umpire(player1, player2);
+
+
+        }
     }
 
     }
