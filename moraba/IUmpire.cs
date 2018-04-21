@@ -6,7 +6,7 @@ namespace moraba
 {
     public enum GameState {Placing, Moving, Flying };
 
-    interface IUmpire
+    interface IUmpire: IMill,inputValidation
     {
         
         void play();
@@ -14,19 +14,7 @@ namespace moraba
         string askToPlace();
         bool AllEnemyCowInMill();
         string askToMove();
-        bool validatePlacing(string input);
 
-        bool validatePlacing(Node input);
-        bool validateMove(string position);
-        string getStartNode(string input);
-        string getEndNode(string input);
-        bool validateFlying(string position);
-        bool millFormed(INode JustChanged);
-        void mill(INode placedNode);
-        string askToShoot();
-        void shoot(string NodeChosen);
-        bool NodeInMill(INode node);
-        bool nodeChecks(INode node);
         IPlayer getCurrentPlayer();
         int getTurns();
         IPlayer getEnemy();

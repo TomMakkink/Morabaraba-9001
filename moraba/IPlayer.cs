@@ -5,7 +5,7 @@ using System.Text;
 namespace moraba
 {
     public enum Team { DarkCow, LightCow };
-     public interface IPlayer
+     public interface IPlayer:IMove 
     {
         
         
@@ -43,10 +43,7 @@ namespace moraba
 
         string getName();
 
-        bool Placing(string placeNode);
-
-
-        void moveCow(INode startNode, INode endNode);
+       
 
         void ShootCow(int index, IPlayer en);
 

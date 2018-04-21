@@ -283,7 +283,7 @@ namespace moraba
 
         #endregion
 
-
+        #region MIllChecks
         public bool millFormed(INode JustChanged)
         {
             bool mill = false;
@@ -465,7 +465,7 @@ namespace moraba
 
         }
 
-
+        #endregion
         public IPlayer Win( IPlayer enemy)
         {
             throw new NotImplementedException();

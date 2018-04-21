@@ -88,8 +88,6 @@ public class Class1
                 i++;
             }
 
-
-
             #region original_test
             //            Board b = new Board();
             //            Player p = new Player("Darth Grazer II", Team.DarkCow);

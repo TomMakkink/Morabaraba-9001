@@ -4,15 +4,17 @@ using System.Text;
 
 namespace moraba
 {
-    interface inputValidation
+    public interface inputValidation
     {
-        bool checkNodeExists(string str);
 
-        bool checkNodeIsOccupied(INode node);
+        bool validatePlacing(Node input);
+        bool validatePlacing(string input);
+    
+        bool validateMove(string position);
+       
+        string getStartNode(string input);
 
-        bool isNeighbour(INode startNode, INode endNode);
-
-        bool validateMove(INode startNode, INode endNode);
+        string getEndNode(string input);
 
         bool validateFlying(string position);
     }
