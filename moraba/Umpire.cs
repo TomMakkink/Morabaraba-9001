@@ -95,8 +95,7 @@ namespace moraba
         #region askingToMove
         public void play()
         {
-            bool isWin = true;
-            while (isWin)
+            while (win())
             {
                 if (turns <= 24)//placing stage
                 {
@@ -170,12 +169,6 @@ namespace moraba
                         }
                     }
                 }
-                else if(win())
-                {
-                    isWin = false;
-                }
-
-              
                 turns++;
             }
     
@@ -183,28 +176,37 @@ namespace moraba
 
         public bool win()
         {
-            bool flag = true;
-            if(enemy.numCowsAlive() == 2)
+            if (enemy.numCowsAlive() == 2)
             {
-                return flag;
+                printWinner();
+                return true;
             }
             List<INode> nodeList = enemy.getBoard().getMainNodeList();
-
             for (int i = 0; i < nodeList.Count; i++)
             {
-                List<string> neighours = enemy.getBoard().getMainNodeList()[i].neighbours;
-                for (int j = 0; j < neighours.Count; j++)
+                if (nodeList[i].Cow.Team == currentPlayer.Team)
                 {
-                    INode currentNode = enemy.getBoard().getNodeFromString(neighours[j]);
-                    if (!currentNode.occupied)
+                    List<string> neighours = currentPlayer.getBoard().getMainNodeList()[i].neighbours;
+                    for (int j = 0; j < neighours.Count; j++)
                     {
-                        flag = false;
-                        return flag;
+                        INode currentNode = currentPlayer.getBoard().getNodeFromString(neighours[j]);
+                        if (!currentNode.occupied)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
-            return false; 
+            printWinner();
+            return true; 
         }
+
+        void printWinner()
+        {
+            Console.WriteLine("Good job. You have savagely murdered the other teams cow. You may now proclaim victory and dance around their corpses.");
+            Console.Read();
+        }
+
 
         public string askToFly()
         {
