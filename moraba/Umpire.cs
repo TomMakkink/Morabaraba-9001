@@ -184,7 +184,7 @@ namespace moraba
         public bool win(IPlayer enemy)
         {
             bool flag = true;
-            if(enemy.getBoard().numOfCowsOntheField(enemy.Team) == 2)
+            if(enemy.numCowsAlive() == 2)
             {
                 return flag;
             }
@@ -203,8 +203,7 @@ namespace moraba
                     }
                 }
             }
-            return false;
-            
+            return false; 
         }
 
         public string askToFly()
@@ -496,11 +495,6 @@ namespace moraba
 
 
         }
-
         #endregion
-        public IPlayer Win( IPlayer enemy)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

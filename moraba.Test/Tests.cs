@@ -766,8 +766,8 @@ public class Class1
             IPlayer player1 = Substitute.For<IPlayer>();
             IPlayer player2 = Substitute.For<IPlayer>();     
             Umpire U = new Umpire(player1, player2);
-
-
+            player1.numCowsAlive().Returns(2);
+            Assert.That(U.win(player1)== true); 
         }
     }
 

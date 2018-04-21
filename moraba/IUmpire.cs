@@ -4,11 +4,8 @@ using System.Text;
 
 namespace moraba
 {
-    public enum GameState {Placing, Moving, Flying };
-
     interface IUmpire: IMill,inputValidation
     {
-        
         void play();
         string askToFly();
         string askToPlace();
@@ -18,6 +15,6 @@ namespace moraba
         IPlayer getCurrentPlayer();
         int getTurns();
         IPlayer getEnemy();
-        IPlayer Win(IPlayer enemy);
+        bool win(IPlayer enemy);
     }
 }
