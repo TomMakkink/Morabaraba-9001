@@ -27,244 +27,267 @@ public class Class1
             IPlayer player1 = Substitute.For<IPlayer>();
             IPlayer player2 = Substitute.For<IPlayer>();
             Umpire imp = new Umpire(player1,player2);
-            imp.play();
             Assert.That(imp.getCurrentPlayer().Team == Team.DarkCow && imp.getTurns() == 1);
         }
 
 
-        static object[] cowsToPlace =
-        {
-                    new object[] { new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}},
-                    //new object[] { false,
-                    //    new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, true}
-                };
+        //static object[] cowsToPlace =
+        //{
+        //            new object[] { new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}},
+        //            //new object[] { false,
+        //            //    new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, true}
+        //        };
         //Cows can only be placed on empty spaces
-        [Test]
-        [TestCaseSource(nameof(cowsToPlace))]
-        public void cowsCanOnlyBePlacedOnEmptySpaces(string[] cowsToPlace)
+        //[Test]
+        //[TestCaseSource(nameof(cowsToPlace))]
+        //public void cowsCanOnlyBePlacedOnEmptySpaces(string[] cowsToPlace)
+        //{
+        //ICow cow = Substitute.For<ICow>();
+        //IBoard board = Substitute.For<IBoard>();
+        //IPlayer player1 = Substitute.For<IPlayer>();
+        //IPlayer player2 = Substitute.For<IPlayer>();
+        //Umpire umpire = new Umpire(player1, player2);
+        //foreach (string x in cowsToPlace)
+        //{
+        //   umpire.validatePlacing(x).Returns(true);
+        //   Assert.AreEqual(umpire.validatePlacing(x), true); // validates that placing is possible on empty spot
+        //}
+
+        //for (int i = 0; i < 24; i++)
+        //{
+        //    player1.getBoard().getMainNodeList()[i].changeOccupied(false);
+
+        //}
+        //foreach (string x in cowsToPlace)
+        //{
+        //    umpire.validatePlacing(x).Returns(false);
+        //    Assert.AreEqual(umpire.validatePlacing(x), false); // validates that placing is possible on empty spot
+        //}
+
+        #region original_test
+        //      static object[] cowsToPlace =
+        //{
+        //                  new object[] {true, new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"},false},
+        //                  new object[] { false,
+        //                     new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, true}
+        //              };
+        //      [Test]
+        //      [TestCaseSource(nameof(cowsToPlace))]
+        //      public void cowsCanOnlyBePlacedOnEmptySpaces(bool indexOfCowsToPlace,string[] cowsToPlace,bool expected )
+        //      {
+        //          IBoard b = new Board();
+        //          IPlayer p = new Player("Darth Grazer II", Team.DarkCow,b);
+        //          IPlayer p2 = new Player("Rebel Scum 1", Team.LightCow,b);
+        //          IPlayer p3 = new Player("Darth Grazer II", Team.DarkCow,b);
+        //          IPlayer p4 = new Player("Rebel Scum 1", Team.LightCow,b);
+        //          // Place all the cows on the board for the first player
+        //          if (indexOfCowsToPlace)
+        //          {
+        //              for (int i = 0; i < 12; i++)
+        //              {
+        //                  b.getMainNodeList()[i].addCow(p.getCowsAlive()[i]);
+        //              }
+        //              // Place all the cows on the board for the second player
+        //              for (int i = 12, k = 0; i < 24; i++, k++)
+        //              {
+        //                  b.getMainNodeList()[i].addCow(p2.getCowsAlive()[k]);
+        //              }
+        //          }
+        //          // Try place cows anywhere on the board 
+        //          for (int i = 0; i < 12; i++)
+        //          {
+        //              Assert.That(p3.Placing(cowsToPlace[i]) == expected);
+        //              //Assert.That(b.mainNodeList[i].Cow.Team == Team.DarkCow);
+        //          }
+        //          for (int i = 12; i < 24; i++)
+        //          {
+        //              Assert.That(p4.Placing(cowsToPlace[i]) == expected);
+        //          }
+        //          
+        //      }
+        #endregion
+
+        #region  max12CowsPerPLayerCanBePlaced
+        // max of 12 placements per player are allowed
+
+
+        //[Test]
+        //public void max12CowsPerPLayerCanBePlaced()
+        //{
+        //    IBoard board = Substitute.For<Board>();
+        //    IPlayer player1 = new Player("H",Team.DarkCow,board);
+        //    IPlayer player2 = Substitute.For<IPlayer>();
+        //    Umpire U = new Umpire(player1, player2);
+        //    Assert.That(U.validatePlacing("a0")== true && player1.numCowsToPlace() == 12); // this is to test the amount of cows that have still to placed and that the placeing still works
+        //    while (player1.numCowsToPlace() != 1)
+        //        player1.removePlacedCow();
+        //    Assert.That(U.validatePlacing("a0") == true && player1.numCowsToPlace() == 1); // this is to show when there are still cows to place than we can place 
+        //    player1.removePlacedCow();
+        //    Assert.That(U.validatePlacing("a0") == false && player1.numCowsToPlace() == 0); // when there are no cows to place than you cannot place anymore.
+        //}
+        #endregion
+
+
+        #region  Cows cannot be moved during placement
+        //[Test]
+        //public void cowscantMoveDuringPlacingPhase()
+        //{
+        //    IBoard b = Substitute.For<Board>();
+        //    List<INode> temp = b.getMainNodeList();
+        //    IPlayer player1 = new Player("p1", Team.DarkCow,b); // new player has yet to place
+        //    IPlayer player2 = Substitute.For<IPlayer>();      //   player1.makeCowsToPlace(player1.Team);
+        //    Umpire U = new Umpire(player1, player2);
+
+        //    Assert.That(player1.numCowsToPlace() == 12); // show that its new player
+        //    int cowsToPlace = 12;
+        //    for (int i = 0; i < 6; i++) // to place alot of cows but not all so that placing is still going
+        //    {                        // it also places them in order so we know what nodes are empty
+        //        Assert.That(player1.numCowsToPlace() == cowsToPlace - i);
+        //        player1.Placing(temp[i].Position);
+        //    }
+        //    Assert.That(U.validateMove("b5 c4") == false);
+        //    Assert.That(U.validateMove("b5 d5") == false);
+        //    Assert.That(U.validateMove("b3 c3") == false);
+        //    Assert.That(U.validateMove("b1 c2") == false);
+        //    Assert.That(U.validateMove("b1 d1") == false);
+        //    Assert.That(U.validateMove("a0 d0") == false);
+        //}
+        #endregion
+
+        #region Cow can only move to a connected space
+        static object[] cowNeightbours =
         {
-            ICow cow = Substitute.For<ICow>();
-            IBoard board = Substitute.For<IBoard>();
-            IPlayer player1 = Substitute.For<IPlayer>();
+                     new object[] {0, "a0", new string[] { "a3", "d0", "b1" } },
+                     new object[] {1, "a3", new string[] { "a0", "b3", "a6" } },
+                     new object[] {2, "a6", new string[] { "a3", "d6", "b5" } },
+                     new object[] {3, "b1", new string[] { "a0", "c2", "d1", "b3" } },
+                     new object[] {4, "b3", new string[] { "a3", "c3", "b1", "b5" } },
+                     new object[] {5, "b5", new string[] { "a6", "c4", "b3", "d5" } },
+                     new object[] {6, "c2", new string[] { "b1", "c3", "d2" } },
+                     new object[] {7, "c3", new string[] { "c2", "c4", "b3" } },
+                     new object[] {8, "c4", new string[] { "c3", "b5", "d4" } },
+                     new object[] {9, "d0", new string[] { "d1", "a0", "g0" } },
+                     new object[] {10, "d1", new string[] { "d0", "b1", "d2", "f1" } },
+                     new object[] {11, "d2", new string[] { "d1", "c2", "e2" } },
+                     new object[] {12, "d4", new string[] { "d5", "c4", "e4" } },
+                     new object[] {13, "d5", new string[] { "d4", "d6", "b5", "f5" } },
+                     new object[] {14, "d6", new string[] { "d5", "a6", "g6" } },
+                     new object[] {15, "e2", new string[] { "f1", "e3", "d2" } },
+                     new object[] {16, "e3", new string[] { "e2", "e4", "f3" } },
+                     new object[] {17, "e4", new string[] { "e3", "f5", "d4" } },
+                     new object[] {18, "f1", new string[] { "d1", "f3", "e2", "g0" } },
+                     new object[] {19, "f3", new string[] { "f1", "e3", "g3", "f5"} },
+                     new object[] {20, "f5", new string[] { "g6", "d5", "e4" } },
+                     new object[] {21, "g0", new string[] { "g3", "f1", "d0" } },
+                     new object[] {22, "g3", new string[] {"g0", "g6", "f3" } },
+                     new object[] {23, "g6", new string[] { "g3", "f5", "d6" } }
+                 };
+
+
+
+
+        // //Cow can only move to a connected space
+        // [Test]
+        // [TestCaseSource(nameof(cowNeightbours))]
+        // public void cowsCanMoveToAConnectedSpace(int index, string cowName, string[] neighbours)
+        // {
+        //     IBoard b = Substitute.For<Board>();
+        //     IPlayer player1 = new Player("hello", Team.DarkCow,b);
+        //     player1.Placing(cowName);
+        //     IPlayer player2 = Substitute.For<IPlayer>();      //   player1.makeCowsToPlace(player1.Team);
+        //     Umpire U = new Umpire(player1, player2);
+
+        //     while (player1.numCowsToPlace() != 0)
+        //     {
+        //         player1.removePlacedCow();
+        //     }
+        //     foreach (string s in neighbours)
+        //     {
+        //         string input = String.Format("{0} {1}", cowName, s);
+        //         Assert.That(U.validateMove(input) == true); // will show wheather it is possible to place a cow in a neighbouring node.
+
+        //     }
+        // }
+
+
+        //    //Cow can only move to a connected space part 2
+
+        // static object[] cowNonNeightbours =
+        //{
+        //             new object[] {0, "a0", new string[] { "a0", "a6", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {1, "a3", new string[] { "a3", "b1", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {2, "a6", new string[] { "a0", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {3, "b1", new string[] { "a3", "a6", "b1", "b5", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {4, "b3", new string[] { "a0", "a6", "b3", "c2", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {5, "b5", new string[] { "a0", "a3", "b1", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {6, "c2", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {7, "c3", new string[] { "a0", "a3", "a6", "b1",  "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {8, "c4", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {9, "d0", new string[] { "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g3", "g6" } },
+        //             new object[] {10, "d1", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c3", "c4", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {11, "d2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {12, "d4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {13, "d5", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g3", "g6" } },
+        //             new object[] {14, "d6", new string[] { "a0", "a3", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } },
+        //             new object[] {15, "e2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e4", "f3", "f5", "g0", "g3", "g6" } },
+        //             new object[] {16, "e3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e3", "f1", "f5", "g0", "g3", "g6" } },
+        //             new object[] {17, "e4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e4", "f1", "f3", "g0", "g3", "g6" } },
+        //             new object[] {18, "f1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f5", "g3", "g6" } },
+        //             new object[] {19, "f3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e4", "f3", "g0", "g6" } },
+        //             new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f5", "g0", "g3"} },
+        //             new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g6" } },
+        //             new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f5", "g3"} },
+        //             new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g6" } }
+        //         };
+
+        // [Test]
+        // [TestCaseSource(nameof(cowNonNeightbours))]
+        // public void cowsCanOnlyMoveToAConnectedSpace(int index, string cowName, string[] notNeighbours)
+        // {
+        //     IBoard b = Substitute.For<Board>();
+        //     IPlayer player1 = new Player("hello", Team.DarkCow, b);
+        //     player1.Placing(cowName);
+        //     IPlayer player2 = Substitute.For<IPlayer>();      //   player1.makeCowsToPlace(player1.Team);
+        //     Umpire U = new Umpire(player1, player2);
+
+        //     while (player1.numCowsToPlace() != 0)
+        //     {
+        //         player1.removePlacedCow();
+        //     }
+        //     foreach (string s in notNeighbours)
+        //     {
+        //         string input = String.Format("{0} {1}", cowName, s);
+        //         Assert.That(U.validateMove(input) == false); // will show wheather it is possible to place a cow in a neighbouring node.
+
+        //     }
+        // }
+        #endregion
+
+        #region cow can only move to an empty space
+        [Test]
+        [TestCaseSource(nameof(cowNeightbours))]
+        public void cowCanOnlyMoveToEmptySpace(int index, string cowName, string[] neighbours)
+        {
+            IBoard b = new Board();
+            IPlayer player = new Player("te", Team.DarkCow,b);
             IPlayer player2 = Substitute.For<IPlayer>();
-            Umpire umpire = new Umpire(player1, player2);
-            foreach (string x in cowsToPlace)
+            Umpire U = new Umpire(player, player2);
+            player.Placing(cowName);
+            // Place cows in all neighbouring nodes
+            foreach (string s in neighbours)
             {
-               umpire.validatePlacing(x).Returns(true);
-               Assert.AreEqual(umpire.validatePlacing(x), true); // validates that placing is possible on empty spot
+                player.Placing(s);
+            }
+            // Attempt to move into neighbouring nodes
+            foreach (string s in neighbours)
+            {
+                string input = String.Format("{0} {1}",cowName, s);
+                Assert.That(U.validateMove(input) == false);
             }
 
-            for (int i = 0; i < 24; i++)
-            {
-                player1.getBoard().getMainNodeList()[i].changeOccupied(false);
 
-            }
-            foreach (string x in cowsToPlace)
-            {
-                umpire.validatePlacing(x).Returns(false);
-                Assert.AreEqual(umpire.validatePlacing(x), false); // validates that placing is possible on empty spot
-            }
-
-            #region original_test
-            //            Board b = new Board();
-            //            Player p = new Player("Darth Grazer II", Team.DarkCow);
-            //            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
-            //            Player p3 = new Player("Darth Grazer II", Team.DarkCow);
-            //            Player p4 = new Player("Rebel Scum 1", Team.LightCow);
-            //            // Place all the cows on the board for the first player
-            //            if (indexOfCowsToPlace)
-            //            {
-            //                for (int i = 0; i < 12; i++)
-            //                {
-            //                    b.mainNodeList[i].addCow(p.CowsAlive[i]);
-            //                }
-            //                // Place all the cows on the board for the second player
-            //                for (int i = 12, k = 0; i < 24; i++, k++)
-            //                {
-            //                    b.mainNodeList[i].addCow(p2.CowsAlive[k]);
-            //                }
-            //            }
-            //            // Try place cows anywhere on the board 
-            //            for (int i = 0; i < 12; i++)
-            //            {
-            //                Assert.That(b.Placing(cowsToPlace[i], p3) == expected);
-            //                //Assert.That(b.mainNodeList[i].Cow.Team == Team.DarkCow);
-            //            }
-            //            for (int i = 12; i < 24; i++)
-            //            {
-            //                Assert.That(b.Placing(cowsToPlace[i], p4) == expected);
-            //            }
-            #endregion
         }
-
-
-        //        // max of 12 placements per player are allowed
-        //        [Test]
-        //        public void max12CowsPerPLayerCanBePlaced()
-        //        {
-        //            Player player = new Player("P1", Team.DarkCow);
-        //            //player.makeCowsToPlace(player.Team);
-        //            Assert.That(player.numCowsToPlace() == 12);
-        //            Board b = new Board();
-        //            b.Placing(b.mainNodeList[2].Position, player);
-        //            Assert.That(player.numCowsToPlace() == 11);
-        //            while (player.numCowsToPlace() != 1)
-        //                player.placedCow();
-        //            Assert.That((player.numCowsToPlace() == 1 && b.Placing("g3", player) == true));
-        //            Assert.That(player.numCowsToPlace() == 0 && b.Placing("g0", player) == false);
-        //            // this shows that there can only be 12 cows placed per player.
-        //        }
-
-
-
-        //        // Cows cannot be moved during placement
-        //        [Test]
-        //        public void cowscantMoveDuringPlacingPhase()
-        //        {
-        //            Board b = new Board();
-        //            List<Node> temp = b.getMainNodeList();
-        //            Player player1 = new Player("p1", Team.DarkCow); // new player has yet to place
-        //                                                             //   player1.makeCowsToPlace(player1.Team);
-        //            Assert.That(player1.numCowsToPlace() == 12); // show that its new player
-        //            int cowsToPlace = 12;
-        //            for (int i = 0; i < 6; i++) // to place alot of cows but not all so that placing is still going
-        //            {                        // it also places them in order so we know what nodes are empty
-        //                Assert.That(player1.numCowsToPlace() == cowsToPlace - i);
-        //                b.Placing(b.mainNodeList[i].Position, player1);
-        //            }
-        //            Assert.That(b.Moving("b5 c4", player1) == false);
-        //            Assert.That(b.Moving("b5 d5", player1) == false);
-        //            Assert.That(b.Moving("b3 c3", player1) == false);
-        //            Assert.That(b.Moving("b1 c2", player1) == false);
-        //            Assert.That(b.Moving("b1 d1", player1) == false);
-        //            Assert.That(b.Moving("a0 d0", player1) == false);
-        //        }
-
-        //        static object[] cowNeightbours =
-        //        {
-        //            new object[] {0, "a0", new string[] { "a3", "d0", "b1" } },
-        //            new object[] {1, "a3", new string[] { "a0", "b3", "a6" } },
-        //            new object[] {2, "a6", new string[] { "a3", "d6", "b5" } },
-        //            new object[] {3, "b1", new string[] { "a0", "c2", "d1", "b3" } },
-        //            new object[] {4, "b3", new string[] { "a3", "c3", "b1", "b5" } },
-        //            new object[] {5, "b5", new string[] { "a6", "c4", "b3", "d5" } },
-        //            new object[] {6, "c2", new string[] { "b1", "c3", "d2" } },
-        //            new object[] {7, "c3", new string[] { "c2", "c4", "b3" } },
-        //            new object[] {8, "c4", new string[] { "c3", "b5", "d4" } },
-        //            new object[] {9, "d0", new string[] { "d1", "a0", "g0" } },
-        //            new object[] {10, "d1", new string[] { "d0", "b1", "d2", "f1" } },
-        //            new object[] {11, "d2", new string[] { "d1", "c2", "e2" } },
-        //            new object[] {12, "d4", new string[] { "d5", "c4", "e4" } },
-        //            new object[] {13, "d5", new string[] { "d4", "d6", "b5", "f5" } },
-        //            new object[] {14, "d6", new string[] { "d5", "a6", "g6" } },
-        //            new object[] {15, "e2", new string[] { "f1", "e3", "d2" } },
-        //            new object[] {16, "e3", new string[] { "e2", "e4", "f3" } },
-        //            new object[] {17, "e4", new string[] { "e3", "f5", "d4" } },
-        //            new object[] {18, "f1", new string[] { "d1", "f3", "e2", "g0" } },
-        //            new object[] {19, "f3", new string[] { "f1", "e3", "g3", "f5"} },
-        //            new object[] {20, "f5", new string[] { "g6", "d5", "e4" } },
-        //            new object[] {21, "g0", new string[] { "g3", "f1", "d0" } },
-        //            new object[] {22, "g3", new string[] {"g0", "g6", "f3" } },
-        //            new object[] {23, "g6", new string[] { "g3", "f5", "d6" } }
-        //        };
-
-        //        static object[] cowNonNeightbours =
-        //       {
-        //            new object[] {0, "a0", new string[] { "a0", "a6", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {1, "a3", new string[] { "a3", "b1", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {2, "a6", new string[] { "a0", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {3, "b1", new string[] { "a3", "a6", "b1", "b5", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {4, "b3", new string[] { "a0", "a6", "b3", "c2", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {5, "b5", new string[] { "a0", "a3", "b1", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {6, "c2", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {7, "c3", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {8, "c4", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {9, "d0", new string[] { "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g3", "g6" } },
-        //            new object[] {10, "d1", new string[] { "a0", "a3", "a6", "b3", "b5", "c2", "c3", "c4", "d1", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {11, "d2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {12, "d4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {13, "d5", new string[] { "a0", "a3", "a6", "b1", "b3", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g3", "g6" } },
-        //            new object[] {14, "d6", new string[] { "a0", "a3", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "e4", "f1", "f3", "f5", "g0", "g3" } },
-        //            new object[] {15, "e2", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d4", "d5", "d6", "e2", "e4", "f3", "f5", "g0", "g3", "g6" } },
-        //            new object[] {16, "e3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e3", "f1", "f5", "g0", "g3", "g6" } },
-        //            new object[] {17, "e4", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d5", "d6", "e2", "e4", "f1", "f3", "g0", "g3", "g6" } },
-        //            new object[] {18, "f1", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d2", "d4", "d5", "d6", "e3", "e4", "f1", "f5", "g3", "g6" } },
-        //            new object[] {19, "f3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e4", "f3", "g0", "g6" } },
-        //            new object[] {20, "f5", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d6", "e2", "e3", "f1", "f5", "g0", "g3"} },
-        //            new object[] {21, "g0", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f3", "f5", "g0", "g6" } },
-        //            new object[] {22, "g3", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6", "e2", "e3", "e4", "f1", "f5", "g3"} },
-        //            new object[] {23, "g6", new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "e2", "e3", "e4", "f1", "f3", "g0", "g6" } }
-        //        };
-
-
-        //        //Cow can only move to a connected space
-        //        [Test]
-        //        [TestCaseSource(nameof(cowNeightbours))]
-        //        public void cowsCanMoveToAConnectedSpace(int index, string cowName, string[] neighbours)
-        //        {
-        //            Board b = new Board();
-        //            Player player = new Player("hello", Team.DarkCow);
-        //            b.Placing(cowName, player);
-
-        //            while (player.numCowsToPlace() != 0)
-        //            {
-        //                player.placedCow();
-        //                //  b.RemoveCow(index, player);
-        //                // b.Placing(cowName, player);
-        //            }
-        //            foreach (string s in neighbours)
-        //            {
-        //                string input = String.Format("{0} {1}", cowName, s);
-        //                Assert.That(b.Moving(input, player) == true);
-        //                string moveBack = String.Format("{1} {0}", cowName, s);
-        //                b.Moving(moveBack, player);
-        //            }
-        //        }
-
-        //        //Cow can only move to a connected space
-        //        [Test]
-        //        [TestCaseSource(nameof(cowNonNeightbours))]
-        //        public void cowsCanOnlyMoveToAConnectedSpace(int index, string cowName, string[] notNeighbours)
-        //        {
-        //            Board b = new Board();
-        //            Player player = new Player("hello", Team.DarkCow);
-        //            b.mainNodeList[index].addCow(player.CowsAlive[0]);
-        //            while (player.numCowsToPlace() != 0)
-        //            {
-        //                player.placedCow();
-        //            }
-        //            foreach (string s in notNeighbours)
-        //            {
-        //                string input = String.Format("{0} {1}", b.mainNodeList[index], s);
-        //                Assert.That(b.Moving(input, player) == false);
-        //            }
-        //        }
-
-
-        //        //cow can only move to an empty space
-        //        [Test]
-        //        [TestCaseSource(nameof(cowNeightbours))]
-        //        public void cowCanOnlyMoveToEmptySpace(int index, string cowName, string[] neighbours)
-        //        {
-        //            Board b = new Board();
-        //            Player player = new Player("te", Team.DarkCow);
-        //            b.mainNodeList[index].addCow(player.CowsAlive[0]);
-        //            // Place cows in all neighbouring nodes
-        //            foreach (string s in neighbours)
-        //            {
-        //                Node n = b.getNodeFromString(s);
-        //                int i = b.mainNodeList.FindIndex(x => x.Position == s);
-        //                b.mainNodeList[i].addCow(n.Cow);
-        //            }
-        //            // Attempt to move into neighbouring nodes
-        //            foreach (string s in neighbours)
-        //            {
-        //                string input = String.Format("{0} {1}", b.mainNodeList[index].Position, s);
-        //                Assert.That(b.Moving(input, player) == false);
-        //            }
-
-
-        //        }
+        #endregion
 
         //        // moving does not increase or decrease the number of cows on the field
         //        static object[] moveCows =
