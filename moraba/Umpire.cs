@@ -244,8 +244,11 @@ namespace moraba
 
         public bool validatePlacing (Node inputNode)
         {
-            if (currentPlayer.getBoard().checkNodeExists(inputNode.getPosition()) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
-                return true;
+            if (currentPlayer.numCowsToPlace() != 0)
+            {
+                if (currentPlayer.getBoard().checkNodeExists(inputNode.getPosition()) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
+                    return true;
+            }
             return false;
         }
 
