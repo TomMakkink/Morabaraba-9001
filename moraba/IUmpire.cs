@@ -25,7 +25,9 @@ namespace moraba
         void shoot(string NodeChosen);
         bool NodeInMill(INode node);
         bool nodeChecks(INode node);
-
+        IPlayer getCurrentPlayer();
+        int getTurns();
+        IPlayer getEnemy();
         IPlayer Win(IPlayer enemy);
     }
 }

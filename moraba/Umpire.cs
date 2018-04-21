@@ -6,11 +6,27 @@ namespace moraba
 {
     public class Umpire : IUmpire
     {
-        public int turns;
-        public IPlayer currentPlayer;
-        public IPlayer enemy;
-        public IBoard board;
-        public bool justGotMill = false;
+        private int turns;
+        private IPlayer currentPlayer;
+        private IPlayer enemy;
+   //     private IBoard board;
+        private bool justGotMill = false;
+
+        public IPlayer getCurrentPlayer()
+        {
+            return currentPlayer;
+        }
+
+        public int getTurns()
+        {
+            return turns;
+        }
+
+        public IPlayer getEnemy()
+        {
+            return enemy;
+        }
+
         public Umpire(IPlayer player1, IPlayer player2)
         {
             turns = 1;
@@ -19,7 +35,7 @@ namespace moraba
         }
         private List<List<string>> getMillOptions(int index)
         {
-            string caseSwitch = board.getMainNodeList()[index].Position;
+            string caseSwitch = currentPlayer.getBoard().getMainNodeList()[index].Position;
 
             switch (caseSwitch)
             {
@@ -204,15 +220,15 @@ namespace moraba
         {
             bool mill = false;
             int m = 0;
-            if (!(board.numOfCowsOntheField(currentPlayer.Team) >= 3))
+            if (!(currentPlayer.getBoard().numOfCowsOntheField(currentPlayer.Team) >= 3))
                 return mill;
 
-            List<List<string>> temp = getMillOptions(board.getMainNodeList().IndexOf(JustChanged));
+            List<List<string>> temp = getMillOptions(currentPlayer.getBoard().getMainNodeList().IndexOf(JustChanged));
             foreach (List<string> x in temp)
             {
-                INode N1 = board.getNodeFromString(x[0]);
-                INode N2 = board.getNodeFromString(x[1]);
-                INode N3 = board.getNodeFromString(x[2]);
+                INode N1 = currentPlayer.getBoard().getNodeFromString(x[0]);
+                INode N2 = currentPlayer.getBoard().getNodeFromString(x[1]);
+                INode N3 = currentPlayer.getBoard().getNodeFromString(x[2]);
                 if (N1.occupied && N2.occupied && N3.occupied)
                 {
                     if (N1.Cow.Team == currentPlayer.Team && N2.Cow.Team == N1.Cow.Team && N3.Cow.Team == currentPlayer.Team)
@@ -315,14 +331,14 @@ namespace moraba
             Console.WriteLine("Please enter the node that you would like to shoot");
             string CowToShoot = Console.ReadLine(); // reads the user input
             CowToShoot.ToLower(); // changes it all to lower case :)
-            if (board.checkNodeExists(CowToShoot) && CowToShoot.Length == 2) // this will check that the node exists
+            if (currentPlayer.getBoard().checkNodeExists(CowToShoot) && CowToShoot.Length == 2) // this will check that the node exists
             {
                 return CowToShoot; 
             }
             else
             {
                 Console.WriteLine("A valid node only as a charecter length of 2 and also starts with a letter between a-g and a number between 1-6");
-                while (!(board.checkNodeExists(CowToShoot) && CowToShoot.Length == 2)) // while loop will continue till correct node given
+                while (!(currentPlayer.getBoard().checkNodeExists(CowToShoot) && CowToShoot.Length == 2)) // while loop will continue till correct node given
                                                                                        // may have to test.
                 {
                     Console.WriteLine("Please enter the node that you would like to shoot");
@@ -335,12 +351,12 @@ namespace moraba
 
         public void shoot(string NodeChosen)
         {
-            INode choosenNodeToShoot = board.getNodeFromString(NodeChosen);
+            INode choosenNodeToShoot = currentPlayer.getBoard().getNodeFromString(NodeChosen);
             if(nodeChecks(choosenNodeToShoot) && justGotMill) // this will make sure that the node can be shoot at all
             {
                
                 int index = enemy.getBoard().getMainNodeList().FindIndex(x => x.Position == choosenNodeToShoot.Position); // finds the index in the mainNodeList where this node is
-                board.RemoveCow(index, enemy); // removes the cow at that node in the mainNodeList
+                currentPlayer.getBoard().RemoveCow(index, enemy); // removes the cow at that node in the mainNodeList
                 justGotMill = false;  
             }
         }
