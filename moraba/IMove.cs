@@ -4,12 +4,13 @@ using System.Text;
 
 namespace moraba
 {
-    interface IMove
+   public  interface IMove
     {
         bool Placing(string placeNode);
-       
 
-        void moveCow(Node startNode, Node endNode);
+
+
+        void moveCow(INode startNode, INode endNode);
 
         
 

@@ -53,18 +53,18 @@ public class Class1
                umpire.validatePlacing(x).Returns(true);
                Assert.AreEqual(umpire.validatePlacing(x), true); // validates that placing is possible on empty spot
             }
-            
-            //for (int i = 0; i<24; i++)
-            //{
-            //    player1.getBoard().getMainNodeList()[i].changeOccupied(false);
-                
-            //}
-            //foreach (string x in cowsToPlace)
-            //{
-            //    umpire.validatePlacing(x).Returns(false);
-            //    Assert.AreEqual(umpire.validatePlacing(x), false); // validates that placing is possible on empty spot
-            //}
-         
+
+            for (int i = 0; i < 24; i++)
+            {
+                player1.getBoard().getMainNodeList()[i].changeOccupied(false);
+
+            }
+            foreach (string x in cowsToPlace)
+            {
+                umpire.validatePlacing(x).Returns(false);
+                Assert.AreEqual(umpire.validatePlacing(x), false); // validates that placing is possible on empty spot
+            }
+
             #region original_test
             //            Board b = new Board();
             //            Player p = new Player("Darth Grazer II", Team.DarkCow);
