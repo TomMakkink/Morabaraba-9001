@@ -15,6 +15,6 @@ namespace moraba
         IPlayer getCurrentPlayer();
         int getTurns();
         IPlayer getEnemy();
-        bool win(IPlayer enemy);
+        bool win();
     }
 }

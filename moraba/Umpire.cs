@@ -170,7 +170,7 @@ namespace moraba
                         }
                     }
                 }
-                else if(win(enemy))
+                else if(win())
                 {
                     isWin = false;
                 }
@@ -181,7 +181,7 @@ namespace moraba
     
         }
 
-        public bool win(IPlayer enemy)
+        public bool win()
         {
             bool flag = true;
             if(enemy.numCowsAlive() == 2)
