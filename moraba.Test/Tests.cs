@@ -543,44 +543,42 @@ namespace moraba.Test
 
 
         #region shoot Occurs when a mill occurs
-        //        static object[] CowsInMIllCanShoot = {
+        static object[] CowsInMIllCanShoot = {
 
-        //            new object[] { new int[]{ 6,8,12}, new int[] {0,1,2 },"e4",false },
-        //            new object[] { new int[]{ 0,23,14}, new int[] {6,7,8 },"g6",false },
-        //            new object[] { new int[]{ 5,12,14}, new int[] { 18,19,20},"d4",false },
-        //            new object[] { new int[]{ 1,2,4}, new int[] {17,20,23 },"a3",false },
-        //            new object[] { new int[]{ 18,22,20}, new int[] {6,11,15 },"g3",false },
-        //            new object[] { new int[]{ 3,10,11}, new int[] {4,5,14 },"d1",true },
-        //            new object[] { new int[]{ 0,5,8}, new int[] { 21,4,2},"c3",true },
-        //            new object[] { new int[]{ 0,20,23}, new int[] { 6,9,11},"f1",true }
-        //        };
+                    new object[] { new string[]{ "c2","c4","d4"}, new string[] {"a0","a3","a6" },"c4",false },
+                    new object[] { new string[]{ "a0","g6","d6"}, new string[] {"c2","c3","c4" },"g6",false },
+                    new object[] { new string[]{ "b5","d4","d6"}, new string[] { "f1","f3","f5"},"d4",false },
+                    new object[] { new string[]{ "a3","a6","b3"}, new string[] {"e4","f5","g6" },"a6",false },
+                    new object[] { new string[]{ "f1","g3","f5"}, new string[] {"c2","d2","e2" },"g3",false },
+                    new object[] { new string[]{ "b1","d1","d2"}, new string[] {"b3","b5","d6" },"d1",true },
+                    new object[] { new string[]{ "a0","c3","c4"}, new string[] { "g0","b3","a6"},"c3",true },
+                    new object[] { new string[]{ "a0","f1","g6"}, new string[] { "c2","d0","d2"},"f1",true }
+                };
 
-        //        [Test]
-        //        [TestCaseSource(nameof(CowsInMIllCanShoot))]
-        //        public void ShootOccursWhenMillOccurs(int[] enemyCows, int[] currentPlayerCows, string chosenCow, bool expected)
-        //        {
-        //            Board b = new Board();
-        //            Player p = new Player("Darth Grazer II", Team.DarkCow);
-        //            Player p2 = new Player("Rebel Scum 1", Team.LightCow);
-        //            b.mainNodeList[enemyCows[0]].addCow(p2.CowsAlive[0]); // this will put three of the P2 cows on the board for us to shoot
-        //            b.mainNodeList[enemyCows[1]].addCow(p2.CowsAlive[1]);
-        //            b.mainNodeList[enemyCows[2]].addCow(p2.CowsAlive[2]);
-        //            b.mainNodeList[currentPlayerCows[0]].addCow(p.CowsAlive[0]); // this will place 3 p cows on the board for us to form a mill and shoot
-        //            b.mainNodeList[currentPlayerCows[1]].addCow(p.CowsAlive[1]);
-        //            b.mainNodeList[currentPlayerCows[2]].addCow(p.CowsAlive[2]);
-        //            Umpire U = new Umpire(b);
-        //            U.play(p, p2);
-        //            U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // this will make the mill be checked 
-        //            U.shoot(b.mainNodeList[enemyCows[2]].Position); // this will shoot the cow given as a parameter
-        //            Assert.That(U.board.mainNodeList[enemyCows[2]].occupied == expected); // this will check that the node shoot at is empty and show that the cow choosen was 
-        //                                                                                  // removed
-        //            U.turns += 2; // skips 2 player p next turn
-        //            U.play(p, p2);
-        //            U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // again calls to see if a mill will be formed even if it is the same mill
-        //            U.shoot(b.mainNodeList[enemyCows[1]].Position); // this will check that a mill will not fire after it has already fired
-        //            Assert.That(U.board.mainNodeList[enemyCows[1]].occupied == true);
-        //        }
+        [Test]
+        [TestCaseSource(nameof(CowsInMIllCanShoot))]
+        public void ShootOccursWhenMillOccurs(string[] enemyCows, string[] currentPlayerCows, string chosenCow, bool expected)
+        {
+            IBoard b = new Board();
+            IPlayer p = new Player("Darth Grazer II", Team.DarkCow, b);
+            IPlayer p2 = new Player("tehe", Team.LightCow, b);
+            Umpire U = new Umpire(p, p2);
+            p.Placing(currentPlayerCows[0]);
+            p.Placing(currentPlayerCows[1]);
+            p.Placing(currentPlayerCows[2]);
+            p2.Placing(enemyCows[0]);
+            p2.Placing(enemyCows[1]);
+            p2.Placing(enemyCows[2]); 
+            U.millFormed(p.getLastNode()); // this will make the mill be checked 
+            U.shoot(chosenCow); // this will shoot the cow given as a parameter
+            Assert.That(p.getBoard().getNodeFromString(enemyCows[1]).getOccupied() == expected); // this will check that the node shoot at is empty and show that the cow choosen was 
+            U.millFormed(p.getLastNode()); // again calls to see if a mill will be formed even if it is the same mill
+            U.shoot(enemyCows[0]); // this will check that a mill will not fire after it has already fired
+            INode tempCheck = p2.getBoard().getNodeFromString(enemyCows[0]); 
+            Assert.That( tempCheck.getOccupied()== true);
+        }
         #endregion
+
         //        #region jeffs test
         //        // the test sources bellow are in the following format
         //        // int[] all moves made during a game|| int[] all shots made during a game || the expected value of each shot 

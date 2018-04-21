@@ -21,7 +21,10 @@ namespace moraba
         {
             return turns;
         }
-
+        public void changeTurns(int x)
+        {
+            turns += x;
+        }
         public IPlayer getEnemy()
         {
             return enemy;
