@@ -133,7 +133,6 @@ namespace moraba
         #region Moving
         public bool Placing(string placeNode)
         {
-
             INode temp = BoardList.getNodeFromString(placeNode);
             if (!BoardList.checkNodeIsOccupied(temp))
             {
@@ -148,7 +147,7 @@ namespace moraba
         }
 
 
-        public void moveCow(INode startNode, INode endNode)
+        public bool moveCow(INode startNode, INode endNode)
         {
             int startIndex = BoardList.getMainNodeList().FindIndex(x => x.Position == startNode.Position);
             int endIndex = BoardList.getMainNodeList().FindIndex(x => x.Position == endNode.Position);
@@ -158,6 +157,7 @@ namespace moraba
             ChangeCowName(BoardList.getMainNodeList()[startIndex].Position, BoardList.getMainNodeList()[endIndex].Position);
             BoardList.getMainNodeList()[startIndex].removeCow();
             LastEditedNode = BoardList.getMainNodeList()[endIndex];
+            return true;
         }
         #endregion
     }

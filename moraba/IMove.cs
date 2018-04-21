@@ -10,7 +10,7 @@ namespace moraba
 
 
 
-        void moveCow(INode startNode, INode endNode);
+        bool moveCow(INode startNode, INode endNode);
 
         
 
