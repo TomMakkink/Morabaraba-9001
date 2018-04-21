@@ -22,6 +22,10 @@ namespace moraba
             Cow = null;
         }
 
+        public void changeOccupied (bool cha)
+        {
+            occupied = cha;
+        }
   
         public void addCow(ICow cow)
         { 

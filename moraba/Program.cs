@@ -26,7 +26,8 @@ namespace moraba
             player2 = new Player(name2, Team.LightCow, Board);
             Console.WriteLine("We will now start the battle prepare thy selves. Cry Havoc and let slip the cows of war!");
             Umpire Umpire = new Umpire(player1,player2);
-
+            ICow cow = new Cow(Team.DarkCow);
+            player1.getBoard().getMainNodeList()[0].addCow(cow);
             Board.printBoard();
 
             Umpire.play();
