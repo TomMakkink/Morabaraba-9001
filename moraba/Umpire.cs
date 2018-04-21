@@ -98,7 +98,7 @@ namespace moraba
             bool isWin = true;
             while (isWin)
             {
-                if (turns <= 10)//placing stage
+                if (turns <= 24)//placing stage
                 {
                     if(turns != 1)
                     {
@@ -126,7 +126,7 @@ namespace moraba
                             playerPlace = askToPlace();
                         }
                         currentPlayer.Placing(playerPlace);
-                        currentPlayer.getBoard().printBoard();
+                        //currentPlayer.getBoard().printBoard();
                         mill(currentPlayer.getLastNode());
                         currentPlayer.getBoard().printBoard();
                     }
@@ -170,7 +170,7 @@ namespace moraba
                         }
                     }
                 }
-                else
+                else if(win(enemy))
                 {
                     isWin = false;
                 }
@@ -179,6 +179,32 @@ namespace moraba
                 turns++;
             }
     
+        }
+
+        public bool win(IPlayer enemy)
+        {
+            bool flag = true;
+            if(enemy.getBoard().numOfCowsOntheField(enemy.Team) == 2)
+            {
+                return flag;
+            }
+            List<INode> nodeList = enemy.getBoard().getMainNodeList();
+
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                List<string> neighours = enemy.getBoard().getMainNodeList()[i].neighbours;
+                for (int j = 0; j < neighours.Count; j++)
+                {
+                    INode currentNode = enemy.getBoard().getNodeFromString(neighours[j]);
+                    if (!currentNode.occupied)
+                    {
+                        flag = false;
+                        return flag;
+                    }
+                }
+            }
+            return false;
+            
         }
 
         public string askToFly()
@@ -207,9 +233,12 @@ namespace moraba
         #region Validation
         public bool validatePlacing (string input)
         {
-            INode inputNode = currentPlayer.getBoard().getNodeFromString(input);
-            if (currentPlayer.getBoard().checkNodeExists(input) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
-                return true;
+            if (currentPlayer.numCowsToPlace() != 0)
+            {
+                INode inputNode = currentPlayer.getBoard().getNodeFromString(input);
+                if (currentPlayer.getBoard().checkNodeExists(input) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
+                    return true;
+            }
             return false;
         }
 
