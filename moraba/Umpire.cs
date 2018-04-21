@@ -233,9 +233,12 @@ namespace moraba
         #region Validation
         public bool validatePlacing (string input)
         {
-            INode inputNode = currentPlayer.getBoard().getNodeFromString(input);
-            if (currentPlayer.getBoard().checkNodeExists(input) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
-                return true;
+            if (currentPlayer.numCowsToPlace() != 0)
+            {
+                INode inputNode = currentPlayer.getBoard().getNodeFromString(input);
+                if (currentPlayer.getBoard().checkNodeExists(input) && currentPlayer.getBoard().checkNodeIsOccupied(inputNode) == false)
+                    return true;
+            }
             return false;
         }
 
