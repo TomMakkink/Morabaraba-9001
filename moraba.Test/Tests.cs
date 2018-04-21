@@ -34,22 +34,37 @@ public class Class1
 
         static object[] cowsToPlace =
         {
-                    new object[] { true,
-                        new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, false},
-                    new object[] { false,
-                        new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, true}
+                    new object[] { new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}},
+                    //new object[] { false,
+                    //    new string[] {"a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, true}
                 };
         //Cows can only be placed on empty spaces
         [Test]
         [TestCaseSource(nameof(cowsToPlace))]
-        public void cowsCanOnlyBePlacedOnEmptySpaces(bool indexOfCowsToPlace, string[] cowsToPlace, bool expected)
+        public void cowsCanOnlyBePlacedOnEmptySpaces(string[] cowsToPlace)
         {
+            ICow cow = Substitute.For<ICow>();
             IBoard board = Substitute.For<IBoard>();
             IPlayer player1 = Substitute.For<IPlayer>();
             IPlayer player2 = Substitute.For<IPlayer>();
             Umpire umpire = new Umpire(player1, player2);
-
-
+            foreach (string x in cowsToPlace)
+            {
+               umpire.validatePlacing(x).Returns(true);
+               Assert.AreEqual(umpire.validatePlacing(x), true); // validates that placing is possible on empty spot
+            }
+            
+            //for (int i = 0; i<24; i++)
+            //{
+            //    player1.getBoard().getMainNodeList()[i].changeOccupied(false);
+                
+            //}
+            //foreach (string x in cowsToPlace)
+            //{
+            //    umpire.validatePlacing(x).Returns(false);
+            //    Assert.AreEqual(umpire.validatePlacing(x), false); // validates that placing is possible on empty spot
+            //}
+         
             #region original_test
             //            Board b = new Board();
             //            Player p = new Player("Darth Grazer II", Team.DarkCow);

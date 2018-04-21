@@ -143,7 +143,7 @@ namespace moraba
         }
         #endregion
 
-        #region
+        #region Validation
         public bool validatePlacing (string input)
         {
             INode inputNode = currentPlayer.getBoard().getNodeFromString(input);

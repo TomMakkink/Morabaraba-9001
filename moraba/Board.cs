@@ -212,7 +212,7 @@ namespace moraba
         public bool checkNodeIsOccupied(INode node)
         {
             if (node == null) return false;
-            return node.occupied;
+            return node.getOccupied();
         }
 
         public int numOfCowsOntheField()

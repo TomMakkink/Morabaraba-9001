@@ -24,5 +24,6 @@ namespace moraba
 
         bool getOccupied();
 
+        void changeOccupied(bool cha);
     }
 }
