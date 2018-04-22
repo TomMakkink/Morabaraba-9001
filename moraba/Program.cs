@@ -34,11 +34,5 @@ namespace moraba
             Console.Read();
         }
 
-        
-        
-
-      
-
-      
     }
 }
