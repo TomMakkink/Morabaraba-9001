@@ -36,6 +36,14 @@ namespace moraba
             currentPlayer = player1;
             enemy = player2;
         }
+
+        public void changePlayers()
+        {
+            IPlayer temp = currentPlayer;
+            currentPlayer = enemy;
+            enemy = temp;
+            justGotMill = false;
+        }
         private List<List<string>> getMillOptions(int index)
         {
             string caseSwitch = currentPlayer.getBoard().getMainNodeList()[index].Position;
@@ -106,16 +114,11 @@ namespace moraba
                     {
                         if (turns % 2 == 1)
                         {
-                            IPlayer temp = currentPlayer;
-                            currentPlayer = enemy;
-                            enemy = temp;
-
+                            changePlayers();
                         }
                         else
                         {
-                            IPlayer temp = currentPlayer;
-                            currentPlayer = enemy;
-                            enemy = temp;
+                            changePlayers();
                         }
                     }
                   
@@ -375,28 +378,32 @@ namespace moraba
 
         public bool AllEnemyCowInMill()
         {
-            bool shootable = true; 
+            bool shootable = false;
+            bool breakable2 = false;
             bool breakable = false; // this will allow us to break from the nested loop and return a true once a shootable cow has been found
-            List<ICow> NumEnemyCowsOnfield = minusCows(enemy.getCowsAlive(), enemy.getPlacingCows());
-            foreach(List<string> x in enemy.getMillList())
+            List<ICow> NumEnemyCowsOnfield = currentPlayer.getBoard().getCowsOnField(enemy.Team);
+            foreach(ICow x in NumEnemyCowsOnfield)
             {
-                foreach(ICow y in NumEnemyCowsOnfield)
+                foreach(List<string> y in enemy.getMillList())
                 {
-                    if (x.Contains(y.getPosition()))
+                    if (y.Contains(x.getPosition()))
                     {
-                        shootable = false;
+                        breakable = true;
+                        shootable = true;
+                        breakable2 = false;
                     }
                     else
                     {
-                        shootable = true;
-                        breakable = true;
+                        shootable = false;
+                        breakable2 = true;
                     }
                     if (breakable)
                         break;
                 }
-                if (breakable)
+                if (breakable2)
                     break;
             }
+            
             return shootable;
         }
 
@@ -472,13 +479,13 @@ namespace moraba
 
         public bool NodeInMill(INode node)
         {
-            bool isNotInMill = false; // this method will check to see if the node choosen is in an enemy mill.
+            bool isNotInMill = true; // this method will check to see if the node choosen is in an enemy mill.
             foreach (List<string> x in enemy.getMillList())
             {
                 if (x.Contains(node.Position))
-                    isNotInMill = false;
+                    return false;
                 else
-                    return true;
+                    isNotInMill = true;
             }
             return isNotInMill;
         }

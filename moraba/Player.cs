@@ -137,9 +137,9 @@ namespace moraba
             if (!BoardList.checkNodeIsOccupied(temp))
             {
                 int index = BoardList.getMainNodeList().FindIndex(x => x.Position == placeNode);
-                BoardList.getMainNodeList()[index].addCow(CowsForPlacing[0]);
                 LastEditedNode = BoardList.getMainNodeList()[index];
                 GiveCowName(LastEditedNode.Position);
+                BoardList.getMainNodeList()[index].addCow(CowsAlive[numCowsAlive()-1]);
                 removePlacedCow();
                 return true;
             }
@@ -153,9 +153,13 @@ namespace moraba
             int endIndex = BoardList.getMainNodeList().FindIndex(x => x.Position == endNode.Position);
 
             BoardList.getMainNodeList()[endIndex].addCow(startNode.Cow);
+
             BoardList.getMainNodeList()[endIndex].Cow.changePosition(BoardList.getMainNodeList()[endIndex].Position);
-            ChangeCowName(BoardList.getMainNodeList()[startIndex].Position, BoardList.getMainNodeList()[endIndex].Position);
+
+         //   ChangeCowName(BoardList.getMainNodeList()[startIndex].Position, BoardList.getMainNodeList()[endIndex].Position);
+            
             BoardList.getMainNodeList()[startIndex].removeCow();
+
             LastEditedNode = BoardList.getMainNodeList()[endIndex];
             return true;
         }

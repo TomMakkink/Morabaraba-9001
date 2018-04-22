@@ -11,7 +11,7 @@ namespace moraba
         string askToPlace();
         bool AllEnemyCowInMill();
         string askToMove();
-
+        void changePlayers();
         IPlayer getCurrentPlayer();
         int getTurns();
         IPlayer getEnemy();

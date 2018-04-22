@@ -19,6 +19,19 @@ namespace moraba
             return null;
         }
 
+        public List<ICow> getCowsOnField(Team team)
+        {
+            List<ICow> temp = new List<ICow>();
+            foreach(INode x in mainNodeList)
+            {
+                if (x.getOccupied() == true)
+                {
+                    if (x.Cow.Team == team)
+                        temp.Add(x.Cow);
+                }
+            }
+            return temp;
+        }
 
         public void RemoveCow(int index , IPlayer player)
         {

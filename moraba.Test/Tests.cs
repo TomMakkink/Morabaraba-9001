@@ -568,79 +568,59 @@ namespace moraba.Test
             p.Placing(currentPlayerCows[2]);
             p2.Placing(enemyCows[0]);
             p2.Placing(enemyCows[1]);
-            p2.Placing(enemyCows[2]); 
+            p2.Placing(enemyCows[2]);
             U.millFormed(p.getLastNode()); // this will make the mill be checked 
             U.shoot(chosenCow); // this will shoot the cow given as a parameter
             Assert.That(p.getBoard().getNodeFromString(enemyCows[1]).getOccupied() == expected); // this will check that the node shoot at is empty and show that the cow choosen was 
             U.millFormed(p.getLastNode()); // again calls to see if a mill will be formed even if it is the same mill
             U.shoot(enemyCows[0]); // this will check that a mill will not fire after it has already fired
-            INode tempCheck = p2.getBoard().getNodeFromString(enemyCows[0]); 
-            Assert.That( tempCheck.getOccupied()== true);
+            INode tempCheck = p2.getBoard().getNodeFromString(enemyCows[0]);
+            Assert.That(tempCheck.getOccupied() == true);
         }
         #endregion
 
-        //        #region jeffs test
-        //        // the test sources bellow are in the following format
-        //        // int[] all moves made during a game|| int[] all shots made during a game || the expected value of each shot 
-        //        // note that the number in the arrays refer to the node index in the mainNodeList used for the board
-        //        static object[] cowsInMillThatCantBeShot =
-        //        {
-        //            new object[] { new int[] { 1, 3, 0, 4, 23, 5, 2}, new int[] { 23, 4}, new bool[] { true, true } },
-        //            new object[] { new int[] { 0,3,1,4,2}, new int[] { 3}, new bool[] { true } },
-        //            new object[] { new int[] { 9,11,0,3,1,4,2,5}, new int[] {11, 0}, new bool[] {true, false}},
-        //            new object[] { new int[] { 21,6,18,10,15,10,12,11}, new int[] {10,18,12}, new bool[] {true,false,true}},
-        //            new object[] { new int[] { 21,6,18,10,15,10,12,11,12,0,13,1,14}, new int[] {10,18,12,0}, new bool[] {true,false,true,true}},
-        //            new object[] { new int[] { 0,2,9,14,23,21,3,5,6}, new int[] {14}, new bool[] { true } }
-        //        };
+        #region Cow in mill cannot be shot if other cows exist
+        // the test sources bellow are in the following format
+        // int[] all moves made during a game|| int[] all shots made during a game || the expected value of each shot 
+        // note that the number in the arrays refer to the node index in the mainNodeList used for the board
+        static object[] cowsInMillThatCantBeShot =
+        {
+                    new object[] { new string[] { "a3", "b1", "a0", "b3", "g0", "a6"}, new string[] { "a3", "b3"}, new string[] {"c2","c3","c4" },new bool[] { false, true } },
+                    new object[] { new string[] { "a0","b1","a3","b3","a6"}, new string[] { "a3"}, new string[] { "c2", "c4", "c3" }, new bool[] { false } },
+                    new object[] { new string[] { "d0","d2","a0","b1","a3","b3","a6","b5"}, new string[] {"d2", "a0"}, new string[] { "c2", "c3", "c4" }, new bool[] {true, false}},
+                    new object[] { new string[] { "g0","c2","f1","d1","e2","d4","d2"}, new string[] {"d1","f1","d4"}, new string[] { "a0","a3","a6"}, new bool[] {true,false,true}},
+                    new object[] { new string[] { "g0","c2","f1","d1","e2","e3","d2","d4","a0","d5","a3","d6"}, new string[] {"d1","f1","d4","a0"}, new string[] { "b1", "b5", "b3" }, new bool[] {true,false,false,true}},
+                    new object[] { new string[] { "a0","a6","d0","d6","g6","g0","b1","b5","c2"}, new string[] {"g0"}, new string[] { "e2", "e3", "e4" }, new bool[] { false } }
+                };
 
-        //        [Test]
-        //        [TestCaseSource(nameof(cowsInMillThatCantBeShot))]
-        //        public void CowInMillCannotBeshotIfNonMillCowsExists(int[] moves, int[] shotsAtNodesTaken, bool[] expected)
-        //        {
-        //            Board b = new Board();
-        //            Player p = new Player("Darth Grazer III", Team.DarkCow);
-        //            Player p2 = new Player("Rebel Scum 2", Team.LightCow);
-        //            Umpire palpetine = new Umpire(b);
+        [Test]
+        [TestCaseSource(nameof(cowsInMillThatCantBeShot))]
+        public void CowInMillCannotBeshotIfNonMillCowsExists(string[] moves, string[] shotsAtNodesTaken,string[] P2Moves, bool[] expected)
+        {
+            IBoard b = new Board();
+            IPlayer p = new Player("Darth Grazer III", Team.DarkCow,b);
+            IPlayer p2 = new Player("Rebel Scum 2", Team.LightCow,b);
+            Umpire U = new Umpire(p,p2);
+            foreach(string x in moves)
+            {
+                p.Placing(x);
+                U.millFormed(p.getLastNode());
+            }
+            U.changePlayers();
+            foreach(string x in P2Moves)
+            {
+                p2.Placing(x);
+            }
+            Assert.That(U.millFormed(p2.getLastNode()) == true);
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.That(U.nodeChecks(p.getBoard().getNodeFromString(shotsAtNodesTaken[i]))==expected[i]);
 
-        //            palpetine.play(p, p2);
+            }
+            
 
-        //            int p1AliveCowIndex = 0;
-        //            int p2AliveCowIndex = 0;
-        //            int shotfiredIndex = 0;
-        //            int expectedIndex = 0;
-
-        //            for (int i = 0; i < moves.Length; i++)
-        //            {
-        //                if ((i + 1) % 2 == 1)// players 1s turn
-        //                {
-        //                    palpetine.play(p, p2);
-        //                    b.mainNodeList[moves[i]].addCow(p.CowsAlive[p1AliveCowIndex]);
-        //                    p1AliveCowIndex++;
-        //                    if (palpetine.millFormed(b.mainNodeList[moves[i]]))
-        //                    {
-        //                        bool canShoot = palpetine.nodeChecks(b.mainNodeList[shotsAtNodesTaken[shotfiredIndex]]);
-        //                        Assert.That(canShoot == expected[expectedIndex]);
-        //                        shotfiredIndex++;
-        //                        expectedIndex++;
-        //                    }
-        //                }
-        //                else // player 2 turn
-        //                {
-        //                    palpetine.play(p2, p);
-        //                    b.mainNodeList[moves[i]].addCow(p2.CowsAlive[p2AliveCowIndex]);
-        //                    p2AliveCowIndex++;
-        //                    if (palpetine.millFormed(b.mainNodeList[moves[i]]))
-        //                    {
-        //                        bool canShoot = palpetine.nodeChecks(b.mainNodeList[shotsAtNodesTaken[shotfiredIndex]]);
-        //                        Assert.That(canShoot == expected[expectedIndex]);
-        //                        shotfiredIndex++;
-        //                        expectedIndex++;
-        //                    }
-        //                }
-        //            }
-
-        //        }
-        //        #endregion
+        }
+        #endregion
 
         //        #region testing shooting empty spaces
         //        static object[] testCasesForShootingEmptyNode =

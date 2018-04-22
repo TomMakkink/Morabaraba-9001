@@ -10,6 +10,8 @@ namespace moraba
 
         void printBoard();
 
+        List<ICow> getCowsOnField(Team team);
+
         INode getNodeFromString(string node);
 
         void RemoveCow(int index, IPlayer player);
