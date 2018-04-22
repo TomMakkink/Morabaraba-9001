@@ -34,7 +34,6 @@ namespace moraba
 
             Umpire.play();
 
-
             Console.Read();
         }
 
