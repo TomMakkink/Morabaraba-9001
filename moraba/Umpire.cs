@@ -108,89 +108,112 @@ namespace moraba
         {
             while (!win())
             {
-                if (turns <= 24)//placing stage
+                changePlayerTurns();
+
+                if (currentPlayer.numCowsToPlace() != 0)
                 {
-                    if(turns != 1)
+                    placePlayer();
+                }
+                else
+                {
+                    if (currentPlayer.numCowsAlive() != 3)
                     {
-                        if (turns % 2 == 1)
-                        {
-                            changePlayers();
-                        }
-                        else
-                        {
-                            changePlayers();
-                        }
-                    }
-                  
-                    if (currentPlayer.numCowsToPlace() != 0)
-                    {
-                        string playerPlace = askToPlace();
-                        while (!validatePlacing(playerPlace))
-                        {
-                            Console.WriteLine("that move wasnt the best maybe try again?");
-                            playerPlace = askToPlace();
-                        }
-                        currentPlayer.Placing(playerPlace);
-                        //currentPlayer.getBoard().printBoard();
-                        mill(currentPlayer.getLastNode());
-                        currentPlayer.getBoard().printBoard();
+                        movePlayer();
                     }
                     else
                     {
-                        if (currentPlayer.numCowsAlive() != 3)
-                        {
-                            string playerPlace = askToMove();
-                            while (!validateMove(playerPlace))
-                            {
-                                Console.WriteLine("that move wasnt the best maybe try again?");
-                                playerPlace = askToMove();
-                            }
-                            string start = getStartNode(playerPlace);
-                            string end = getEndNode(playerPlace);
-                            INode startNode = currentPlayer.getBoard().getNodeFromString(start);
-                            INode endNode = currentPlayer.getBoard().getNodeFromString(end);
-                            currentPlayer.moveCow(startNode, endNode);
-                            currentPlayer.getBoard().printBoard();
-                            currentPlayer.GetRidOfMill(start);
-                            mill(currentPlayer.getLastNode());
-                            currentPlayer.getBoard().printBoard();
-                        }
-                        else
-                        {
-                            string playerPlace = askToFly();
-                            while (!validateFlying(playerPlace))
-                            {
-                                Console.WriteLine("that move wasnt the best maybe try again?");
-                                playerPlace = askToPlace();
-                            }
-                            string start = getStartNode(playerPlace);
-                            string end = getEndNode(playerPlace);
-                            INode startNode = currentPlayer.getBoard().getNodeFromString(start);
-                            INode endNode = currentPlayer.getBoard().getNodeFromString(end);
-                            currentPlayer.moveCow(startNode, endNode);
-                            currentPlayer.GetRidOfMill(start);
-                            currentPlayer.getBoard().printBoard();
-                            mill(currentPlayer.getBoard().getNodeFromString(playerPlace));
-                            currentPlayer.getBoard().printBoard();
-                        }
+                        flyPlayer();
                     }
                 }
+                
                 changeTurns(1);
             }
     
         }
 
+        void placePlayer()
+        {
+            string playerPlace = askToPlace();
+            while (!validatePlacing(playerPlace))
+            {
+                Console.WriteLine("that move wasnt the best maybe try again?");
+                playerPlace = askToPlace();
+            }
+            currentPlayer.Placing(playerPlace);
+            //currentPlayer.getBoard().printBoard();
+            mill(currentPlayer.getLastNode());
+            currentPlayer.getBoard().printBoard();
+        }
+
+        void movePlayer()
+        {
+            string playerPlace = askToMove();
+            while (!validateMove(playerPlace))
+            {
+                Console.WriteLine("that move wasnt the best maybe try again?");
+                playerPlace = askToMove();
+            }
+            string start = getStartNode(playerPlace);
+            string end = getEndNode(playerPlace);
+            INode startNode = currentPlayer.getBoard().getNodeFromString(start);
+            INode endNode = currentPlayer.getBoard().getNodeFromString(end);
+            currentPlayer.moveCow(startNode, endNode);
+            currentPlayer.getBoard().printBoard();
+            currentPlayer.GetRidOfMill(start);
+            mill(currentPlayer.getLastNode());
+            currentPlayer.getBoard().printBoard();
+        }
+
+        void flyPlayer()
+        {
+            string playerPlace = askToFly();
+            while (!validateFlying(playerPlace))
+            {
+                Console.WriteLine("that move wasnt the best maybe try again?");
+                playerPlace = askToPlace();
+            }
+            string start = getStartNode(playerPlace);
+            string end = getEndNode(playerPlace);
+            INode startNode = currentPlayer.getBoard().getNodeFromString(start);
+            INode endNode = currentPlayer.getBoard().getNodeFromString(end);
+            currentPlayer.moveCow(startNode, endNode);
+            currentPlayer.GetRidOfMill(start);
+            currentPlayer.getBoard().printBoard();
+            mill(currentPlayer.getBoard().getNodeFromString(playerPlace));
+            currentPlayer.getBoard().printBoard();
+        }
+
+        void changePlayerTurns()
+        {
+            if (turns != 1)
+            {
+                if (turns % 2 == 1)
+                {
+                    changePlayers();
+                }
+                else
+                {
+                    changePlayers();
+                }
+            }
+        }
+
         public bool win()// checks if the win conditions are true
         {
-            if (enemy.numCowsAlive() < 3)
+            if (enemy.numCowsAlive() < 3 || allNeighboursOccupied())
             {
                 printWinner();
                 return true;//true then current player wins
             }
 
+           return false; 
+        }
+
+        private bool allNeighboursOccupied()
+        {
             List<INode> playerNodeList = getPlayerNodeList(enemy.getBoard().getMainNodeList());
-           if (turns > 24)
-           {
+            if (turns > 24 && enemy.numCowsAlive() > 3)
+            {
                 for (int i = 0; i < playerNodeList.Count; i++)
                 {
                     List<string> neighours = playerNodeList[i].neighbours;
@@ -205,9 +228,8 @@ namespace moraba
 
                 }
                 return true;// no free nodes to move to
-           }
-
-           return false; 
+            }
+            return false;
         }
 
         private List<INode> getPlayerNodeList(List<INode> mainNodeList)
@@ -474,8 +496,7 @@ namespace moraba
             else
             {
                 Console.WriteLine("A valid node only as a charecter length of 2 and also starts with a letter between a-g and a number between 1-6");
-                while (!(currentPlayer.getBoard().checkNodeExists(CowToShoot) && CowToShoot.Length == 2)) // while loop will continue till correct node given
-                                                                                       
+                while (!(currentPlayer.getBoard().checkNodeExists(CowToShoot) && CowToShoot.Length == 2)) // while loop will continue till correct node given                                                                      
                 {
                     Console.WriteLine("Please enter the node that you would like to shoot");
                     CowToShoot = Console.ReadLine();
