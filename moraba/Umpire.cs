@@ -106,7 +106,7 @@ namespace moraba
 
         public void play()
         {
-            while (win())
+            while (!win())
             {
                 if (turns <= 24)//placing stage
                 {
@@ -175,22 +175,22 @@ namespace moraba
                         }
                     }
                 }
-                turns++;
+                changeTurns(1);
             }
     
         }
 
-        public bool win()
+        public bool win()// checks if the win conditions are true
         {
             if (enemy.numCowsAlive() < 3)
             {
                 printWinner();
-                return false;//false then current wins
+                return true;//true then current player wins
             }
 
             List<INode> playerNodeList = getPlayerNodeList(enemy.getBoard().getMainNodeList());
-            if (turns > 24)
-            {
+           if (turns > 24)
+           {
                 for (int i = 0; i < playerNodeList.Count; i++)
                 {
                     List<string> neighours = playerNodeList[i].neighbours;
@@ -199,15 +199,15 @@ namespace moraba
                         INode currentNode = enemy.getBoard().getNodeFromString(neighours[j]);
                         if (!currentNode.occupied)
                         {
-                            return true;// true means theres a free node to move to
+                            return false;// false means theres a free node to move to
                         }
                     }
 
                 }
-                return false;// no free nodes to move to
-            }
+                return true;// no free nodes to move to
+           }
 
-            return true; 
+           return false; 
         }
 
         private List<INode> getPlayerNodeList(List<INode> mainNodeList)

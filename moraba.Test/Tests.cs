@@ -425,22 +425,46 @@ namespace moraba.Test
 
         #endregion
 
-        //#region Cows can move to any empty space if only three cows of that team remain
+        #region Cows can move to any empty space if only three cows of that team remain
 
-        //[Test]
-        //public void winOccursIfOpponentHasTwoOrFewerCows ()
-        //{
-        //    IBoard b = Substitute.For<Board>();
-        //    List<INode> temp = b.getMainNodeList();
-        //    IPlayer player1 = Substitute.For<IPlayer>();
-        //    IPlayer player2 = Substitute.For<IPlayer>();     
-        //    Umpire U = new Umpire(player1, player2);
-        //    player2.numCowsAlive().Returns(2);
-        //    Assert.That(U.win()== true); 
-        //}
+        [Test]
+        public void winOccursIfOpponentHasTwoOrFewerCows()
+        {
+            IBoard b = Substitute.For<Board>();
+            List<INode> temp = b.getMainNodeList();
+            IPlayer player1 = Substitute.For<IPlayer>();
+            IPlayer player2 = Substitute.For<IPlayer>();
+            Umpire U = new Umpire(player1, player2);
+            player2.numCowsAlive().Returns(0);
+            Assert.That(U.win() == true);
+            player2.numCowsAlive().Returns(1);
+            Assert.That(U.win() == true);
+            player2.numCowsAlive().Returns(2);
+            Assert.That(U.win() == true);
+        }
 
-        //#endregion
+        #endregion
 
+        [Test]
+        [TestCaseSource(nameof(cowNeightbours))]
+        public void winOccursIfEnemyCantMove( int index, string enemyCow, string[] currentPlayerCows)
+        {
+            IBoard b = new Board();
+            IPlayer p1 = new Player("tehe", Team.DarkCow, b);
+            IPlayer p2 = new Player("haha", Team.LightCow, b);
+
+            Umpire U = new Umpire(p1, p2);
+
+            foreach(string x in currentPlayerCows)
+            {
+                p1.Placing(x);
+            }
+            p2.Placing(enemyCow);
+
+            U.changeTurns(24);
+
+            Assert.That(U.win() == true);
+        }
 
         #region Mill formed by three cows in a row
 
