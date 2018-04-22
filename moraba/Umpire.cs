@@ -103,7 +103,7 @@ namespace moraba
             }
             return new List<List<string>> { };
         }
-        #region askingToMove
+
         public void play()
         {
             while (win())
@@ -182,38 +182,57 @@ namespace moraba
 
         public bool win()
         {
-            if (enemy.numCowsAlive() == 2)
+            if (enemy.numCowsAlive() < 3)
             {
                 printWinner();
-                return true;
+                return false;//false then current wins
             }
-            List<INode> nodeList = enemy.getBoard().getMainNodeList();
-            for (int i = 0; i < nodeList.Count; i++)
+
+            List<INode> playerNodeList = getPlayerNodeList(enemy.getBoard().getMainNodeList());
+            if (turns > 24)
             {
-                if (nodeList[i].Cow.Team == currentPlayer.Team)
+                for (int i = 0; i < playerNodeList.Count; i++)
                 {
-                    List<string> neighours = currentPlayer.getBoard().getMainNodeList()[i].neighbours;
+                    List<string> neighours = playerNodeList[i].neighbours;
                     for (int j = 0; j < neighours.Count; j++)
                     {
-                        INode currentNode = currentPlayer.getBoard().getNodeFromString(neighours[j]);
+                        INode currentNode = enemy.getBoard().getNodeFromString(neighours[j]);
                         if (!currentNode.occupied)
                         {
-                            return false;
+                            return true;// true means theres a free node to move to
                         }
+                    }
+
+                }
+                return false;// no free nodes to move to
+            }
+
+            return true; 
+        }
+
+        private List<INode> getPlayerNodeList(List<INode> mainNodeList)
+        {
+            List<INode> playersNode = new List<INode>();
+            for (int i = 0; i < mainNodeList.Count; i++)
+            {
+                if (mainNodeList[i].occupied)
+                {
+                    if(mainNodeList[i].Cow.Team == enemy.Team)
+                    {
+                        playersNode.Add(mainNodeList[i]);
                     }
                 }
             }
-            printWinner();
-            return true; 
+            return playersNode;
         }
 
         void printWinner()
         {
-            Console.WriteLine("Good job. You have savagely murdered the other teams cow. You may now proclaim victory and dance around their corpses.");
-            Console.Read();
+            Console.WriteLine(String.Format("Good job. {0} have savagely murdered the other teams cow. You may now proclaim victory and dance around their corpses.", currentPlayer.Name));
+            //Console.Read();
         }
 
-
+         #region askingToMove
         public string askToFly()
         {
             Console.WriteLine(string.Format("Please may {0} choose the node they want to move from and the node they want to move to.", currentPlayer.Name));
