@@ -623,78 +623,59 @@ namespace moraba.Test
         #endregion
 
         #region testing shooting empty spaces
-        //static object[] testCasesForShootingEmptyNode =
-        //{
-        //            //new object[] {new int[] {0,1,2}, new int[] {21,22,23},new string[] { "a0","a3","a6" }, true},
-        //            //new object[] {new int[] {0,1,2}, new int[] {21,22,23},new string[] { "b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {3,4,5}, new int[] {21,22,23},new string[] { "b1","b3","b5" }, true},
-        //            //new object[] {new int[] {3,4,5}, new int[] {21,22,23},new string[] { "a0", "a3", "a6", "c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {6,7,8}, new int[] {21,22,23},new string[] { "c2","c3","c4" }, true},
-        //            //new object[] {new int[] {6,7,8}, new int[] {21,22,23},new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {9,10,11}, new int[] {21,22,23},new string[] { "d0", "d1", "d2" }, true},
-        //            //new object[] {new int[] {9,10,11}, new int[] {21,22,23},new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {12,13,14}, new int[] {21,22,23},new string[] {  "d4","d5","d6" }, true},
-        //            //new object[] {new int[] {12,13,14}, new int[] {21,22,23},new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2","e2","e3","e4","f1","f3","f5","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {15,16,17}, new int[] {21,22,23},new string[] { "e2", "e3", "e4" }, true},
-        //            //new object[] {new int[] {15,16,17}, new int[] {21,22,23},new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4","d5","d6","f1","f3","f5","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {18,19,20}, new int[] {21,22,23},new string[] { "f1", "f3", "f5" }, true},
-        //            //new object[] {new int[] {18,19,20}, new int[] {21,22,23},new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6","e2","e3","e4","g0","g3","g6" }, false},
-        //            //new object[] {new int[] {21,22,23}, new int[] {0,1,2},new string[] { "g0", "g3", "g6" }, true},
-        //            //new object[] {new int[] {21,22,23}, new int[] {0,1,2},new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6","e2","e3","e4", "f1", "f3", "f5" }, false},
-        //            ////horizantal mills done
-        //            //new object[] {new int[] {0,9,21}, new int[] {2,14,23},new string[] { "a0","d0","g0" }, true},
-        //            //new object[] {new int[] {0,9,21}, new int[] {2,14,23}, new string[] {"b1","d1","f1","c2","d2","e2","a3","b3","c3","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {3,10,18}, new int[] {2,14,23},new string[] { "b1", "d1", "f1" }, true},
-        //            //new object[] {new int[] {3,10,18}, new int[] {2,14,23}, new string[] { "a0", "d0", "g0","c2","d2","e2","a3","b3","c3","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {6,11,15}, new int[] {2,14,23},new string[] { "c2", "d2", "e2" }, true},
-        //            //new object[] {new int[] {6,11,15}, new int[] {2,14,23}, new string[] { "a0", "d0", "g0", "b1", "d1", "f1","a3","b3","c3","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {1,4,7}, new int[] {2,14,23},new string[] { "a3", "b3", "c3" }, true},
-        //            //new object[] {new int[] {1,4,7}, new int[] {2,14,23}, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {16,19,22}, new int[] {2,14,23},new string[] { "e3", "f3", "g3" }, true},
-        //            //new object[] {new int[] {16,19,22}, new int[] {2,14,23}, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {8,12,17}, new int[] {2,14,23},new string[] { "c4", "d4", "e4" }, true},
-        //            //new object[] {new int[] {8,12,17}, new int[] {2,14,23}, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3", "e3", "f3", "g3","b5","d5","f5","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {5,13,20}, new int[] {2,14,23},new string[] { "b5", "d5", "f5" }, true},
-        //            //new object[] {new int[] {5,13,20}, new int[] {2,14,23}, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3", "e3", "f3", "g3", "c4", "d4", "e4","a6","d6","g6"}, false },
-        //            //new object[] {new int[] {2,14,23}, new int[] {0,9,21},new string[] { "a6", "d6", "g6" }, true},
-        //            //new object[] {new int[] {2,14,23}, new int[] {0,9,21}, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3", "e3", "f3", "g3", "c4", "d4", "e4", "b5", "d5", "f5"}, false },
-        //            //// vertical mills done
-        //            //new object [] { new int[] { 0, 3, 6 }, new int[] { 2, 5, 8 }, new string[] { "a0","b1","c2"}, true },
-        //            //new object [] { new int[] {0,3,6}, new int[] { 2,5,8}, new string[] { "a3","a6","b3","b5","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, false},
-        //            //new object [] { new int[] { 21, 18, 15 }, new int[] { 2, 5, 8 }, new string[] { "g0","f1","e2"}, true },
-        //            //new object [] { new int[] { 21, 18, 15 }, new int[] { 2,5,8}, new string[] { "a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e3","e4","f3","f5","g3","g6"}, false},
-        //            //new object [] { new int[] { 17, 20, 23 }, new int[] { 2, 5, 8 }, new string[] { "e4","f5","g6"}, true },
-        //            //new object [] { new int[] { 17, 20, 23 }, new int[] { 2,5,8}, new string[] { "a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","f1","f3","g0","g3"}, false},
-        //            //new object [] { new int[] { 2,5,8 }, new int[] { 17,20,23 }, new string[] { "a6","b5","c4"}, true },
-        //            //new object [] { new int[] { 2,5,8 }, new int[] { 17,20,23 }, new string[] { "a0","a3","b1","b3","c2","c3","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"}, false}
-        //            //// diagonal mills checks
+        static object[] testCasesForShootingEmptyNode =
+        {
+                    new object[] {new string[] { "a0","a3","a6" },new string[] { "b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }},
+                    new object[] {new string[] { "b1","b3","b5" },new string[] { "a0", "a3", "a6", "c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }},
+                    new object[] {new string[] { "c2","c3","c4" },new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" } },
+                    new object[] {new string[] { "d0", "d1", "d2" },new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6" }},
+                    new object[] {new string[] {  "d4","d5","d6" },new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2","e2","e3","e4","f1","f3","f5","g0","g3","g6" }},
+                    new object[] {new string[] { "e2", "e3", "e4" },new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4","d5","d6","f1","f3","f5","g0","g3","g6" }},
+                    new object[] {new string[] { "f1", "f3", "f5" },new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6","e2","e3","e4","g0","g3","g6" } },
+                    new object[] {new string[] { "g0", "g3", "g6" },new string[] { "a0", "a3", "a6", "b1", "b3", "b5", "c2", "c3", "c4", "d0", "d1", "d2", "d4", "d5", "d6","e2","e3","e4", "f1", "f3", "f5" } },
+                    
+                    //horizantal mills done
+                    new object[] {new string[] { "a0", "d0", "g0" }, new string[] {"b1","d1","f1","c2","d2","e2","a3","b3","c3","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}},
+                    new object[] {new string[] { "b1", "d1", "f1" }, new string[] { "a0", "d0", "g0","c2","d2","e2","a3","b3","c3","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}},
+                    new object[] {new string[] { "c2", "d2", "e2" }, new string[] { "a0", "d0", "g0", "b1", "d1", "f1","a3","b3","c3","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}},
+                    new object[] {new string[] { "a3", "b3", "c3" }, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2","e3","f3","g3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}},
+                    new object[] {new string[] { "e3", "f3", "g3" }, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3","c4","d4","e4","b5","d5","f5","a6","d6","g6"}},
+                    new object[] {new string[] { "c4", "d4", "e4" }, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3", "e3", "f3", "g3","b5","d5","f5","a6","d6","g6"}},
+                    new object[] {new string[] { "b5", "d5", "f5" }, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3", "e3", "f3", "g3", "c4", "d4", "e4","a6","d6","g6"}},
+                    new object[] {new string[] { "a6", "d6", "g6" }, new string[] { "a0", "d0", "g0", "b1", "d1", "f1", "c2", "d2", "e2", "a3", "b3", "c3", "e3", "f3", "g3", "c4", "d4", "e4", "b5", "d5", "f5"}},
+                    
+                    // vertical mills done
+                    new object [] { new string[] { "a0","b1","c2"},new string[] { "a3","a6","b3","b5","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"} },
+                    new object [] { new string[] { "g0","f1","e2"}, new string[] { "a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e3","e4","f3","f5","g3","g6"}},
+                    new object [] { new string[] { "e4","f5","g6"}, new string[] { "a0","a3","a6","b1","b3","b5","c2","c3","c4","d0","d1","d2","d4","d5","d6","e2","e3","f1","f3","g0","g3"} },
+                    new object [] {new string[] { "a6","b5","c4"}, new string[] { "a0","a3","b1","b3","c2","c3","d0","d1","d2","d4","d5","d6","e2","e3","e4","f1","f3","f5","g0","g3","g6"} }
+                    
+                    // diagonal mills checks
+                     };
 
 
-        //        };
+        [Test]
+        [TestCaseSource(nameof(testCasesForShootingEmptyNode))]
+        public void CantShootEmptyNode(string[] currentPlayerCows, string[] targetCows)
+        {
+            IBoard b = new Board();
+            IPlayer p = new Player("Darth Grazer II", Team.DarkCow, b);
+            IPlayer p2 = Substitute.For<IPlayer>();
+            p.Placing(currentPlayerCows[0]);
+            p.Placing(currentPlayerCows[1]);
+            p.Placing(currentPlayerCows[2]);
+            Umpire U = new Umpire(p, p2);
+            for (int i = 0; i < targetCows.Length; i++)
+            {
+                Assert.That(U.nodeChecks(p.getBoard().getNodeFromString(targetCows[i])) == false);
+                //U.play(p, p2);
+                //U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // this will make the mill be checked
+                //Node n = b.getNodeFromString(targetCows[i]);// gets the target node
+                //bool canShoot = U.nodeChecks(n);// checks if the node is empty || return fals if node is empty
+                //Assert.That(canShoot == expected);
+            }
 
-
-        //[Test]
-        //[TestCaseSource(nameof(testCasesForShootingEmptyNode))]
-        //public void CantShootEmptyNode(int[] enemyCows, string[] currentPlayerCows, string[] targetCows, bool expected)
-        //{
-        //    IBoard b = new Board();
-        //    IPlayer p = new Player("Darth Grazer II", Team.DarkCow,b);
-        //    IPlayer p2 = Substitute.For<IPlayer>();
-        //    p.Placing(currentPlayerCows[0]);
-        //    p.Placing(currentPlayerCows[1]);
-        //    p.Placing(currentPlayerCows[2]);
-        //    Umpire U = new Umpire(p,p2);
-        //    for (int i = 0; i < targetCows.Length; i++)
-        //    {
-        //        Assert.That(U.nodeChecks(p.getBoard().getNodeFromString(targetCows[i])) == false);
-        //        //U.play(p, p2);
-        //        //U.millFormed(b.mainNodeList[currentPlayerCows[1]]); // this will make the mill be checked
-        //        //Node n = b.getNodeFromString(targetCows[i]);// gets the target node
-        //        //bool canShoot = U.nodeChecks(n);// checks if the node is empty || return fals if node is empty
-        //        //Assert.That(canShoot == expected);
-        //    }
-
-        //}
+        }
 
         #endregion
         #region cannot Shoot Cows In Own Mill
@@ -788,6 +769,63 @@ namespace moraba.Test
             Assert.That(p2.getBoard().numOfCowsOntheField() == expected); // this will show that the enemy cow got removed from the bored.
 
         }
+        #endregion
+
+        #region Cow in mill can be shot when no other cows are on the field
+
+        static object[] cowInMillCanBeShot = {
+
+            new object[] { new string[] {"a0","a3","a6" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"b1","b3","b5" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"c2","c3","c4" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"d0","d1","d2" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"d4","d5","d6" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"e2","e4","e3" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"f1","f3","f5" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"g0","g3","g6" }, new string[] {"a0","a3","a6" } ,true},
+            new object[] { new string[] {"a0","g0","d0" }, new string[] {"f1","f3","f5" } ,true},
+            new object[] { new string[] {"b1","d1","f1" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"a3","b3","c3" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"b5","d5","f5" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"a6","d6","g6" }, new string[] {"g0","a0","d0" } ,true},
+            new object[] { new string[] {"a0","b1","c2" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"a6","b5","c4" }, new string[] {"g0","g3","g6" } ,true},
+            new object[] { new string[] {"g6","f5","e4" }, new string[] {"f3","g3","e3" } ,true},
+            new object[] { new string[] {"g0","f1","e2" }, new string[] {"e4","f5","g6" } ,true},
+            new object[] { new string[] { "b5", "d5", "f5" }, new string[] { "g0", "g3", "g6","a0" }, false },
+            new object[] { new string[] { "f1", "f3", "f5" }, new string[] { "g0", "g3", "g6","a0" }, false },
+            new object[] { new string[] { "a0", "a3", "a6" }, new string[] { "g0", "g3", "g6","b1" }, false },
+            new object[] { new string[] { "d4", "d5", "d6" }, new string[] { "g0", "g3", "g6","a0" }, false },
+            new object[] { new string[] { "c2", "c3", "c4" }, new string[] { "g0", "g3", "g6","a0" }, false },
+            new object[] { new string[] { "c2", "c3", "c4" }, new string[] { "g0", "g3", "g6","a0","a3","a6","e2" }, false },
+            new object[] { new string[] { "c2", "c3", "c4" }, new string[] { "g0", "g3", "g6","a0", "a3", "a6", "e2" }, false },
+            new object[] { new string[] { "c2", "c3", "c4" }, new string[] { "g0", "g3", "g6","a0", "a3", "a6", }, true }
+
+        };
+
+        [Test]
+        [TestCaseSource(nameof(cowInMillCanBeShot))]
+        public void cowInMillCanBeShotWhenNoOtherCowsAreOnTheField(string[] p1Cows,string[] p2Cows,bool expected)
+        {
+            IBoard b = new Board();
+            IPlayer p = new Player("te", Team.DarkCow, b);
+            IPlayer p2 = new Player("he", Team.LightCow, b);
+            Umpire U = new Umpire(p, p2);
+            foreach(string x in p1Cows)
+            {
+                p.Placing(x);
+                U.millFormed(p.getBoard().getNodeFromString(x));
+            }
+            U.changePlayers();
+            foreach(string y in p2Cows)
+            {
+                p2.Placing(y);
+                U.millFormed(p2.getBoard().getNodeFromString(y));
+            }
+            U.changePlayers();
+            Assert.That(U.nodeChecks(p2.getBoard().getNodeFromString(p2Cows[0]))==expected);
+        }
+
         #endregion
     }
 

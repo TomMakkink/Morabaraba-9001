@@ -400,6 +400,7 @@ namespace moraba
                     if (breakable)
                         break;
                 }
+                breakable = false;
                 if (breakable2)
                     break;
             }
